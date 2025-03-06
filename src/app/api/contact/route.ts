@@ -24,28 +24,64 @@ export async function POST(req: NextRequest) {
     });
 
     // Configureer de e-mail transporter
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST || 'smtp.office365.com',
-      port: Number(process.env.SMTP_PORT) || 587,
-      secure: Boolean(process.env.SMTP_SECURE) || false,
-      auth: {
-        user: process.env.SMTP_USER || 'your-email@gmail.com',
-        pass: process.env.SMTP_PASSWORD || 'your-password',
-      },
-      debug: true, // Voeg debug-informatie toe
-      logger: true, // Log informatie over de SMTP-verbinding
-    });
-
-    // Controleer de verbinding met de SMTP-server
+    let transporter;
+    
+    // Probeer eerst Office 365
     try {
+      transporter = nodemailer.createTransport({
+        host: process.env.SMTP_HOST || 'smtp.office365.com',
+        port: Number(process.env.SMTP_PORT) || 587,
+        secure: Boolean(process.env.SMTP_SECURE) || false,
+        auth: {
+          user: process.env.SMTP_USER || 'your-email@gmail.com',
+          pass: process.env.SMTP_PASSWORD || 'your-password',
+        },
+        debug: true,
+        logger: true,
+        tls: {
+          ciphers: 'SSLv3',
+          rejectUnauthorized: false
+        }
+      });
+      
+      // Controleer de verbinding met de SMTP-server
       await transporter.verify();
-      console.log('SMTP-verbinding geverifieerd');
-    } catch (verifyError) {
-      console.error('SMTP-verbinding verificatie mislukt:', verifyError);
-      return NextResponse.json(
-        { error: `SMTP-verbinding verificatie mislukt: ${verifyError.message}` },
-        { status: 500 }
-      );
+      console.log('SMTP-verbinding geverifieerd met Office 365');
+    } catch (office365Error) {
+      console.error('Office 365 SMTP-verbinding mislukt:', office365Error);
+      
+      // Als Office 365 faalt, probeer SendGrid als fallback (indien geconfigureerd)
+      if (process.env.SENDGRID_API_KEY) {
+        console.log('Proberen met SendGrid als fallback...');
+        transporter = nodemailer.createTransport({
+          host: 'smtp.sendgrid.net',
+          port: 587,
+          secure: false,
+          auth: {
+            user: 'apikey',
+            pass: process.env.SENDGRID_API_KEY,
+          },
+          debug: true,
+          logger: true
+        });
+        
+        try {
+          await transporter.verify();
+          console.log('SMTP-verbinding geverifieerd met SendGrid');
+        } catch (sendgridError) {
+          console.error('SendGrid SMTP-verbinding mislukt:', sendgridError);
+          return NextResponse.json(
+            { error: `Alle SMTP-verbindingen mislukt. Laatste fout: ${sendgridError.message}` },
+            { status: 500 }
+          );
+        }
+      } else {
+        // Als er geen SendGrid API key is geconfigureerd, geef de originele fout terug
+        return NextResponse.json(
+          { error: `SMTP-verbinding verificatie mislukt: ${office365Error.message}` },
+          { status: 500 }
+        );
+      }
     }
 
     // Stel de e-mail samen
