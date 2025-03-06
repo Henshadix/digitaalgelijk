@@ -289,9 +289,11 @@ export default function UnderConstruction() {
         setTimeout(() => {
           setIsSubscribed(false);
         }, 5000);
-      } catch (error) {
+      } catch (error: any) {
         console.error('Fout bij het versturen van het formulier:', error);
-        alert('Er is een fout opgetreden bij het versturen van het bericht. Probeer het later opnieuw.');
+        // Toon een gedetailleerde foutmelding aan de gebruiker
+        const errorMessage = error.message || 'Er is een fout opgetreden bij het versturen van het bericht. Probeer het later opnieuw.';
+        alert(`Fout: ${errorMessage}`);
       } finally {
         // Stop loading state
         setIsLoading(false);

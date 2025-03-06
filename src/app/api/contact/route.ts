@@ -15,17 +15,38 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    console.log('SMTP-instellingen:', {
+      host: process.env.SMTP_HOST,
+      port: process.env.SMTP_PORT,
+      secure: process.env.SMTP_SECURE,
+      user: process.env.SMTP_USER ? '***' : 'niet ingesteld',
+      password: process.env.SMTP_PASSWORD ? '***' : 'niet ingesteld',
+    });
+
     // Configureer de e-mail transporter
-    // In productie zou je hier je eigen SMTP-server configureren
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST || 'smtp.gmail.com',
+      host: process.env.SMTP_HOST || 'smtp.office365.com',
       port: Number(process.env.SMTP_PORT) || 587,
       secure: Boolean(process.env.SMTP_SECURE) || false,
       auth: {
         user: process.env.SMTP_USER || 'your-email@gmail.com',
         pass: process.env.SMTP_PASSWORD || 'your-password',
       },
+      debug: true, // Voeg debug-informatie toe
+      logger: true, // Log informatie over de SMTP-verbinding
     });
+
+    // Controleer de verbinding met de SMTP-server
+    try {
+      await transporter.verify();
+      console.log('SMTP-verbinding geverifieerd');
+    } catch (verifyError) {
+      console.error('SMTP-verbinding verificatie mislukt:', verifyError);
+      return NextResponse.json(
+        { error: `SMTP-verbinding verificatie mislukt: ${verifyError.message}` },
+        { status: 500 }
+      );
+    }
 
     // Stel de e-mail samen
     const mailOptions = {
@@ -47,20 +68,30 @@ export async function POST(req: NextRequest) {
       `,
     };
 
-    // Verstuur de e-mail
-    // In development mode slaan we het versturen over om geen echte e-mails te versturen
-    if (process.env.NODE_ENV === 'production') {
-      await transporter.sendMail(mailOptions);
-    } else {
-      console.log('E-mail zou worden verstuurd in productie:', mailOptions);
-    }
+    console.log('Versturen van e-mail met opties:', {
+      from: mailOptions.from,
+      to: mailOptions.to,
+      subject: mailOptions.subject,
+    });
 
-    // Stuur een succesvolle response terug
-    return NextResponse.json({ success: true });
+    // Verstuur de e-mail
+    try {
+      const info = await transporter.sendMail(mailOptions);
+      console.log('E-mail succesvol verstuurd:', info.messageId);
+      
+      // Stuur een succesvolle response terug
+      return NextResponse.json({ success: true, messageId: info.messageId });
+    } catch (sendError) {
+      console.error('Fout bij het versturen van e-mail:', sendError);
+      return NextResponse.json(
+        { error: `Fout bij het versturen van e-mail: ${sendError.message}` },
+        { status: 500 }
+      );
+    }
   } catch (error) {
-    console.error('Fout bij het versturen van e-mail:', error);
+    console.error('Algemene fout bij het verwerken van het verzoek:', error);
     return NextResponse.json(
-      { error: 'Er is een fout opgetreden bij het versturen van het bericht' },
+      { error: `Er is een fout opgetreden bij het versturen van het bericht: ${error.message}` },
       { status: 500 }
     );
   }
