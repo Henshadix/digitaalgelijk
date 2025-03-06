@@ -27,7 +27,7 @@ const CountdownBox = ({ value, label, ariaLabel }: { value: number; label: strin
     aria-label={ariaLabel}
   >
     <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-500 to-green-500 opacity-75"></div>
-    <div className="text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">{value}</div>
+    <div className="text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">{value || 0}</div>
     <div className="text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400 mt-1">{label}</div>
   </motion.div>
 );
@@ -78,9 +78,29 @@ export default function UnderConstruction() {
     return percentage;
   };
   
+  // Bereken countdown direct (als fallback)
+  const calculateCountdown = () => {
+    const now = new Date();
+    const difference = launchDate.getTime() - now.getTime();
+    
+    if (difference <= 0) {
+      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    }
+    
+    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+    
+    return { days, hours, minutes, seconds };
+  };
+  
   const progressPercentage = calculateProgress();
+  const initialCountdown = calculateCountdown();
 
   useEffect(() => {
+    // Initialiseer countdown met berekende waarden
+    setCountdown(initialCountdown);
     setMounted(true);
     
     // CSS toevoegen om de header en footer te verbergen
