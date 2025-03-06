@@ -118,13 +118,22 @@ export default function UnderConstruction() {
       }
       body {
         overflow-x: hidden !important;
+        height: 100% !important;
+        position: relative !important;
+      }
+      html {
+        height: 100% !important;
+        overflow-x: hidden !important;
       }
     `;
     document.head.appendChild(style);
 
     // Check of het een mobiel apparaat is
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      const isMobileDevice = typeof window !== 'undefined' && 
+        (window.innerWidth < 768 || 
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+      setIsMobile(isMobileDevice);
     };
     
     checkMobile();
@@ -413,9 +422,9 @@ export default function UnderConstruction() {
         )}
       </AnimatePresence>
 
-      <div className="container max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-6 md:py-8 lg:py-12 min-h-screen flex flex-col justify-center">
+      <div className="container max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-6 md:py-8 lg:py-12 min-h-screen flex flex-col justify-center overflow-hidden">
         <motion.div 
-          className="relative z-10 mx-auto text-center"
+          className="relative z-10 mx-auto text-center w-full"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
