@@ -1,0 +1,32 @@
+{
+  "name": "digitaalgelijk-website",
+  "type": "docker-compose",
+  "compose": {
+    "file": "docker-compose.yml"
+  },
+  "domains": [
+    {
+      "domain": "${DOMAIN}",
+      "port": 3000,
+      "https": true
+    }
+  ],
+  "env": [
+    {
+      "name": "NODE_ENV",
+      "value": "production"
+    },
+    {
+      "name": "PORT",
+      "value": "3000"
+    },
+    {
+      "name": "DOMAIN",
+      "value": "digitaalgelijk.nl"
+    }
+  ],
+  "resources": {
+    "memory": 1024,
+    "cpu": 1
+  }
+} 

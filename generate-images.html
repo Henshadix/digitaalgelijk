@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Placeholder Images</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .image-group {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        canvas {
+            border: 1px solid #eee;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        h2 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Generate Placeholder Images</h1>
+    <div class="container">
+        <div class="image-group">
+            <h2>Service Images (800x600)</h2>
+            <div>
+                <canvas id="hardware-opkopen" width="800" height="600"></canvas>
+                <div>
+                    <button onclick="downloadImage('hardware-opkopen', 'hardware-opkopen.jpg')">Download Hardware Opkopen</button>
+                </div>
+            </div>
+            <div>
+                <canvas id="data-verwijdering" width="800" height="600"></canvas>
+                <div>
+                    <button onclick="downloadImage('data-verwijdering', 'data-verwijdering.jpg')">Download Data Verwijdering</button>
+                </div>
+            </div>
+            <div>
+                <canvas id="hardware-recycling" width="800" height="600"></canvas>
+                <div>
+                    <button onclick="downloadImage('hardware-recycling', 'hardware-recycling.jpg')">Download Hardware Recycling</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="image-group">
+            <h2>Certification Images (200x200)</h2>
+            <div>
+                <canvas id="iso-9001" width="200" height="200"></canvas>
+                <div>
+                    <button onclick="downloadImage('iso-9001', 'iso-9001.png')">Download ISO 9001</button>
+                </div>
+            </div>
+            <div>
+                <canvas id="iso-14001" width="200" height="200"></canvas>
+                <div>
+                    <button onclick="downloadImage('iso-14001', 'iso-14001.png')">Download ISO 14001</button>
+                </div>
+            </div>
+            <div>
+                <canvas id="iso-27001" width="200" height="200"></canvas>
+                <div>
+                    <button onclick="downloadImage('iso-27001', 'iso-27001.png')">Download ISO 27001</button>
+                </div>
+            </div>
+            <div>
+                <canvas id="weee" width="200" height="200"></canvas>
+                <div>
+                    <button onclick="downloadImage('weee', 'weee.png')">Download WEEE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Service images
+        const serviceImages = {
+            'hardware-opkopen': {
+                bgColor: '#3b82f6',
+                text: 'Hardware Opkopen',
+                icon: '💻'
+            },
+            'data-verwijdering': {
+                bgColor: '#8b5cf6',
+                text: 'Data Verwijdering',
+                icon: '🔒'
+            },
+            'hardware-recycling': {
+                bgColor: '#10b981',
+                text: 'Hardware Recycling',
+                icon: '♻️'
+            }
+        };
+
+        // Certification images
+        const certImages = {
+            'iso-9001': {
+                bgColor: '#e0f2fe',
+                text: 'ISO 9001',
+                textColor: '#0369a1'
+            },
+            'iso-14001': {
+                bgColor: '#dcfce7',
+                text: 'ISO 14001',
+                textColor: '#166534'
+            },
+            'iso-27001': {
+                bgColor: '#ede9fe',
+                text: 'ISO 27001',
+                textColor: '#5b21b6'
+            },
+            'weee': {
+                bgColor: '#fef3c7',
+                text: 'WEEE',
+                textColor: '#92400e'
+            }
+        };
+
+        // Generate service images
+        Object.keys(serviceImages).forEach(id => {
+            const canvas = document.getElementById(id);
+            const ctx = canvas.getContext('2d');
+            const img = serviceImages[id];
+
+            // Background
+            ctx.fillStyle = img.bgColor;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Add pattern
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+            for (let i = 0; i < canvas.width; i += 20) {
+                for (let j = 0; j < canvas.height; j += 20) {
+                    ctx.fillRect(i, j, 10, 10);
+                }
+            }
+
+            // Text
+            ctx.font = 'bold 48px Arial';
+            ctx.fillStyle = 'white';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(img.text, canvas.width / 2, canvas.height / 2);
+
+            // Icon
+            ctx.font = '72px Arial';
+            ctx.fillText(img.icon, canvas.width / 2, canvas.height / 2 - 100);
+
+            // Add "Placeholder" text
+            ctx.font = '24px Arial';
+            ctx.fillText('Placeholder Image', canvas.width / 2, canvas.height / 2 + 100);
+        });
+
+        // Generate certification images
+        Object.keys(certImages).forEach(id => {
+            const canvas = document.getElementById(id);
+            const ctx = canvas.getContext('2d');
+            const img = certImages[id];
+
+            // Background (circle)
+            ctx.fillStyle = img.bgColor;
+            ctx.beginPath();
+            ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2 - 10, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Border
+            ctx.strokeStyle = img.textColor;
+            ctx.lineWidth = 5;
+            ctx.stroke();
+
+            // Text
+            ctx.font = 'bold 32px Arial';
+            ctx.fillStyle = img.textColor;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(img.text, canvas.width / 2, canvas.height / 2);
+        });
+
+        // Download function
+        function downloadImage(id, filename) {
+            const canvas = document.getElementById(id);
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+    </script>
+</body>
+</html> 
