@@ -10,7 +10,7 @@ import { useTheme as useNextTheme } from 'next-themes';
 // Component voor de countdown timer box
 const CountdownBox = ({ value, label, ariaLabel }: { value: number; label: string; ariaLabel: string }) => (
   <motion.div 
-    className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-2 sm:p-3 md:p-4 lg:p-5 w-16 sm:w-18 md:w-20 lg:w-24 xl:w-28 text-center relative overflow-hidden border border-gray-100 dark:border-gray-700"
+    className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-1.5 sm:p-2 md:p-3 lg:p-4 w-14 sm:w-16 md:w-18 lg:w-20 xl:w-24 text-center relative overflow-hidden border border-gray-100 dark:border-gray-700"
     initial={{ scale: 1 }}
     animate={{ 
       scale: [1, 1.03, 1],
@@ -21,14 +21,14 @@ const CountdownBox = ({ value, label, ariaLabel }: { value: number; label: strin
       }
     }}
     whileHover={{ 
-      y: -5,
+      y: -3,
       boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
     }}
     aria-label={ariaLabel}
   >
-    <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-500 to-green-500 opacity-75"></div>
-    <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">{value || 0}</div>
-    <div className="text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400 mt-1">{label}</div>
+    <div className="absolute top-0 left-0 w-full h-1 sm:h-1.5 bg-gradient-to-r from-blue-500 to-green-500 opacity-75"></div>
+    <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">{value || 0}</div>
+    <div className="text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400 mt-0.5 sm:mt-1">{label}</div>
   </motion.div>
 );
 
@@ -36,10 +36,10 @@ const CountdownBox = ({ value, label, ariaLabel }: { value: number; label: strin
 const SocialMediaLink = ({ href, icon, label }: { href: string; icon: React.ReactNode; label: string }) => (
   <motion.a
     href={href}
-    className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 transition-all shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700"
+    className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 transition-all shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700"
     whileHover={{ 
       scale: 1.1, 
-      y: -5,
+      y: -3,
       boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)"
     }}
     whileTap={{ scale: 0.95 }}
@@ -113,7 +113,11 @@ export default function UnderConstruction() {
         padding-top: 0 !important;
         padding-bottom: 0 !important;
         min-height: 100vh !important;
-        height: 100vh !important;
+        height: auto !important;
+        overflow-x: hidden !important;
+      }
+      body {
+        overflow-x: hidden !important;
       }
     `;
     document.head.appendChild(style);
@@ -409,7 +413,7 @@ export default function UnderConstruction() {
         )}
       </AnimatePresence>
 
-      <div className="container max-w-4xl mx-auto px-4 sm:px-6 py-8 md:py-12">
+      <div className="container max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-6 md:py-8 lg:py-12 min-h-screen flex flex-col justify-center">
         <motion.div 
           className="relative z-10 mx-auto text-center"
           variants={containerVariants}
@@ -467,7 +471,7 @@ export default function UnderConstruction() {
           
           {/* Titel */}
           <motion.h1 
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-3 md:mb-4 text-gray-800 dark:text-white"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-1 sm:mb-2 md:mb-3 text-gray-800 dark:text-white"
             variants={itemVariants}
           >
             Website in{" "}
@@ -489,7 +493,7 @@ export default function UnderConstruction() {
           
           {/* Subtitel */}
           <motion.p 
-            className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 px-4 sm:px-6 md:px-0"
+            className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 px-4 sm:px-6 md:px-0"
             variants={itemVariants}
           >
             Wij werken momenteel hard aan deze website. Binnenkort vindt u hier alle informatie over onze duurzame IT-oplossingen.
@@ -497,16 +501,16 @@ export default function UnderConstruction() {
           
           {/* Countdown timer - prominenter gemaakt */}
           <motion.div
-            className="mb-8"
+            className="mb-4 sm:mb-6"
             variants={itemVariants}
           >
             <div className="flex flex-col items-center">
-              <div className="flex items-center mb-4 text-gray-600 dark:text-gray-300">
-                <FiCalendar className="mr-2 text-blue-500 dark:text-blue-400" size={20} aria-hidden="true" />
+              <div className="flex items-center mb-2 sm:mb-4 text-gray-600 dark:text-gray-300">
+                <FiCalendar className="mr-2 text-blue-500 dark:text-blue-400" size={16} aria-hidden="true" />
                 <span className="text-sm sm:text-base md:text-lg lg:text-xl font-medium">Geplande lanceerdatum: {formatDate(launchDate)}</span>
               </div>
               
-              <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-6 mt-3">
+              <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-6 mt-2">
                 <CountdownBox value={countdown.days} label="Dagen" ariaLabel={`${countdown.days} dagen`} />
                 <CountdownBox value={countdown.hours} label="Uren" ariaLabel={`${countdown.hours} uren`} />
                 <CountdownBox value={countdown.minutes} label="Minuten" ariaLabel={`${countdown.minutes} minuten`} />
@@ -514,11 +518,11 @@ export default function UnderConstruction() {
               </div>
               
               <motion.div 
-                className="mt-6 text-sm text-gray-600 dark:text-gray-400 flex items-center"
+                className="mt-3 sm:mt-4 text-xs sm:text-sm text-gray-600 dark:text-gray-400 flex items-center"
                 animate={{ opacity: [0.7, 1, 0.7] }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
-                <FiClock className="mr-2 text-blue-500" size={16} />
+                <FiClock className="mr-2 text-blue-500" size={14} />
                 <span>We werken toe naar onze lancering op 1 juni 2025</span>
               </motion.div>
             </div>
@@ -526,7 +530,7 @@ export default function UnderConstruction() {
           
           {/* Voortgangsbalk */}
           <motion.div 
-            className="w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto mb-6 sm:mb-8 md:mb-10 bg-gray-200 dark:bg-gray-700 rounded-full h-2 sm:h-3 overflow-hidden shadow-inner"
+            className="w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto mb-4 sm:mb-6 md:mb-8 bg-gray-200 dark:bg-gray-700 rounded-full h-2 sm:h-3 overflow-hidden shadow-inner"
             variants={itemVariants}
             aria-label={`Voortgang: ${progressPercentage}%`}
             role="progressbar"
@@ -589,30 +593,30 @@ export default function UnderConstruction() {
               
               {/* Sociale media links - geoptimaliseerd met component */}
               <motion.div
-                className="mt-6 md:mt-8"
+                className="mt-4 sm:mt-6 md:mt-8"
                 variants={itemVariants}
               >
-                <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">Volg onze voortgang</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">Blijf op de hoogte via onze sociale mediakanalen</p>
+                <h3 className="text-base sm:text-lg font-medium text-gray-900 dark:text-white mb-1 sm:mb-2">Volg onze voortgang</h3>
+                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-2 sm:mb-4">Blijf op de hoogte via onze sociale mediakanalen</p>
                 <div className="flex justify-center space-x-2 sm:space-x-3 md:space-x-4 lg:space-x-6">
                   <SocialMediaLink 
                     href="https://linkedin.com/company/digitaalgelijk" 
-                    icon={<FiLinkedin size={18} className="sm:text-xl md:text-2xl" aria-hidden="true" />} 
+                    icon={<FiLinkedin size={16} className="sm:text-lg md:text-xl" aria-hidden="true" />} 
                     label="LinkedIn" 
                   />
                   <SocialMediaLink 
                     href="https://twitter.com/digitaalgelijk" 
-                    icon={<FiTwitter size={18} className="sm:text-xl md:text-2xl" aria-hidden="true" />} 
+                    icon={<FiTwitter size={16} className="sm:text-lg md:text-xl" aria-hidden="true" />} 
                     label="Twitter" 
                   />
                   <SocialMediaLink 
                     href="https://instagram.com/digitaalgelijk" 
-                    icon={<FiInstagram size={18} className="sm:text-xl md:text-2xl" aria-hidden="true" />} 
+                    icon={<FiInstagram size={16} className="sm:text-lg md:text-xl" aria-hidden="true" />} 
                     label="Instagram" 
                   />
                   <SocialMediaLink 
                     href="https://facebook.com/digitaalgelijk" 
-                    icon={<FiFacebook size={18} className="sm:text-xl md:text-2xl" aria-hidden="true" />} 
+                    icon={<FiFacebook size={16} className="sm:text-lg md:text-xl" aria-hidden="true" />} 
                     label="Facebook" 
                   />
                 </div>
