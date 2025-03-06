@@ -29,7 +29,11 @@ export async function POST(req: NextRequest) {
 
     // Stel de e-mail samen
     const mailOptions = {
-      from: `"Contactformulier Website" <${process.env.SMTP_USER || 'your-email@gmail.com'}>`,
+      from: {
+        name: 'Contactformulier Website',
+        address: 'info@digitaalgelijk.nl'  // Gedeelde mailbox
+      },
+      sender: process.env.SMTP_USER || 'your-email@gmail.com',  // Persoonlijk account dat de e-mail verstuurt
       to: 'info@digitaalgelijk.nl',
       replyTo: email,
       subject: `Nieuw bericht van ${name} via het contactformulier`,
