@@ -10,7 +10,7 @@ import { useTheme as useNextTheme } from 'next-themes';
 // Component voor de countdown timer box
 const CountdownBox = ({ value, label, ariaLabel }: { value: number; label: string; ariaLabel: string }) => (
   <motion.div 
-    className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-3 md:p-5 w-20 md:w-24 lg:w-28 text-center relative overflow-hidden border border-gray-100 dark:border-gray-700"
+    className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-2 sm:p-3 md:p-4 lg:p-5 w-16 sm:w-18 md:w-20 lg:w-24 xl:w-28 text-center relative overflow-hidden border border-gray-100 dark:border-gray-700"
     initial={{ scale: 1 }}
     animate={{ 
       scale: [1, 1.03, 1],
@@ -27,7 +27,7 @@ const CountdownBox = ({ value, label, ariaLabel }: { value: number; label: strin
     aria-label={ariaLabel}
   >
     <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-500 to-green-500 opacity-75"></div>
-    <div className="text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">{value || 0}</div>
+    <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">{value || 0}</div>
     <div className="text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400 mt-1">{label}</div>
   </motion.div>
 );
@@ -36,7 +36,7 @@ const CountdownBox = ({ value, label, ariaLabel }: { value: number; label: strin
 const SocialMediaLink = ({ href, icon, label }: { href: string; icon: React.ReactNode; label: string }) => (
   <motion.a
     href={href}
-    className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 transition-all shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700"
+    className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 transition-all shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700"
     whileHover={{ 
       scale: 1.1, 
       y: -5,
@@ -409,7 +409,7 @@ export default function UnderConstruction() {
         )}
       </AnimatePresence>
 
-      <div className="container max-w-4xl mx-auto">
+      <div className="container max-w-4xl mx-auto px-4 sm:px-6 py-8 md:py-12">
         <motion.div 
           className="relative z-10 mx-auto text-center"
           variants={containerVariants}
@@ -456,18 +456,18 @@ export default function UnderConstruction() {
           
           {/* Bedrijfsnaam */}
           <motion.div 
-            className="flex flex-col items-center mb-6"
+            className="flex flex-col items-center mb-4 sm:mb-6"
             variants={itemVariants}
           >
-            <span className="text-3xl font-bold text-gray-900 dark:text-white">Digitaal<span className="text-blue-600">gelijk</span></span>
-            <span className="text-sm font-medium bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+            <span className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">Digitaal<span className="text-blue-600">gelijk</span></span>
+            <span className="text-xs sm:text-sm font-medium bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
               Duurzame IT-oplossingen
             </span>
           </motion.div>
           
           {/* Titel */}
           <motion.h1 
-            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 text-gray-800 dark:text-white"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-3 md:mb-4 text-gray-800 dark:text-white"
             variants={itemVariants}
           >
             Website in{" "}
@@ -489,7 +489,7 @@ export default function UnderConstruction() {
           
           {/* Subtitel */}
           <motion.p 
-            className="text-base md:text-lg lg:text-xl text-gray-600 dark:text-gray-300 mb-8"
+            className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 px-4 sm:px-6 md:px-0"
             variants={itemVariants}
           >
             Wij werken momenteel hard aan deze website. Binnenkort vindt u hier alle informatie over onze duurzame IT-oplossingen.
@@ -503,10 +503,10 @@ export default function UnderConstruction() {
             <div className="flex flex-col items-center">
               <div className="flex items-center mb-4 text-gray-600 dark:text-gray-300">
                 <FiCalendar className="mr-2 text-blue-500 dark:text-blue-400" size={20} aria-hidden="true" />
-                <span className="text-lg md:text-xl font-medium">Geplande lanceerdatum: {formatDate(launchDate)}</span>
+                <span className="text-sm sm:text-base md:text-lg lg:text-xl font-medium">Geplande lanceerdatum: {formatDate(launchDate)}</span>
               </div>
               
-              <div className="flex flex-wrap justify-center gap-3 md:gap-6 mt-3">
+              <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-6 mt-3">
                 <CountdownBox value={countdown.days} label="Dagen" ariaLabel={`${countdown.days} dagen`} />
                 <CountdownBox value={countdown.hours} label="Uren" ariaLabel={`${countdown.hours} uren`} />
                 <CountdownBox value={countdown.minutes} label="Minuten" ariaLabel={`${countdown.minutes} minuten`} />
@@ -526,7 +526,7 @@ export default function UnderConstruction() {
           
           {/* Voortgangsbalk */}
           <motion.div 
-            className="w-full max-w-md mx-auto mb-10 bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden shadow-inner"
+            className="w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto mb-6 sm:mb-8 md:mb-10 bg-gray-200 dark:bg-gray-700 rounded-full h-2 sm:h-3 overflow-hidden shadow-inner"
             variants={itemVariants}
             aria-label={`Voortgang: ${progressPercentage}%`}
             role="progressbar"
@@ -535,7 +535,7 @@ export default function UnderConstruction() {
             aria-valuemax={100}
           >
             <motion.div 
-              className="bg-gradient-to-r from-blue-500 via-blue-600 to-green-500 h-3 rounded-full relative"
+              className="bg-gradient-to-r from-blue-500 via-blue-600 to-green-500 h-2 sm:h-3 rounded-full relative"
               initial={{ width: "0%" }}
               animate={{ width: `${progressPercentage}%` }}
               transition={{ duration: 1.5, ease: "easeOut" }}
@@ -589,30 +589,30 @@ export default function UnderConstruction() {
               
               {/* Sociale media links - geoptimaliseerd met component */}
               <motion.div
-                className="mt-8 md:mt-10"
+                className="mt-6 md:mt-8"
                 variants={itemVariants}
               >
                 <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">Volg onze voortgang</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">Blijf op de hoogte via onze sociale mediakanalen</p>
-                <div className="flex justify-center space-x-4 md:space-x-6">
+                <div className="flex justify-center space-x-2 sm:space-x-3 md:space-x-4 lg:space-x-6">
                   <SocialMediaLink 
                     href="https://linkedin.com/company/digitaalgelijk" 
-                    icon={<FiLinkedin size={20} className="md:text-2xl" aria-hidden="true" />} 
+                    icon={<FiLinkedin size={18} className="sm:text-xl md:text-2xl" aria-hidden="true" />} 
                     label="LinkedIn" 
                   />
                   <SocialMediaLink 
                     href="https://twitter.com/digitaalgelijk" 
-                    icon={<FiTwitter size={20} className="md:text-2xl" aria-hidden="true" />} 
+                    icon={<FiTwitter size={18} className="sm:text-xl md:text-2xl" aria-hidden="true" />} 
                     label="Twitter" 
                   />
                   <SocialMediaLink 
                     href="https://instagram.com/digitaalgelijk" 
-                    icon={<FiInstagram size={20} className="md:text-2xl" aria-hidden="true" />} 
+                    icon={<FiInstagram size={18} className="sm:text-xl md:text-2xl" aria-hidden="true" />} 
                     label="Instagram" 
                   />
                   <SocialMediaLink 
                     href="https://facebook.com/digitaalgelijk" 
-                    icon={<FiFacebook size={20} className="md:text-2xl" aria-hidden="true" />} 
+                    icon={<FiFacebook size={18} className="sm:text-xl md:text-2xl" aria-hidden="true" />} 
                     label="Facebook" 
                   />
                 </div>
