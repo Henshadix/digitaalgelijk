@@ -255,14 +255,29 @@ export default function UnderConstruction() {
   };
 
   // Formulier afhandeling
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (email && name && message) {
-      // Simuleer een API call
+      // Start loading state
       setIsLoading(true);
       
-      setTimeout(() => {
-        setIsLoading(false);
+      try {
+        // Verstuur de gegevens naar de API-route
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name, email, message }),
+        });
+        
+        const data = await response.json();
+        
+        if (!response.ok) {
+          throw new Error(data.error || 'Er is iets misgegaan');
+        }
+        
+        // Toon succes melding
         setIsSubscribed(true);
         
         // Reset formulier
@@ -270,10 +285,17 @@ export default function UnderConstruction() {
         setName('');
         setMessage('');
         
+        // Verberg succes melding na 5 seconden
         setTimeout(() => {
           setIsSubscribed(false);
         }, 5000);
-      }, 1500);
+      } catch (error) {
+        console.error('Fout bij het versturen van het formulier:', error);
+        alert('Er is een fout opgetreden bij het versturen van het bericht. Probeer het later opnieuw.');
+      } finally {
+        // Stop loading state
+        setIsLoading(false);
+      }
     }
   };
 
