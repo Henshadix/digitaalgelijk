@@ -3,6 +3,12 @@ FROM node:18-alpine AS base
 # Installeer dependencies alleen
 FROM base AS deps
 WORKDIR /app
+# Installeer Python en build tools voor native modules
+RUN apk add --no-cache python3 make g++ pkgconfig pixman-dev cairo-dev pango-dev jpeg-dev giflib-dev
+# Maak een symlink van python3 naar python
+RUN ln -sf /usr/bin/python3 /usr/bin/python
+# Stel het Python pad in voor npm
+ENV PYTHON=/usr/bin/python3
 COPY package.json package-lock.json ./
 RUN npm ci
 
