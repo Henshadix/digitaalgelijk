@@ -26,16 +26,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="nl" suppressHydrationWarning>
+    <html lang="nl" suppressHydrationWarning className="h-full overflow-x-hidden">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased h-full overflow-x-hidden`}
       >
         <ThemeProvider>
           <Navbar />
-          <main className="min-h-screen pt-0">
+          <main className="min-h-screen pt-0 overflow-x-hidden">
             {children}
           </main>
           <Footer />

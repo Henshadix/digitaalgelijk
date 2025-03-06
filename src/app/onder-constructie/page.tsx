@@ -110,19 +110,32 @@ export default function UnderConstruction() {
         display: none !important;
       }
       main {
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
         min-height: 100vh !important;
         height: auto !important;
         overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100% !important;
       }
       body {
         overflow-x: hidden !important;
         height: 100% !important;
+        width: 100% !important;
         position: relative !important;
+        margin: 0 !important;
+        padding: 0 !important;
       }
       html {
         height: 100% !important;
+        width: 100% !important;
+        overflow-x: hidden !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      #__next {
+        min-height: 100vh !important;
+        width: 100% !important;
         overflow-x: hidden !important;
       }
     `;
@@ -285,144 +298,149 @@ export default function UnderConstruction() {
   const isDarkMode = resolvedTheme === 'dark';
 
   return (
-    <div className="relative min-h-screen h-screen w-full bg-white dark:bg-gray-900 overflow-hidden flex flex-col items-center justify-center px-4 py-8 md:py-16">
-      {/* Decoratieve achtergrond elementen - gereduceerd voor betere performance */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Grid patroon */}
-        <div className="absolute top-0 left-0 w-full h-full opacity-[0.02] dark:opacity-[0.02]">
-          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs>
-              <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 0 10 L 40 10 M 10 0 L 10 40" stroke="currentColor" strokeWidth="0.5" fill="none" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid-pattern)" />
-          </svg>
+    <>
+      <div className="fixed inset-0 w-full h-full overflow-hidden">
+        {/* Achtergrond met subtiele gradient en animatie */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 overflow-hidden">
+          {/* Decoratieve achtergrond elementen - gereduceerd voor betere performance */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {/* Grid patroon */}
+            <div className="absolute top-0 left-0 w-full h-full opacity-[0.02] dark:opacity-[0.02]">
+              <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs>
+                  <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <path d="M 0 10 L 40 10 M 10 0 L 10 40" stroke="currentColor" strokeWidth="0.5" fill="none" />
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grid-pattern)" />
+              </svg>
+            </div>
+            
+            {/* Animated gradient orbs - gereduceerd tot 2 voor betere performance */}
+            <motion.div 
+              className="absolute top-10 left-10 w-64 h-64 rounded-full bg-blue-200 dark:bg-blue-800 opacity-10 blur-3xl"
+              animate={{ 
+                scale: [1, 1.1, 1],
+                opacity: [0.1, 0.15, 0.1],
+                rotate: [0, 5, 0]
+              }}
+              transition={{
+                duration: 15,
+                repeat: Infinity,
+                repeatType: "reverse"
+              }}
+              style={{ 
+                x: !isMobile ? mousePosition.x * 20 - 10 : 0,
+                y: !isMobile ? mousePosition.y * 20 - 10 : 0
+              }}
+              aria-hidden="true"
+            />
+            
+            <motion.div 
+              className="absolute bottom-20 right-20 w-72 h-72 rounded-full bg-green-200 dark:bg-green-800 opacity-10 blur-3xl"
+              animate={{ 
+                scale: [1, 1.2, 1],
+                opacity: [0.1, 0.12, 0.1],
+                rotate: [0, -5, 0]
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                repeatType: "reverse"
+              }}
+              style={{ 
+                x: !isMobile ? mousePosition.x * -20 + 10 : 0,
+                y: !isMobile ? mousePosition.y * -20 + 10 : 0
+              }}
+              aria-hidden="true"
+            />
+            
+            {/* Subtiele lijnen in de achtergrond */}
+            <div className="absolute inset-0 opacity-5">
+              <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-blue-500 to-transparent"></div>
+              <div className="absolute top-0 left-2/4 w-px h-full bg-gradient-to-b from-transparent via-green-500 to-transparent"></div>
+              <div className="absolute top-0 left-3/4 w-px h-full bg-gradient-to-b from-transparent via-blue-500 to-transparent"></div>
+            </div>
+          </div>
         </div>
-        
-        {/* Animated gradient orbs - gereduceerd tot 2 voor betere performance */}
-        <motion.div 
-          className="absolute top-10 left-10 w-64 h-64 rounded-full bg-blue-200 dark:bg-blue-800 opacity-10 blur-3xl"
-          animate={{ 
-            scale: [1, 1.1, 1],
-            opacity: [0.1, 0.15, 0.1],
-            rotate: [0, 5, 0]
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            repeatType: "reverse"
-          }}
-          style={{ 
-            x: !isMobile ? mousePosition.x * 20 - 10 : 0,
-            y: !isMobile ? mousePosition.y * 20 - 10 : 0
-          }}
-          aria-hidden="true"
-        />
-        
-        <motion.div 
-          className="absolute bottom-20 right-20 w-72 h-72 rounded-full bg-green-200 dark:bg-green-800 opacity-10 blur-3xl"
-          animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.1, 0.12, 0.1],
-            rotate: [0, -5, 0]
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            repeatType: "reverse"
-          }}
-          style={{ 
-            x: !isMobile ? mousePosition.x * -20 + 10 : 0,
-            y: !isMobile ? mousePosition.y * -20 + 10 : 0
-          }}
-          aria-hidden="true"
-        />
-        
-        {/* Subtiele lijnen in de achtergrond */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-blue-500 to-transparent"></div>
-          <div className="absolute top-0 left-2/4 w-px h-full bg-gradient-to-b from-transparent via-green-500 to-transparent"></div>
-          <div className="absolute top-0 left-3/4 w-px h-full bg-gradient-to-b from-transparent via-blue-500 to-transparent"></div>
-        </div>
-      </div>
 
-      {/* Theme toggle button */}
-      {mounted && (
-        <motion.button
-          className="fixed top-6 right-6 z-50 bg-white dark:bg-gray-800 shadow-md rounded-full p-3 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
-          onClick={toggleTheme}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          aria-label={isDarkMode ? 'Schakel naar licht thema' : 'Schakel naar donker thema'}
-          initial="initial"
-          animate="animate"
-          variants={themeToggleVariants}
-        >
-          {isDarkMode ? <FiSun size={20} /> : <FiMoon size={20} />}
-        </motion.button>
-      )}
-
-      {/* Notificatie */}
-      <AnimatePresence>
-        {showNotification && (
-          <motion.div 
-            className="fixed top-6 left-6 z-50 bg-white dark:bg-gray-800 shadow-lg rounded-lg p-4 max-w-xs border border-gray-200 dark:border-gray-700"
-            variants={notificationVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            role="alert"
-            aria-live="polite"
+        {/* Theme toggle button */}
+        {mounted && (
+          <motion.button
+            className="fixed top-6 right-6 z-50 bg-white dark:bg-gray-800 shadow-md rounded-full p-3 text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+            onClick={toggleTheme}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            aria-label={isDarkMode ? 'Schakel naar licht thema' : 'Schakel naar donker thema'}
+            initial="initial"
+            animate="animate"
+            variants={themeToggleVariants}
           >
-            <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 text-blue-600 dark:text-blue-400">
-                <FiAlertCircle size={24} aria-hidden="true" />
-              </div>
-              <div className="flex-1">
-                <h4 className="font-medium text-gray-900 dark:text-white mb-1">Website in ontwikkeling</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-300">Wij werken hard om deze website zo spoedig mogelijk beschikbaar te stellen.</p>
-                <div className="mt-3 flex justify-end">
-                  <button 
-                    onClick={() => setShowNotification(false)}
-                    className="text-xs font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 focus:outline-none focus:underline"
-                    aria-label="Sluit notificatie"
-                  >
-                    Sluiten
-                  </button>
+            {isDarkMode ? <FiSun size={20} /> : <FiMoon size={20} />}
+          </motion.button>
+        )}
+
+        {/* Notificatie */}
+        <AnimatePresence>
+          {showNotification && (
+            <motion.div 
+              className="fixed top-6 left-6 z-50 bg-white dark:bg-gray-800 shadow-lg rounded-lg p-4 max-w-xs border border-gray-200 dark:border-gray-700"
+              variants={notificationVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              role="alert"
+              aria-live="polite"
+            >
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 text-blue-600 dark:text-blue-400">
+                  <FiAlertCircle size={24} aria-hidden="true" />
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-medium text-gray-900 dark:text-white mb-1">Website in ontwikkeling</h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">Wij werken hard om deze website zo spoedig mogelijk beschikbaar te stellen.</p>
+                  <div className="mt-3 flex justify-end">
+                    <button 
+                      onClick={() => setShowNotification(false)}
+                      className="text-xs font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 focus:outline-none focus:underline"
+                      aria-label="Sluit notificatie"
+                    >
+                      Sluiten
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-      {/* Succes notificatie voor contactformulier */}
-      <AnimatePresence>
-        {isSubscribed && (
-          <motion.div 
-            className="fixed bottom-6 right-6 z-50 bg-green-50 dark:bg-green-900 shadow-lg rounded-lg p-4 max-w-xs border border-green-200 dark:border-green-700"
-            variants={notificationVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            role="alert"
-            aria-live="polite"
-          >
-            <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 text-green-600 dark:text-green-400">
-                <FiCheckCircle size={24} aria-hidden="true" />
+        {/* Succes notificatie voor contactformulier */}
+        <AnimatePresence>
+          {isSubscribed && (
+            <motion.div 
+              className="fixed bottom-6 right-6 z-50 bg-green-50 dark:bg-green-900 shadow-lg rounded-lg p-4 max-w-xs border border-green-200 dark:border-green-700"
+              variants={notificationVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              role="alert"
+              aria-live="polite"
+            >
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 text-green-600 dark:text-green-400">
+                  <FiCheckCircle size={24} aria-hidden="true" />
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-medium text-gray-900 dark:text-white mb-1">Bericht verzonden!</h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">Bedankt voor uw bericht. We nemen zo spoedig mogelijk contact met u op.</p>
+                </div>
               </div>
-              <div className="flex-1">
-                <h4 className="font-medium text-gray-900 dark:text-white mb-1">Bericht verzonden!</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-300">Bedankt voor uw bericht. We nemen zo spoedig mogelijk contact met u op.</p>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
 
-      <div className="container max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-6 md:py-8 lg:py-12 min-h-screen flex flex-col justify-center overflow-hidden">
+      <div className="relative z-10 container max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-6 md:py-8 lg:py-12 min-h-screen flex flex-col justify-center overflow-hidden">
         <motion.div 
           className="relative z-10 mx-auto text-center w-full"
           variants={containerVariants}
@@ -721,6 +739,6 @@ export default function UnderConstruction() {
           </div>
         </motion.div>
       </div>
-    </div>
+    </>
   );
 } 
