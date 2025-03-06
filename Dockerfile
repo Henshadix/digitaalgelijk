@@ -10,13 +10,16 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python
 # Stel het Python pad in voor npm
 ENV PYTHON=/usr/bin/python3
 COPY package.json package-lock.json ./
-RUN npm ci
+# Gebruik npm install in plaats van npm ci voor betere compatibiliteit
+RUN npm install --production=false
 
 # Bouw de applicatie
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+# Installeer nodemailer expliciet
+RUN npm install nodemailer
 RUN npm run build
 
 # Productie image, kopieer alle bestanden en start de app
