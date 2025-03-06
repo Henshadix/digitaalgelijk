@@ -7,7 +7,7 @@
   "domains": [
     {
       "domain": "${DOMAIN}",
-      "port": 3000,
+      "port": 3001,
       "https": true
     }
   ],
