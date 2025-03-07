@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "digitaalgelijk-website",
   "type": "docker-compose",
   "compose": {
@@ -6,7 +6,7 @@
   },
   "domains": [
     {
-      "domain": "",
+      "domain": "digitaalgelijk.nl",
       "port": 3000,
       "https": true
     }

@@ -1,4 +1,4 @@
-const http = require('http');
+﻿const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
@@ -48,7 +48,7 @@ const server = http.createServer((req, res) => {
       } else {
         // Server error
         res.writeHead(500);
-        res.end(Server Error: );
+        res.end(`Server Error: ${err.code}`);
       }
     } else {
       // Succes
@@ -60,7 +60,7 @@ const server = http.createServer((req, res) => {
 
 // Luister op alle IP-adressen (0.0.0.0) in plaats van alleen localhost
 server.listen(PORT, '0.0.0.0', () => {
-  console.log(Server draait op http://0.0.0.0:);
-  console.log(Bezoek http://localhost:/onder-constructie om de pagina lokaal te bekijken);
-  console.log(Bezoek http://[jouw-ip-adres]:/onder-constructie om de pagina extern te bekijken);
+  console.log(`Server draait op http://0.0.0.0:${PORT}`);
+  console.log(`Bezoek http://localhost:${PORT}/onder-constructie om de pagina lokaal te bekijken`);
+  console.log(`Bezoek http://[jouw-ip-adres]:${PORT}/onder-constructie om de pagina extern te bekijken`);
 });
