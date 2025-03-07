@@ -6,14 +6,11 @@ const path = require('path');
 const PORT = process.env.PORT || 3000;
 
 const server = http.createServer((req, res) => {
-  // Standaard route naar onder-constructie.html
+  console.log(`Verzoek ontvangen voor: ${req.url}`);
+  
+  // Standaard route naar onder-constructie.html voor alle URL's
   let filePath = './onder-constructie.html';
   
-  // Als de URL /onder-constructie is, gebruik ook onder-constructie.html
-  if (req.url === '/onder-constructie') {
-    filePath = './onder-constructie.html';
-  }
-
   // Bepaal het content type op basis van de bestandsextensie
   const extname = path.extname(filePath);
   let contentType = 'text/html';
@@ -61,6 +58,6 @@ const server = http.createServer((req, res) => {
 // Luister op alle IP-adressen (0.0.0.0) in plaats van alleen localhost
 server.listen(PORT, '0.0.0.0', () => {
   console.log(`Server draait op http://0.0.0.0:${PORT}`);
-  console.log(`Bezoek http://localhost:${PORT}/onder-constructie om de pagina lokaal te bekijken`);
-  console.log(`Bezoek http://[jouw-ip-adres]:${PORT}/onder-constructie om de pagina extern te bekijken`);
+  console.log(`Bezoek http://localhost:${PORT} om de pagina lokaal te bekijken`);
+  console.log(`Bezoek http://[jouw-ip-adres]:${PORT} om de pagina extern te bekijken`);
 });

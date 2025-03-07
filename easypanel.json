@@ -8,7 +8,8 @@
     {
       "domain": "digitaalgelijk.nl",
       "port": 3002,
-      "https": true
+      "https": true,
+      "path": "/"
     }
   ],
   "env": [
