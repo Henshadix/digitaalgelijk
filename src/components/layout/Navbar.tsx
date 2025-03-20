@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { FiMenu, FiX, FiPhone, FiMail, FiMapPin, FiChevronDown, FiShield, FiRefreshCw, FiMonitor, FiArrowRight, FiFileText, FiTruck, FiDollarSign } from 'react-icons/fi';
-import { ThemeToggle } from './ThemeToggle';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -73,8 +72,6 @@ const Navbar = () => {
         },
       ]
     },
-    { name: 'Duurzaamheid', path: '/duurzaamheid' },
-    { name: 'FAQ', path: '/faq' },
     { name: 'Over Ons', path: '/over-ons' },
     { name: 'Contact', path: '/contact' },
   ];
@@ -269,7 +266,7 @@ const Navbar = () => {
         }}
       >
         {/* Subtiele schaduw onderaan voor betere overgang */}
-        <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-b from-transparent to-white/5 dark:to-gray-900/5 pointer-events-none"></div>
+        {/* <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-b from-transparent to-white/5 dark:to-gray-900/5 pointer-events-none"></div> */}
         
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex justify-between items-center">
@@ -396,11 +393,6 @@ const Navbar = () => {
                   <FiArrowRight className="ml-1" size={16} />
                 </motion.div>
               </Link>
-              
-              {/* Theme Toggle */}
-              <div className="ml-2">
-                <ThemeToggle />
-              </div>
             </div>
 
             {/* Mobile Menu Button */}
@@ -423,7 +415,7 @@ const Navbar = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 shadow-lg"
+            className="md:hidden bg-white dark:bg-gray-900 shadow-lg"
           >
             <div className="container mx-auto px-4 py-4">
               <nav className="flex flex-col space-y-2">
@@ -481,7 +473,7 @@ const Navbar = () => {
                     </Link>
                   )
                 ))}
-                <div className="pt-2 border-t border-gray-200 dark:border-gray-800 mt-2">
+                <div className="pt-2 mt-2">
                   <Link
                     href="/contact"
                     className="block px-4 py-3 bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white font-medium rounded-md text-center"

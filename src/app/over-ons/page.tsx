@@ -1,20 +1,51 @@
-import { Metadata } from 'next';
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
-import { FiUsers, FiTarget, FiAward, FiArrowRight } from 'react-icons/fi';
-
-export const metadata: Metadata = {
-  title: 'Over Ons | Neiwu',
-  description: 'Leer meer over Neiwu, onze missie, visie en het team achter onze duurzame IT-oplossingen. Ontdek hoe wij bijdragen aan een circulaire economie.',
-};
+import { motion } from 'framer-motion';
+import { FiUsers, FiTarget, FiAward, FiArrowRight, FiRefreshCw, FiCheck, FiShield, FiHeart } from 'react-icons/fi';
 
 export default function OverOns() {
+  // Animation variants
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (custom: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { 
+        duration: 0.5,
+        delay: custom * 0.15,
+        ease: "easeOut" 
+      }
+    })
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" }
+    }
+  };
+
   // Team members
   const teamMembers = [
     {
       name: 'Jan de Vries',
       role: 'CEO & Oprichter',
-      bio: 'Jan heeft meer dan 15 jaar ervaring in de IT-sector en is gepassioneerd over duurzaamheid en circulaire economie. Hij richtte Neiwu op in 2015 met de missie om de IT-industrie duurzamer te maken.',
+      bio: 'Jan heeft meer dan 15 jaar ervaring in de IT-sector en is gepassioneerd over duurzaamheid en circulaire economie. Hij richtte Digitaalgelijk op in 2015 met de missie om de IT-industrie duurzamer te maken.',
       imageSrc: '/images/team/jan.jpg',
     },
     {
@@ -37,272 +68,390 @@ export default function OverOns() {
     }
   ];
 
-  // Company milestones
+  // Company values
+  const values = [
+    {
+      title: "Duurzaamheid",
+      description: "Maximale herbruikbaarheid en minimale milieu-impact bij al onze processen.",
+      icon: <FiRefreshCw className="w-6 h-6" />,
+      color: "bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400"
+    },
+    {
+      title: "Betrouwbaarheid",
+      description: "Transparante processen en afspraken waar u op kunt rekenen.",
+      icon: <FiCheck className="w-6 h-6" />,
+      color: "bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400"
+    },
+    {
+      title: "Veiligheid",
+      description: "Gecertificeerde dataverwijdering volgens de hoogste standaarden.",
+      icon: <FiShield className="w-6 h-6" />,
+      color: "bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400"
+    }
+  ];
+
+  // Simplified milestones
   const milestones = [
     {
       year: '2015',
-      title: 'Oprichting Neiwu',
-      description: 'Neiwu werd opgericht met de missie om de IT-industrie duurzamer te maken door circulaire oplossingen.',
-    },
-    {
-      year: '2017',
-      title: 'ISO 14001 Certificering',
-      description: 'We behaalden onze eerste ISO 14001 certificering voor milieumanagement.',
+      title: 'Oprichting Digitaalgelijk',
+      description: 'Start van onze missie voor duurzame IT-oplossingen.'
     },
     {
       year: '2019',
-      title: 'Uitbreiding Faciliteit',
-      description: 'Opening van onze state-of-the-art recycling- en dataverwijderingsfaciliteit in Amsterdam.',
-    },
-    {
-      year: '2020',
-      title: 'ADISA Certificering',
-      description: 'We behaalden de ADISA certificering voor onze dataverwijderingsprocessen.',
+      title: 'State-of-the-art Faciliteit',
+      description: 'Opening van ons geavanceerde recyclingcentrum.'
     },
     {
       year: '2022',
-      title: '100.000ste Apparaat',
-      description: 'We verwerkten ons 100.000ste apparaat en vierden deze mijlpaal met het planten van 10.000 bomen.',
-    },
-    {
-      year: '2023',
-      title: 'Europese Expansie',
-      description: 'Start van onze dienstverlening in België en Duitsland.',
+      title: 'Duurzame Mijlpaal',
+      description: '100.000+ apparaten verwerkt en 10.000 bomen geplant.'
     }
   ];
 
   return (
-    <main className="flex flex-col min-h-screen">
-      {/* Hero Section */}
-      <section className="relative py-20 md:py-28 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-gray-900 dark:to-blue-900/30 overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-blue-500/10 blur-3xl rounded-full transform translate-x-1/2"></div>
-        <div className="absolute bottom-0 left-0 w-1/3 h-full bg-blue-500/10 blur-3xl rounded-full transform -translate-x-1/2"></div>
+    <main className="flex flex-col min-h-screen relative">
+      {/* Decoratieve achtergrond elementen */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Gradient orbs */}
+        <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-blue-400/10 dark:bg-blue-600/10 blur-3xl"></div>
+        <div className="absolute bottom-40 right-10 w-80 h-80 rounded-full bg-purple-400/10 dark:bg-purple-600/10 blur-3xl"></div>
         
+        {/* Grid pattern */}
+        <div className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03]">
+          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="0.5" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid-pattern)" />
+          </svg>
+        </div>
+      </div>
+
+      {/* Hero Section */}
+      <section className="relative py-20 md:py-28 bg-gradient-to-br from-blue-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-950 overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12">
-            <div className="lg:w-1/2">
-              <div className="inline-block px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium mb-6">
+            <motion.div 
+              className="lg:w-1/2"
+              initial="hidden"
+              animate="visible"
+              variants={containerVariants}
+            >
+              <motion.div 
+                className="inline-block px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium mb-6"
+                variants={itemVariants}
+              >
                 Ons Verhaal
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-                Over <span className="text-blue-600 dark:text-blue-400">Neiwu</span>
-              </h1>
-              <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 max-w-xl">
-                Neiwu is een toonaangevend bedrijf in duurzame IT-oplossingen. Wij zijn gespecialiseerd in het opkopen van gebruikte hardware, veilige dataverwijdering en milieuvriendelijke recycling. Onze missie is om bij te dragen aan een circulaire economie en de milieu-impact van de IT-industrie te verminderen.
-              </p>
-            </div>
-            <div className="lg:w-1/2">
+              </motion.div>
+              
+              <motion.h1 
+                className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6"
+                variants={itemVariants}
+              >
+                Over <span className="text-blue-600 dark:text-blue-400">Digitaalgelijk</span>
+              </motion.h1>
+              
+              <motion.div
+                className="h-1 w-0 bg-gradient-to-r from-blue-400 to-blue-600 rounded mb-6"
+                initial={{ width: 0 }}
+                animate={{ width: "80px" }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+              />
+              
+              <motion.p 
+                className="text-lg text-gray-700 dark:text-gray-300 mb-8 max-w-xl"
+                variants={itemVariants}
+              >
+                Wij zijn gespecialiseerd in duurzame IT-oplossingen: het opkopen van hardware, 
+                veilige dataverwijdering en milieuvriendelijke recycling. 
+                Onze missie is bijdragen aan een circulaire economie en de milieu-impact verminderen.
+              </motion.p>
+            </motion.div>
+            
+            <motion.div 
+              className="lg:w-1/2"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <Image 
-                  src="/images/about/office.jpg" 
-                  alt="Neiwu kantoor" 
-                  width={600} 
-                  height={400}
-                  className="w-full h-auto object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                <div className="absolute bottom-0 left-0 p-6">
-                  <div className="text-white text-xl font-bold">Ons hoofdkantoor in Amsterdam</div>
-                  <div className="text-blue-200">Duurzaam gebouwd en energie-neutraal</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Mission & Vision Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div className="bg-blue-50 dark:bg-blue-900/20 p-8 rounded-xl">
-              <div className="w-14 h-14 bg-blue-100 dark:bg-blue-800 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 mb-4">
-                <FiTarget className="w-7 h-7" />
-              </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">Onze Missie</h2>
-              <p className="text-gray-600 dark:text-gray-400">
-                Onze missie is om de IT-industrie duurzamer te maken door circulaire oplossingen te bieden die de levensduur van hardware verlengen, data veilig verwijderen en materialen maximaal hergebruiken. We streven ernaar om de ecologische voetafdruk van IT-apparatuur te minimaliseren en bij te dragen aan een gezondere planeet.
-              </p>
-            </div>
-            
-            <div className="bg-blue-50 dark:bg-blue-900/20 p-8 rounded-xl">
-              <div className="w-14 h-14 bg-blue-100 dark:bg-blue-800 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 mb-4">
-                <FiAward className="w-7 h-7" />
-              </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">Onze Visie</h2>
-              <p className="text-gray-600 dark:text-gray-400">
-                Wij zien een toekomst waarin IT-apparatuur volledig circulair is, waarbij materialen eindeloos worden hergebruikt en er geen elektronisch afval meer bestaat. We willen de standaard zetten voor duurzame IT-praktijken en bedrijven helpen om hun digitale transformatie op een milieuvriendelijke manier te realiseren.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Values Section */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Onze Kernwaarden
-            </h2>
-            <div className="h-1 w-20 bg-blue-600 mx-auto rounded"></div>
-            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-4">
-              Deze waarden vormen de basis van alles wat we doen en hoe we omgaan met onze klanten, partners en het milieu.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md">
-              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 mb-4">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Duurzaamheid</h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                We streven naar maximale duurzaamheid in al onze processen en beslissingen, met het oog op de lange termijn impact op onze planeet.
-              </p>
-            </div>
-            
-            <div className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md">
-              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 mb-4">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Betrouwbaarheid</h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                We doen wat we beloven en zijn transparant in onze processen, prijzen en impact. Onze klanten kunnen op ons rekenen.
-              </p>
-            </div>
-            
-            <div className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md">
-              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 mb-4">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Innovatie</h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                We zoeken voortdurend naar nieuwe en betere manieren om onze diensten te verbeteren en de milieu-impact van IT te verminderen.
-              </p>
-            </div>
-            
-            <div className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md">
-              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 mb-4">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Samenwerking</h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                We geloven in de kracht van samenwerking met klanten, partners en de gemeenschap om samen een duurzamere toekomst te creëren.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Ons Team
-            </h2>
-            <div className="h-1 w-20 bg-blue-600 mx-auto rounded"></div>
-            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-4">
-              Maak kennis met de mensen achter Neiwu die elke dag werken aan onze missie om de IT-industrie duurzamer te maken.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member) => (
-              <div key={member.name} className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md">
-                <div className="relative h-64">
+                <div className="aspect-w-16 aspect-h-9 relative">
                   <Image 
-                    src={member.imageSrc} 
-                    alt={member.name} 
+                    src="/images/about/office.jpg" 
+                    alt="Digitaalgelijk kantoor"
                     fill
                     className="object-cover"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{member.name}</h3>
-                  <div className="text-blue-600 dark:text-blue-400 font-medium mb-3">{member.role}</div>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">{member.bio}</p>
+                <div className="absolute bottom-0 left-0 p-6">
+                  <div className="text-white text-xl font-bold">Ons hoofdkantoor</div>
+                  <div className="text-blue-200">Duurzaamheid in praktijk</div>
                 </div>
               </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission & Vision Section - Combined and simplified */}
+      <section className="py-20 bg-white dark:bg-gray-900">
+        <div className="container mx-auto px-4">
+          <motion.div 
+            className="text-center mb-12"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeInUp}
+            custom={0}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Onze Visie & Missie
+            </h2>
+            <motion.div
+              className="h-1 w-0 bg-gradient-to-r from-blue-400 to-blue-600 mx-auto rounded mb-6"
+              initial={{ width: 0 }}
+              whileInView={{ width: "80px" }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            />
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <motion.div 
+              className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 p-8 rounded-xl shadow-lg"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="w-14 h-14 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400 mb-4">
+                <FiTarget className="w-7 h-7" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">Onze Missie</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                De IT-industrie duurzamer maken door circulaire oplossingen te bieden. 
+                We maximaliseren hergebruik, beveiligen data en minimaliseren de ecologische voetafdruk.
+              </p>
+            </motion.div>
+            
+            <motion.div 
+              className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 p-8 rounded-xl shadow-lg"
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <div className="w-14 h-14 bg-purple-500/10 rounded-full flex items-center justify-center text-purple-600 dark:text-purple-400 mb-4">
+                <FiAward className="w-7 h-7" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">Onze Visie</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Een toekomst waarin IT-apparatuur volledig circulair is, materialen eindeloos worden hergebruikt
+                en elektronisch afval tot het verleden behoort.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Values Section - Simplified with better visuals */}
+      <section className="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <motion.div 
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeInUp}
+            custom={0}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Onze Kernwaarden
+            </h2>
+            <motion.div
+              className="h-1 w-0 bg-gradient-to-r from-blue-400 to-blue-600 mx-auto rounded mb-6"
+              initial={{ width: 0 }}
+              whileInView={{ width: "80px" }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            />
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {values.map((value, index) => (
+              <motion.div 
+                key={value.title}
+                className="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              >
+                <div className={`p-6 flex flex-col items-center text-center`}>
+                  <div className={`w-16 h-16 ${value.color} rounded-full flex items-center justify-center mb-4`}>
+                    {value.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{value.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-400">{value.description}</p>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Milestones Section */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
+      {/* Milestones Section - More visual timeline */}
+      <section className="py-20 bg-white dark:bg-gray-900 overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
+          <motion.div 
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeInUp}
+            custom={0}
+          >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Onze Mijlpalen
+              Onze Reis
             </h2>
-            <div className="h-1 w-20 bg-blue-600 mx-auto rounded"></div>
-            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-4">
-              Een overzicht van belangrijke momenten in de geschiedenis van Neiwu.
-            </p>
-          </div>
+            <motion.div
+              className="h-1 w-0 bg-gradient-to-r from-blue-400 to-blue-600 mx-auto rounded mb-6"
+              initial={{ width: 0 }}
+              whileInView={{ width: "80px" }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            />
+          </motion.div>
 
           <div className="max-w-4xl mx-auto">
-            <div className="relative">
-              {/* Timeline line */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-blue-200 dark:bg-blue-900/50"></div>
-              
-              <div className="space-y-12">
-                {milestones.map((milestone, index) => (
-                  <div key={milestone.year} className="relative">
-                    {/* Year bubble */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">
-                      {milestone.year}
-                    </div>
-                    
-                    {/* Content */}
-                    <div className={`flex ${index % 2 === 0 ? 'flex-row-reverse' : 'flex-row'}`}>
-                      <div className="w-1/2"></div>
-                      <div className={`w-1/2 ${index % 2 === 0 ? 'pr-16' : 'pl-16'}`}>
-                        <div className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md">
-                          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{milestone.title}</h3>
-                          <p className="text-gray-600 dark:text-gray-400">{milestone.description}</p>
-                        </div>
-                      </div>
-                    </div>
+            {milestones.map((milestone, index) => (
+              <motion.div 
+                key={milestone.year}
+                className="flex items-center mb-16 last:mb-0"
+                initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+              >
+                <div className={`flex-1 ${index % 2 === 0 ? 'text-right pr-8' : 'order-last text-left pl-8'}`}>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{milestone.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-400">{milestone.description}</p>
+                </div>
+                
+                <div className="relative flex-shrink-0">
+                  <div className="w-16 h-16 bg-blue-600 text-white dark:bg-blue-500 rounded-full flex items-center justify-center font-bold text-xl shadow-lg z-10 relative">
+                    {milestone.year}
                   </div>
-                ))}
-              </div>
-            </div>
+                  {index < milestones.length - 1 && (
+                    <div className="absolute top-16 left-1/2 transform -translate-x-1/2 w-1 h-16 bg-blue-200 dark:bg-blue-700"></div>
+                  )}
+                </div>
+                
+                <div className={`flex-1 ${index % 2 === 0 ? 'order-last text-left pl-8' : 'text-right pr-8'}`}>
+                  <div className={`text-lg font-semibold ${index % 2 === 0 ? 'text-left' : 'text-right'} text-blue-600 dark:text-blue-400`}>
+                    {milestone.year}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Certificeringen Section */}
+      <section id="certificeringen" className="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
+        <div className="container mx-auto px-4 relative z-10">
+          <motion.div 
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeInUp}
+            custom={0}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Onze Certificeringen
+            </h2>
+            <motion.div
+              className="h-1 w-0 bg-gradient-to-r from-blue-400 to-blue-600 mx-auto rounded mb-6"
+              initial={{ width: 0 }}
+              whileInView={{ width: "80px" }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            />
+            <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
+              Bij Digitaalgelijk voldoen wij aan de hoogste internationale standaarden voor kwaliteit, veiligheid en duurzaamheid.
+            </p>
+          </motion.div>
+          
+          <div className="text-center">
+            <motion.div 
+              whileHover={{ scale: 1.05 }} 
+              whileTap={{ scale: 0.98 }}
+              className="inline-block"
+            >
+              <Link href="/certificeringen" className="px-8 py-4 bg-blue-600 text-white hover:bg-blue-700 rounded-lg font-medium transition-colors flex items-center gap-2 mx-auto">
+                Bekijk al onze certificeringen <FiArrowRight />
+              </Link>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 to-blue-800 text-white">
-        <div className="container mx-auto px-4">
+      <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-800 text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="dot-pattern" width="20" height="20" patternUnits="userSpaceOnUse">
+                <circle cx="10" cy="10" r="1" fill="currentColor" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#dot-pattern)" />
+          </svg>
+        </div>
+        
+        <motion.div 
+          className="container mx-auto px-4 relative z-10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Werk met ons samen
+              Klaar voor duurzame IT-oplossingen?
             </h2>
             <p className="text-xl text-blue-100 mb-8">
-              Ontdek hoe Neiwu uw bedrijf kan helpen met duurzame IT-oplossingen. Neem vandaag nog contact met ons op.
+              Ontdek hoe Digitaalgelijk uw bedrijf kan helpen met verantwoord IT-asset management.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/contact" className="px-8 py-4 bg-white text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-colors flex items-center gap-2">
-                Contact Opnemen <FiArrowRight />
-              </Link>
-              <Link href="/diensten" className="px-8 py-4 bg-blue-700 hover:bg-blue-800 text-white border border-blue-500 rounded-lg font-medium transition-colors">
-                Onze Diensten
-              </Link>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+                <Link href="/contact" className="px-8 py-4 bg-white text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-colors flex items-center gap-2">
+                  Contact Opnemen <FiArrowRight />
+                </Link>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+                <Link href="/diensten" className="px-8 py-4 bg-blue-700 hover:bg-blue-800 text-white border border-blue-500 rounded-lg font-medium transition-colors flex items-center gap-2">
+                  Onze Diensten <FiArrowRight />
+                </Link>
+              </motion.div>
+            </div>
+            <div className="mt-8 text-blue-200 flex items-center justify-center">
+              <FiHeart className="mr-2" />
+              <span>Met passie voor duurzaamheid</span>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
     </main>
   );

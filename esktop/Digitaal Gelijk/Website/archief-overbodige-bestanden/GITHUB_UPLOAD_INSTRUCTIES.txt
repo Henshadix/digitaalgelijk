@@ -1,0 +1,37 @@
+===== INSTRUCTIES VOOR HANDMATIGE UPLOAD NAAR GITHUB =====
+
+Nu de bestanden zijn bijgewerkt, volg deze stappen om ze naar GitHub te uploaden:
+
+1. Ga naar je GitHub repository in je webbrowser
+   (bijvoorbeeld: https://github.com/jouw-gebruikersnaam/jouw-repository)
+
+2. Navigeer naar de server.js file:
+   - Klik op de bestandsnaam 'server.js' in de repository
+   - Klik op het potlood-icoon (Edit this file) rechtsboven
+   - Verwijder alle bestaande inhoud
+   - Kopieer en plak de volledige inhoud van je lokale server.js bestand
+   - Scroll naar beneden en klik op 'Commit changes'
+   - Voeg een beschrijving toe zoals: "Fix: Server now listens on all IP addresses and uses port 3000"
+   - Klik op 'Commit changes' om op te slaan
+
+3. Navigeer naar de docker-compose.yml file:
+   - Ga terug naar de hoofdpagina van je repository
+   - Klik op de bestandsnaam 'docker-compose.yml' in de repository
+   - Klik op het potlood-icoon (Edit this file) rechtsboven
+   - Verwijder alle bestaande inhoud
+   - Kopieer en plak de volledige inhoud van je lokale docker-compose.yml bestand
+   - Scroll naar beneden en klik op 'Commit changes'
+   - Voeg een beschrijving toe zoals: "Update docker-compose.yml to use port 3000"
+   - Klik op 'Commit changes' om op te slaan
+
+4. Ga naar Easypanel:
+   - Log in op je Easypanel dashboard
+   - Ga naar je applicatie
+   - Klik op 'Rebuild' of 'Redeploy' om de nieuwe wijzigingen op te halen
+   - Controleer of de applicatie correct start en toegankelijk is
+
+5. Test je website:
+   - Bezoek je domein (digitaalgelijk.nl)
+   - Controleer of de "onder constructie" pagina correct wordt weergegeven
+
+Als je problemen ondervindt, controleer dan de logs in Easypanel voor eventuele foutmeldingen.

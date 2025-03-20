@@ -20,22 +20,7 @@ const shouldRedirect = (path: string): boolean => {
 };
 
 export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-  
-  // Als we in development mode zijn, sta dan alle routes toe
-  if (process.env.NODE_ENV === 'development') {
-    // Je kunt deze regel uitcommentariëren om de redirects ook in development mode te testen
-    // if (shouldRedirect(pathname)) {
-    //   return NextResponse.redirect(new URL('/onder-constructie', request.url));
-    // }
-    return NextResponse.next();
-  }
-  
-  // In productie, leid alle niet-toegestane paden om naar de onder-constructie pagina
-  if (shouldRedirect(pathname)) {
-    return NextResponse.redirect(new URL('/onder-constructie', request.url));
-  }
-  
+  // Middleware completely disabled - no redirects to under construction page
   return NextResponse.next();
 }
 

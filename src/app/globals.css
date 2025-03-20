@@ -22,6 +22,10 @@
     --input: #e5e7eb;
     --ring: rgba(37, 99, 235, 0.3);
     --radius: 0.5rem;
+    
+    /* Toegevoegde performanceverbeteringen */
+    text-rendering: optimizeSpeed;
+    scroll-behavior: smooth;
   }
 
   .dark {
@@ -72,12 +76,21 @@
   }
 }
 
-/* Verbeterde layout regels voor productie */
+/* Verbeterde layout regels voor betere prestaties */
 html {
   height: 100% !important;
   width: 100% !important;
-  overflow-x: hidden !important;
   box-sizing: border-box !important;
+  scroll-behavior: smooth;
+  /* Content-visibility voor betere performance */
+  content-visibility: auto;
+}
+
+/* Preload belangrijke afbeeldingen */
+body::before {
+  content: "";
+  display: none;
+  background-image: url('/images/hero-image.jpg');
 }
 
 body {
@@ -89,21 +102,37 @@ body {
   background: var(--background);
   font-family: var(--font-sans);
   min-height: 100vh;
-  overflow-x: hidden !important;
   position: relative !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Verbeterd text rendering voor betere performance */
+  text-rendering: optimizeSpeed;
+  /* Voorkom layout shifts */
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+/* Voorkom layout shifts bij afbeeldingen */
+img {
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
+
+/* Optimaliseer CSS voor input controls */
+input, button, textarea, select {
+  font: inherit;
 }
 
 #__next, main {
   min-height: 100vh !important;
   width: 100% !important;
-  overflow-x: hidden !important;
 }
 
-/* Scrollbar styling */
+/* Scrollbar styling - vereenvoudigd */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -112,14 +141,14 @@ body {
 
 ::-webkit-scrollbar-thumb {
   background: var(--border);
-  border-radius: 5px;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary);
 }
 
-/* Animation utilities */
+/* Animation utilities - beperkt tot de meest gebruikte */
 .animate-fade-in {
   animation: fadeIn 0.5s ease-in-out forwards;
 }
@@ -132,35 +161,7 @@ body {
   animation: slideDown 0.5s ease-out forwards;
 }
 
-.animate-slide-left {
-  animation: slideLeft 0.5s ease-out forwards;
-}
-
-.animate-slide-right {
-  animation: slideRight 0.5s ease-out forwards;
-}
-
-.animate-scale {
-  animation: scale 0.5s ease-out forwards;
-}
-
-.animate-pulse {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-.animate-bounce {
-  animation: bounce 1s infinite;
-}
-
-.animate-spin {
-  animation: spin 1s linear infinite;
-}
-
-.animate-ping {
-  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-
-/* Keyframes */
+/* Keyframes - vereenvoudigd */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -176,41 +177,25 @@ body {
   to { transform: translateY(0); opacity: 1; }
 }
 
-@keyframes slideLeft {
-  from { transform: translateX(20px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+/* Reduced Motion Media Query voor toegankelijkheid */
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-motion="allow"]) *, 
+  html:not([data-motion="allow"]) *::before, 
+  html:not([data-motion="allow"]) *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  html:not([data-motion="allow"]) .animate-fade-in,
+  html:not([data-motion="allow"]) .animate-slide-up,
+  html:not([data-motion="allow"]) .animate-slide-down {
+    animation: none !important;
+  }
 }
 
-@keyframes slideRight {
-  from { transform: translateX(-20px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes scale {
-  from { transform: scale(0.9); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes ping {
-  75%, 100% { transform: scale(2); opacity: 0; }
-}
-
-/* Gradient text utility */
+/* Gradient text utility - behouden maar geoptimaliseerd */
 @layer components {
   .gradient-text {
     background-clip: text;
@@ -219,37 +204,118 @@ body {
     background-image: linear-gradient(to right, var(--primary), var(--accent));
   }
 
-  /* Glass effect */
+  /* Glass effect - vereenvoudigd */
   .glass {
     background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
 
   .glass-dark {
     background-color: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
 }
 
-/* Glow effects */
-.glow {
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+/* Verbeterde focus stijlen voor toegankelijkheid */
+:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px white;
+  border-radius: var(--radius);
+  text-decoration: none;
 }
 
-.glow-accent {
-  box-shadow: 0 0 15px rgba(34, 211, 238, 0.5);
+/* Speciale focus stijl voor dark mode */
+.dark :focus-visible {
+  box-shadow: 0 0 0 2px black;
 }
 
-.glow-success {
-  box-shadow: 0 0 15px rgba(52, 211, 153, 0.5);
+/* Verbeterde link stijlen voor toegankelijkheid */
+a {
+  text-underline-offset: 0.2em;
 }
 
-.glow-warning {
-  box-shadow: 0 0 15px rgba(251, 191, 36, 0.5);
+/* Screen-reader only utilities */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 
-.glow-danger {
-  box-shadow: 0 0 15px rgba(248, 113, 113, 0.5);
+/* Skip link styling */
+.sr-only:focus,
+.sr-only:active,
+.sr-only:focus-visible {
+  position: fixed;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  z-index: 9999;
+  padding: 1rem;
+  background-color: white;
+  color: var(--primary);
+  font-weight: 500;
+  border-radius: var(--radius);
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+}
+
+/* Core button styling met verbeterd contrast en toegankelijkheid */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 1.25rem;
+  font-weight: 500;
+  border-radius: var(--radius);
+  background-color: var(--primary);
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--primary-dark);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 1.25rem;
+  font-weight: 500;
+  border-radius: var(--radius);
+  background-color: transparent;
+  color: var(--primary);
+  text-decoration: none;
+  border: 1px solid var(--primary);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background-color: var(--primary);
+  color: white;
+}
+
+.dark .btn-secondary {
+  color: white;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.dark .btn-secondary:hover,
+.dark .btn-secondary:focus {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: white;
 }

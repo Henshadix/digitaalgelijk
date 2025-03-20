@@ -1,8 +1,47 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
+// Eenvoudige in-memory rate limiter
+const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 uur in milliseconden
+const MAX_REQUESTS_PER_IP = 5; // Max 5 verzoeken per IP per uur
+
+const ipRequestCounts: Record<string, { count: number, resetTime: number }> = {};
+
+// Validatiefunctie
+function validateEmail(email: string): boolean {
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return emailRegex.test(email);
+}
+
 export async function POST(req: NextRequest) {
   try {
+    // IP-gebaseerde rate limiting
+    const ip = req.headers.get('x-forwarded-for') || 'unknown';
+    const now = Date.now();
+    
+    // Controleer en reset rate limiter indien nodig
+    if (!ipRequestCounts[ip] || now > ipRequestCounts[ip].resetTime) {
+      ipRequestCounts[ip] = { count: 0, resetTime: now + RATE_LIMIT_WINDOW };
+    }
+    
+    // Rate limit check
+    if (ipRequestCounts[ip].count >= MAX_REQUESTS_PER_IP) {
+      return NextResponse.json(
+        { 
+          error: 'Te veel verzoeken. Probeer het later opnieuw.' 
+        },
+        { 
+          status: 429,
+          headers: {
+            'Retry-After': `${Math.ceil((ipRequestCounts[ip].resetTime - now) / 1000)}`,
+          }
+        }
+      );
+    }
+    
+    // Verhoog counter
+    ipRequestCounts[ip].count++;
+    
     // Haal de formuliergegevens op uit de request
     const formData = await req.json();
     const { name, email, message } = formData;
@@ -14,120 +53,96 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
-
-    console.log('SMTP-instellingen:', {
-      host: process.env.SMTP_HOST,
-      port: process.env.SMTP_PORT,
-      secure: process.env.SMTP_SECURE,
-      user: process.env.SMTP_USER ? '***' : 'niet ingesteld',
-      password: process.env.SMTP_PASSWORD ? '***' : 'niet ingesteld',
-    });
+    
+    // Valideer e-mailadres
+    if (!validateEmail(email)) {
+      return NextResponse.json(
+        { error: 'Ongeldig e-mailadres. Controleer het e-mailadres en probeer opnieuw.' },
+        { status: 400 }
+      );
+    }
+    
+    // Valideer berichtlengte
+    if (message.length < 10) {
+      return NextResponse.json(
+        { error: 'Bericht is te kort. Geef meer details over uw vraag of verzoek.' },
+        { status: 400 }
+      );
+    }
 
     // Configureer de e-mail transporter
     let transporter;
-    
-    // Probeer eerst Office 365
     try {
+      // Productie-veilige SMTP-configuratie
       transporter = nodemailer.createTransport({
-        host: process.env.SMTP_HOST || 'smtp.office365.com',
-        port: Number(process.env.SMTP_PORT) || 587,
-        secure: Boolean(process.env.SMTP_SECURE) || false,
+        host: process.env.SMTP_HOST || 'smtp.example.com',
+        port: parseInt(process.env.SMTP_PORT || '587'),
+        secure: process.env.SMTP_SECURE === 'true',
         auth: {
-          user: process.env.SMTP_USER || 'your-email@gmail.com',
-          pass: process.env.SMTP_PASSWORD || 'your-password',
-        },
-        debug: true,
-        logger: true,
-        tls: {
-          ciphers: 'SSLv3',
-          rejectUnauthorized: false
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASSWORD,
         }
       });
-      
-      // Controleer de verbinding met de SMTP-server
-      await transporter.verify();
-      console.log('SMTP-verbinding geverifieerd met Office 365');
-    } catch (office365Error) {
-      console.error('Office 365 SMTP-verbinding mislukt:', office365Error);
-      
-      // Als Office 365 faalt, probeer SendGrid als fallback (indien geconfigureerd)
-      if (process.env.SENDGRID_API_KEY) {
-        console.log('Proberen met SendGrid als fallback...');
-        transporter = nodemailer.createTransport({
-          host: 'smtp.sendgrid.net',
-          port: 587,
-          secure: false,
-          auth: {
-            user: 'apikey',
-            pass: process.env.SENDGRID_API_KEY,
-          },
-          debug: true,
-          logger: true
-        });
-        
-        try {
-          await transporter.verify();
-          console.log('SMTP-verbinding geverifieerd met SendGrid');
-        } catch (sendgridError) {
-          console.error('SendGrid SMTP-verbinding mislukt:', sendgridError);
-          return NextResponse.json(
-            { error: `Alle SMTP-verbindingen mislukt. Laatste fout: ${sendgridError.message}` },
-            { status: 500 }
-          );
-        }
-      } else {
-        // Als er geen SendGrid API key is geconfigureerd, geef de originele fout terug
-        return NextResponse.json(
-          { error: `SMTP-verbinding verificatie mislukt: ${office365Error.message}` },
-          { status: 500 }
-        );
-      }
+    } catch (error) {
+      console.error('Fout bij het configureren van de e-mail transporter:', error);
+      return NextResponse.json(
+        { error: 'Er is een fout opgetreden bij het configureren van de e-mail service' },
+        { status: 500 }
+      );
     }
 
-    // Stel de e-mail samen
+    // Stel de e-mail samen met escaping/filtering voor beveiliging
+    function escapeHtml(text: string): string {
+      return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+    
+    const escapedName = escapeHtml(name);
+    const escapedEmail = escapeHtml(email);
+    const escapedMessage = escapeHtml(message);
+
     const mailOptions = {
       from: {
         name: 'Contactformulier Website',
-        address: 'info@digitaalgelijk.nl'  // Gedeelde mailbox
+        address: process.env.SMTP_USER || 'info@digitaalgelijk.nl'
       },
-      sender: process.env.SMTP_USER || 'your-email@gmail.com',  // Persoonlijk account dat de e-mail verstuurt
-      to: 'info@digitaalgelijk.nl',
+      to: process.env.CONTACT_EMAIL || 'info@digitaalgelijk.nl',
       replyTo: email,
-      subject: `Nieuw bericht van ${name} via het contactformulier`,
+      subject: `Nieuw bericht van ${escapedName} via het contactformulier`,
       text: `Naam: ${name}\nE-mail: ${email}\n\nBericht:\n${message}`,
       html: `
         <h2>Nieuw bericht via het contactformulier</h2>
-        <p><strong>Naam:</strong> ${name}</p>
-        <p><strong>E-mail:</strong> ${email}</p>
+        <p><strong>Naam:</strong> ${escapedName}</p>
+        <p><strong>E-mail:</strong> ${escapedEmail}</p>
         <p><strong>Bericht:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
+        <p>${escapedMessage.replace(/\n/g, '<br>')}</p>
       `,
     };
-
-    console.log('Versturen van e-mail met opties:', {
-      from: mailOptions.from,
-      to: mailOptions.to,
-      subject: mailOptions.subject,
-    });
 
     // Verstuur de e-mail
     try {
       const info = await transporter.sendMail(mailOptions);
-      console.log('E-mail succesvol verstuurd:', info.messageId);
       
-      // Stuur een succesvolle response terug
-      return NextResponse.json({ success: true, messageId: info.messageId });
-    } catch (sendError) {
+      // Stuur een succesvolle response terug zonder gevoelige informatie
+      return NextResponse.json({ 
+        success: true,
+        message: 'Uw bericht is succesvol verzonden. We nemen zo snel mogelijk contact met u op.'
+      });
+    } catch (sendError: any) {
       console.error('Fout bij het versturen van e-mail:', sendError);
       return NextResponse.json(
-        { error: `Fout bij het versturen van e-mail: ${sendError.message}` },
+        { error: 'Er is een fout opgetreden bij het versturen van het bericht. Probeer het later opnieuw.' },
         { status: 500 }
       );
     }
-  } catch (error) {
+  } catch (error: any) {
     console.error('Algemene fout bij het verwerken van het verzoek:', error);
     return NextResponse.json(
-      { error: `Er is een fout opgetreden bij het versturen van het bericht: ${error.message}` },
+      { error: 'Er is een onverwachte fout opgetreden. Probeer het later opnieuw.' },
       { status: 500 }
     );
   }

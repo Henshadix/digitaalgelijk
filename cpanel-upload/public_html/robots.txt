@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Zorg ervoor dat zoekmachines geen dubbele content indexeren
+Disallow: /api/
+Disallow: /_next/
+
+# Sitemap
+Sitemap: https://www.digitaalgelijk.nl/sitemap.xml 

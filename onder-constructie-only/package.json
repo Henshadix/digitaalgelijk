@@ -1,0 +1,16 @@
+{
+  "name": "digitaalgelijk-onder-constructie",
+  "version": "1.0.0",
+  "description": "Digitaalgelijk website onder constructie pagina",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "author": "Digitaalgelijk",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+} 

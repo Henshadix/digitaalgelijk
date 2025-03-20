@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { FiTruck, FiCheckCircle, FiPackage, FiMap, FiShield, FiArrowRight } from 'react-icons/fi';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Logistieke Diensten | Neiwu',
@@ -17,23 +18,43 @@ export default function LogistiekeDiensten() {
         <div className="absolute bottom-0 left-0 w-1/3 h-full bg-blue-500/10 blur-3xl rounded-full transform -translate-x-1/2"></div>
         
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-block px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium mb-6">
-              Logistieke Diensten
+          <div className="flex flex-col md:flex-row items-center gap-12">
+            <div className="md:w-1/2">
+              <div className="inline-block px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium mb-6">
+                Logistieke Diensten
+              </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+                Veilig <span className="text-blue-600 dark:text-blue-400">transport</span> van uw IT-apparatuur
+              </h1>
+              <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
+                Professionele logistieke oplossingen voor het veilig vervoeren en opslaan van uw waardevolle IT-assets, met volledige tracking en tracing.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Link href="/contact" className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors flex items-center gap-2">
+                  Offerte Aanvragen <FiArrowRight />
+                </Link>
+                <Link href="/diensten" className="px-6 py-3 bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-700 border border-blue-200 dark:border-gray-700 rounded-lg font-medium transition-colors">
+                  Alle Diensten
+                </Link>
+              </div>
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-              Veilig <span className="text-blue-600 dark:text-blue-400">transport</span> van uw IT-apparatuur
-            </h1>
-            <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
-              Professionele logistieke oplossingen voor het veilig vervoeren en opslaan van uw waardevolle IT-assets, met volledige tracking en tracing.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/contact" className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors flex items-center gap-2">
-                Offerte Aanvragen <FiArrowRight />
-              </Link>
-              <Link href="/diensten" className="px-8 py-4 bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-700 border border-blue-200 dark:border-gray-700 rounded-lg font-medium transition-colors">
-                Alle Diensten
-              </Link>
+            
+            <div className="md:w-1/2 mt-10 md:mt-0">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <Image 
+                  src="/images/services/logistieke-diensten-pro.jpg" 
+                  alt="Professionele IT-logistieke diensten" 
+                  width={1200} 
+                  height={800}
+                  className="w-full h-auto object-cover"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 p-6">
+                  <div className="text-white text-xl font-bold">Gespecialiseerde IT-logistiek</div>
+                  <div className="text-blue-200">Veilig transport en opslag van IT-apparatuur</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

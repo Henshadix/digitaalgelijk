@@ -12,21 +12,21 @@ const nextConfig = {
         hostname: 'upload.wikimedia.org',
       },
     ],
-    unoptimized: process.env.NODE_ENV === 'development',
+    unoptimized: false,
   },
   // Voeg output: 'standalone' toe voor Docker deployment
   output: 'standalone',
   
-  // ESLint uitschakelen tijdens de build
+  // ESLint en TypeScript validatie inschakelen voor betere code kwaliteit
   eslint: {
-    // Waarschuwing: dit schakelt ESLint controle uit tijdens de build
-    ignoreDuringBuilds: true,
+    // ESLint validatie ingeschakeld voor build
+    ignoreDuringBuilds: false,
   },
   
-  // TypeScript type checking uitschakelen tijdens de build
+  // TypeScript type checking inschakelen tijdens de build
   typescript: {
-    // Waarschuwing: dit schakelt TypeScript type checking uit tijdens de build
-    ignoreBuildErrors: true,
+    // TypeScript validatie ingeschakeld voor build
+    ignoreBuildErrors: false,
   },
 };
 

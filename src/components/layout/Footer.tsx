@@ -70,20 +70,18 @@ const Footer = () => {
     {
       title: 'Diensten',
       links: [
-        { name: 'Hardware Opkopen', href: '/hardware-opkopen' },
-        { name: 'Data Verwijdering', href: '/data-verwijderen' },
-        { name: 'Hardware Recycling', href: '/hardware-recycling' },
-        { name: 'Logistieke Diensten', href: '/logistieke-diensten' },
+        { name: 'Hardware Opkopen', href: '/diensten/hardware-opkopen' },
+        { name: 'Data Verwijdering', href: '/diensten/data-verwijdering' },
+        { name: 'Hardware Recycling', href: '/diensten/hardware-recycling' },
+        { name: 'Logistieke Diensten', href: '/diensten/logistieke-diensten' },
       ]
     },
     {
       title: 'Bedrijf',
       links: [
         { name: 'Over Ons', href: '/over-ons' },
-        { name: 'Duurzaamheid', href: '/duurzaamheid' },
-        { name: 'Certificeringen', href: '/certificeringen' },
-        { name: 'Vacatures', href: '/vacatures' },
-        { name: 'Blog', href: '/blog' },
+        { name: 'Certificeringen', href: '/over-ons#certificeringen' },
+        { name: 'Vacatures', href: '/over-ons#vacatures' },
       ]
     },
     {
