@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Digitaalgelijk website",
   "scripts": {
-    "start": "next start -p ${PORT:-3000}",
+    "start": "node .next/standalone/server.js",
     "dev": "next dev",
     "simple-server": "nodemon server.js",
     "build": "next build",
