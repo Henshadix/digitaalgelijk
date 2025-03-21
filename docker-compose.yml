@@ -1,8 +1,10 @@
-﻿services:
+﻿version: '3'
+
+services:
   web:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: node:18-alpine
+    working_dir: /app
+    command: sh -c "npm install && npm run build && npm start"
     restart: always
     ports:
       - "3003:3000"
@@ -10,8 +12,7 @@
       - NODE_ENV=production
       - PORT=3000
     volumes:
-      - ./public:/app/public
-      - ./.next/static:/app/.next/static
+      - .:/app
     healthcheck:
       test: ["CMD", "wget", "--spider", "http://localhost:3000"]
       interval: 10s
