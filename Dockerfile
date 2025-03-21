@@ -1,29 +1,32 @@
-FROM node:18-alpine
+FROM node:18-alpine AS base
 
+# Installeer dependencies alleen
+FROM base AS deps
 WORKDIR /app
-
 COPY package.json package-lock.json ./
 RUN npm ci
 
+# Rebuild de source code alleen
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build
 
-# Verbeterd kopiëren van statische bestanden naar de juiste locatie voor standalone mode
-RUN mkdir -p .next/standalone/.next/static
-RUN cp -r .next/static .next/standalone/.next/
+# Productie image, kopieer alle bestanden en run next
+FROM base AS runner
+WORKDIR /app
 
-# Zorg dat de public map met afbeeldingen correct wordt gekopieerd
-RUN mkdir -p .next/standalone/public
-RUN cp -r public/* .next/standalone/public/
-
-# Verplaats naar de standalone directory voor betere context
-WORKDIR /app/.next/standalone
-
+ENV NODE_ENV=production
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
-ENV NODE_ENV=production
+
+# Kopieer alleen noodzakelijke bestanden voor productie
+COPY --from=builder /app/next.config.mjs ./
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
 
 EXPOSE 3000
 
-# Start de standalone server
 CMD ["node", "server.js"] 
