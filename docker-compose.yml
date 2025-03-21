@@ -9,6 +9,9 @@
     environment:
       - NODE_ENV=production
       - PORT=3000
+    volumes:
+      - ./public:/app/public
+      - ./.next/static:/app/.next/static
     healthcheck:
       test: ["CMD", "wget", "--spider", "http://localhost:3000"]
       interval: 10s
