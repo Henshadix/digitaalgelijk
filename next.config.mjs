@@ -2,6 +2,7 @@
 const nextConfig = {
   /* config options here */
   images: {
+    domains: ['images.unsplash.com', 'upload.wikimedia.org'],
     remotePatterns: [
       {
         protocol: 'https',
@@ -14,11 +15,16 @@ const nextConfig = {
     ],
     unoptimized: true, // Optimize voor statische hosting
   },
-  // Voeg output: 'standalone' toe voor Docker deployment
+  // Output standalone voor correcte containerisatie
   output: 'standalone',
   
-  // Asset prefix voor correcte URL's naar statische bestanden
-  assetPrefix: '/',
+  // Verwijder assetPrefix voor probleemloze statische bestandsafhandeling
+  // assetPrefix: '/',
+  
+  // Statische optimalisatie inschakelen
+  experimental: {
+    optimizeCss: true,
+  },
   
   // Verbeterde productie-instellingen voor containers
   compress: true,
