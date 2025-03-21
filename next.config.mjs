@@ -18,7 +18,7 @@ const nextConfig = {
   output: 'standalone',
   
   // Asset prefix voor correcte URL's naar statische bestanden
-  assetPrefix: '.',
+  assetPrefix: '/',
   
   // ESLint en TypeScript validatie inschakelen voor betere code kwaliteit
   eslint: {
