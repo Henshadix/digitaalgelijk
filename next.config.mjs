@@ -17,6 +17,9 @@ const nextConfig = {
   // Voeg output: 'standalone' toe voor Docker deployment
   output: 'standalone',
   
+  // Asset prefix voor correcte URL's naar statische bestanden
+  assetPrefix: '.',
+  
   // ESLint en TypeScript validatie inschakelen voor betere code kwaliteit
   eslint: {
     // ESLint validatie ingeschakeld voor build
