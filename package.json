@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "Digitaalgelijk website",
   "scripts": {
-    "start": "node .next/standalone/server.js",
+    "start": "node server.js",
     "dev": "next dev",
-    "simple-server": "nodemon server.js",
+    "prebuild": "rm -rf .next || true",
     "build": "next build",
+    "postbuild": "cp -r public .next/",
     "lint": "next lint"
   },
   "author": "Digitaalgelijk",
@@ -34,5 +35,8 @@
     "react-hook-form": "^7.54.2",
     "react-icons": "^5.5.0",
     "zod": "^3.24.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
