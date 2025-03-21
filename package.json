@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Digitaalgelijk website",
   "scripts": {
-    "start": "next start -p ${PORT:-3000}",
+    "start": "node server.js",
+    "start:next": "next start -p $PORT",
     "dev": "next dev",
     "build": "next build",
     "lint": "next lint"
