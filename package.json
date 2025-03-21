@@ -3,11 +3,9 @@
   "version": "1.0.0",
   "description": "Digitaalgelijk website",
   "scripts": {
-    "start": "node server.js",
+    "start": "next start -p ${PORT:-3000}",
     "dev": "next dev",
-    "prebuild": "rm -rf .next || true",
     "build": "next build",
-    "postbuild": "cp -r public .next/",
     "lint": "next lint"
   },
   "author": "Digitaalgelijk",
@@ -37,6 +35,6 @@
     "zod": "^3.24.2"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": "18.x"
   }
 }
