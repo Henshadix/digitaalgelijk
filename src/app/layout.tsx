@@ -58,7 +58,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="nl" suppressHydrationWarning className="h-full scroll-smooth">
+    <html lang="nl" suppressHydrationWarning className="scroll-smooth">
       <head>
         <link 
           rel="preconnect" 
@@ -88,14 +88,14 @@ export default function RootLayout({
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       </head>
       <body
-        className={`${inter.variable} antialiased h-full`}
+        className={`${inter.variable} antialiased min-h-screen overflow-y-auto`}
       >
         <ThemeProvider>
           <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:p-4 focus:bg-white focus:text-blue-600 focus:z-50">
             Spring naar hoofdinhoud
           </a>
           <Navbar />
-          <main id="main-content" className="min-h-screen pt-0">
+          <main id="main-content" className="min-h-screen">
             {children}
           </main>
           <Footer />
