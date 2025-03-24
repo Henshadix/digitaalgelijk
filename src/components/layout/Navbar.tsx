@@ -195,7 +195,7 @@ const Navbar = () => {
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-6">
               <motion.a 
-                href="tel:+31201234567" 
+                href="tel:+31649892654" 
                 className="flex items-center text-sm hover:text-blue-200 transition-colors group"
                 variants={topBarItemVariants}
                 initial="initial"

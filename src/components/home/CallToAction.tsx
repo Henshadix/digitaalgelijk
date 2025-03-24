@@ -249,14 +249,14 @@ const CallToAction = () => {
                 <p className="text-gray-700 dark:text-gray-300 mb-4">Direct contact opnemen?</p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <motion.a 
-                    href="tel:+31612345678" 
+                    href="tel:+31649892654" 
                     className="group bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/30 dark:hover:bg-blue-800/50 text-blue-600 dark:text-blue-300 transition-all duration-300 px-6 py-3 rounded-lg font-medium text-center flex items-center justify-center border border-blue-100 dark:border-blue-800/50"
                     whileHover={{ scale: 1.03, y: -2 }}
                     whileTap={{ scale: 0.98 }}
                     aria-label="Bel ons direct"
                   >
                     <FiPhone className="mr-2" aria-hidden="true" />
-                    <span>+31 6 12345678</span>
+                    <span>+31 6 49892654</span>
                   </motion.a>
                   
                   <motion.a 

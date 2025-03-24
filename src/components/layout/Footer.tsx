@@ -178,7 +178,7 @@ const Footer = () => {
             {/* Contact info */}
             <div className="flex flex-wrap justify-center md:justify-end gap-4 md:gap-6">
               <motion.a 
-                href="tel:+31201234567" 
+                href="tel:+31649892654" 
                 className="flex items-center text-sm hover:text-blue-200 transition-colors group"
                 variants={topBarItemVariants}
                 initial="initial"

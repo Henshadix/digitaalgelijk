@@ -409,7 +409,7 @@ export default function DataVerwijdering() {
                 whileHover={{ scale: 1.05 }} 
                 whileTap={{ scale: 0.98 }}
               >
-                <Link href="tel:+31201234567" className="px-8 py-4 bg-blue-700 hover:bg-blue-800 text-white border border-blue-500 rounded-lg font-medium transition-colors">
+                <Link href="tel:+31649892654" className="px-8 py-4 bg-blue-700 hover:bg-blue-800 text-white border border-blue-500 rounded-lg font-medium transition-colors">
                   Bel Ons
                 </Link>
               </motion.div>
