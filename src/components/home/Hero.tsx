@@ -28,22 +28,22 @@ const Hero = () => {
     {
       title: "Eerlijke prijzen",
       description: "Transparante en concurrerende vergoedingen",
-      icon: <FiCheck className="text-blue-600 dark:text-blue-400" size={24} />
+      icon: <FiCheck className="text-blue-600 dark:text-blue-400" size={28} />
     },
     {
       title: "GDPR-compliant",
       description: "100% veilige dataverwijdering",
-      icon: <FiShield className="text-purple-600 dark:text-purple-400" size={24} />
+      icon: <FiShield className="text-purple-600 dark:text-purple-400" size={28} />
     },
     {
       title: "Duurzame recycling",
       description: "Minimale impact op het milieu",
-      icon: <FiRefreshCw className="text-green-600 dark:text-green-400" size={24} />
+      icon: <FiRefreshCw className="text-green-600 dark:text-green-400" size={28} />
     },
     {
       title: "Gratis ophaalservice",
       description: "Door heel Nederland",
-      icon: <FiTruck className="text-amber-600 dark:text-amber-400" size={24} />
+      icon: <FiTruck className="text-amber-600 dark:text-amber-400" size={28} />
     }
   ];
 
@@ -169,10 +169,7 @@ const Hero = () => {
             
             {/* Hero image with features slider - 5 columns on large screens */}
             <div className="relative w-full h-[350px] sm:h-[430px] lg:h-[520px] lg:col-span-5 rounded-xl overflow-hidden shadow-2xl">
-              {/* Lightened overlay for better visibility */}
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 mix-blend-overlay z-10 rounded-xl"></div>
-              
-              {/* Image with simplified hover effect */}
+              {/* Image */}
               <Image
                 src="/images/hero-image.jpg" 
                 alt="IT-hardware recycling en data verwijdering"
@@ -184,11 +181,11 @@ const Hero = () => {
               />
               
               {/* Gradient overlay for better content contrast */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent z-20 rounded-xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent z-20 rounded-xl"></div>
               
-              {/* Features slider inside the image */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 z-30">
-                <div className="bg-black/50 backdrop-blur-sm rounded-lg p-4 md:p-6 border border-white/10">
+              {/* Features slider - Enlarged */}
+              <div className="absolute inset-x-0 bottom-0 z-30 p-4 sm:p-5 md:p-6">
+                <div className="bg-gradient-to-r from-blue-900/80 to-indigo-900/80 backdrop-blur-md rounded-xl p-6 sm:p-7 shadow-lg border border-white/15">
                   {/* Current slide */}
                   <MotionDiv
                     key={activeFeature}
@@ -196,28 +193,28 @@ const Hero = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.3 }}
-                    className="flex items-start gap-4"
+                    className="flex items-start gap-5"
                   >
-                    <div className="bg-white/10 p-3 rounded-lg">
+                    <div className="flex-shrink-0 bg-white/15 p-4 rounded-lg shadow-inner">
                       {features[activeFeature].icon}
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-white">
+                    <div className="flex-1 pt-1">
+                      <h3 className="text-xl md:text-2xl font-bold text-white">
                         {features[activeFeature].title}
                       </h3>
-                      <p className="text-sm text-blue-100 mt-1">
+                      <p className="text-base text-blue-100 mt-2 leading-relaxed">
                         {features[activeFeature].description}
                       </p>
                     </div>
                   </MotionDiv>
                   
                   {/* Navigation controls */}
-                  <div className="flex justify-between items-center mt-5">
-                    <div className="flex gap-1">
+                  <div className="flex justify-between items-center mt-6">
+                    <div className="flex gap-2">
                       {features.map((_, index) => (
                         <button
                           key={index}
-                          className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                          className={`w-3 h-3 rounded-full transition-colors ${
                             index === activeFeature ? 'bg-blue-500' : 'bg-white/30 hover:bg-white/50'
                           }`}
                           onClick={() => goToFeature(index)}
@@ -226,20 +223,20 @@ const Hero = () => {
                         />
                       ))}
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex gap-3">
                       <button 
                         onClick={prevFeature}
-                        className="bg-white/10 hover:bg-white/20 p-1.5 rounded-full transition-colors"
+                        className="bg-white/15 hover:bg-white/25 p-2 rounded-lg transition-colors"
                         aria-label="Vorige dienst"
                       >
-                        <FiChevronLeft className="text-white" size={18} />
+                        <FiChevronLeft className="text-white" size={20} />
                       </button>
                       <button 
                         onClick={nextFeature}
-                        className="bg-white/10 hover:bg-white/20 p-1.5 rounded-full transition-colors"
+                        className="bg-white/15 hover:bg-white/25 p-2 rounded-lg transition-colors"
                         aria-label="Volgende dienst"
                       >
-                        <FiChevronRight className="text-white" size={18} />
+                        <FiChevronRight className="text-white" size={20} />
                       </button>
                     </div>
                   </div>
