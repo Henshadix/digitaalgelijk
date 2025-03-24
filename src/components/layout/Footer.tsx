@@ -191,7 +191,7 @@ const Footer = () => {
                 >
                   <FiPhone size={14} />
                 </motion.div>
-                <span>+31 (0)20 123 4567</span>
+                <span>+31 6 4989 2654</span>
               </motion.a>
               <motion.a 
                 href="mailto:info@digitaalgelijk.nl" 
@@ -221,7 +221,7 @@ const Footer = () => {
                 >
                   <FiMapPin size={14} />
                 </motion.div>
-                <span>Amsterdam, Nederland</span>
+                <span>Wijchen, Nederland</span>
               </motion.div>
             </div>
           </div>
@@ -410,7 +410,7 @@ const Footer = () => {
             <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
               <span>Gemaakt met</span>
               <FiHeart className="mx-1 text-red-500" size={14} />
-              <span>in Amsterdam</span>
+              <span>in Wijchen</span>
             </div>
           </motion.div>
         </div>

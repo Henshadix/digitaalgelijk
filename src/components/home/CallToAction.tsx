@@ -250,7 +250,7 @@ const CallToAction = () => {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <motion.a 
                     href="tel:+31649892654" 
-                    className="group bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/30 dark:hover:bg-blue-800/50 text-blue-600 dark:text-blue-300 transition-all duration-300 px-6 py-3 rounded-lg font-medium text-center flex items-center justify-center border border-blue-100 dark:border-blue-800/50"
+                    className="group bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/30 dark:hover:bg-blue-800/50 text-blue-600 dark:text-blue-300 transition-all duration-300 px-6 py-3 rounded-lg font-medium text-center flex items-center justify-center border border-blue-100 dark:border-blue-800/50 min-w-[180px] sm:min-w-[200px]"
                     whileHover={{ scale: 1.03, y: -2 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -260,7 +260,7 @@ const CallToAction = () => {
                   
                   <motion.a 
                     href="mailto:info@digitaalgelijk.nl" 
-                    className="group bg-purple-50 hover:bg-purple-100 dark:bg-purple-900/30 dark:hover:bg-purple-800/50 text-purple-600 dark:text-purple-300 transition-all duration-300 px-6 py-3 rounded-lg font-medium text-center flex items-center justify-center border border-purple-100 dark:border-purple-800/50"
+                    className="group bg-purple-50 hover:bg-purple-100 dark:bg-purple-900/30 dark:hover:bg-purple-800/50 text-purple-600 dark:text-purple-300 transition-all duration-300 px-6 py-3 rounded-lg font-medium text-center flex items-center justify-center border border-purple-100 dark:border-purple-800/50 min-w-[180px] sm:min-w-[220px]"
                     whileHover={{ scale: 1.03, y: -2 }}
                     whileTap={{ scale: 0.98 }}
                   >

@@ -83,7 +83,7 @@ export default function PrivacyPolicy() {
           </motion.div>
         </div>
       </section>
-
+          
       {/* Privacy Policy Content Section */}
       <section className="py-16 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
@@ -487,8 +487,8 @@ export default function PrivacyPolicy() {
             </defs>
             <rect width="100%" height="100%" fill="url(#dot-pattern)" />
           </svg>
-        </div>
-        
+      </div>
+
         <motion.div 
           className="container mx-auto px-4 relative z-10"
           initial={{ opacity: 0, y: 20 }}
@@ -526,7 +526,7 @@ export default function PrivacyPolicy() {
               <FiHeart className="mr-2" />
               <span>Met passie voor duurzaamheid</span>
             </div>
-          </div>
+      </div>
         </motion.div>
       </section>
     </main>

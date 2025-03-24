@@ -42,8 +42,40 @@ const Hero = () => {
   ];
 
   return (
-    <section ref={targetRef} className="relative overflow-hidden bg-white dark:bg-gray-900 min-h-[80vh] flex items-center">
-      <div className="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-white/50 dark:from-gray-900/50 to-transparent z-0 pointer-events-none"></div>
+    <section ref={targetRef} className="relative overflow-hidden bg-gradient-to-r from-blue-950 via-blue-900 to-blue-800 dark:from-blue-950 dark:via-blue-900 dark:to-blue-800 text-white min-h-[80vh] flex items-center">
+      {/* Dynamic animated background elements */}
+      <div className="absolute inset-0 w-full h-full">
+        {/* Animated gradient overlay */}
+        <motion.div 
+          className="absolute inset-0 opacity-20 bg-gradient-conic from-blue-400 via-transparent to-transparent"
+          animate={{
+            rotate: [0, 360],
+            transition: {
+              duration: 20,
+              ease: "linear",
+              repeat: Infinity
+            }
+          }}
+        />
+        
+        {/* Animated dots/particles */}
+        <motion.div 
+          className="absolute inset-0"
+          initial={{ opacity: 0.1 }}
+          animate={{ opacity: 0.15 }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            repeatType: "reverse"
+          }}
+        >
+          <div className="absolute top-1/4 left-1/4 w-1 h-1 rounded-full bg-white"></div>
+          <div className="absolute top-3/4 left-1/3 w-1.5 h-1.5 rounded-full bg-blue-300"></div>
+          <div className="absolute top-1/2 left-2/3 w-1 h-1 rounded-full bg-white"></div>
+          <div className="absolute top-1/4 left-3/4 w-2 h-2 rounded-full bg-blue-200"></div>
+          <div className="absolute top-3/4 right-1/4 w-1 h-1 rounded-full bg-white"></div>
+        </motion.div>
+      </div>
       
       <div className="relative w-full">
         <div className="container mx-auto px-4 md:px-6 py-8 md:py-12 relative z-10">
@@ -57,13 +89,13 @@ const Hero = () => {
                 custom={0}
                 className="flex flex-col space-y-4"
               >
-                <span className="text-blue-600 dark:text-blue-400 font-medium">
+                <span className="text-blue-300 font-medium">
                   Digitaalgelijk - Aalsburg 3111, Wijchen
                 </span>
-                <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+                <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white">
                   Geef uw hardware een tweede leven
                 </h1>
-                <p className="text-lg text-gray-600 dark:text-gray-300 max-w-xl">
+                <p className="text-lg text-gray-300 max-w-xl">
                   Wij kopen uw gebruikte IT-apparatuur op, wissen data veilig en geven hardware een tweede leven.
                 </p>
               </motion.div>
@@ -83,7 +115,7 @@ const Hero = () => {
                   <FiArrowRight className="ml-2" />
                 </Link>
                 <a href="tel:+31649892654" 
-                  className="inline-flex items-center px-6 py-3 text-base font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition shadow-md hover:shadow-lg border border-gray-300 dark:border-gray-700"
+                  className="inline-flex items-center px-6 py-3 text-base font-medium rounded-md bg-white/10 hover:bg-white/20 text-white transition shadow-md hover:shadow-lg border border-white/20"
                 >
                   Bel ons: 06 4989 2654
                 </a>
@@ -100,12 +132,12 @@ const Hero = () => {
                 {features.map((feature) => (
                   <div 
                     key={feature.title}
-                    className="flex items-center space-x-2 bg-gray-50 dark:bg-gray-800 px-4 py-2 rounded-lg"
+                    className="flex items-center space-x-2 bg-white/10 hover:bg-white/15 px-4 py-2 rounded-lg transition-colors duration-300"
                   >
                     <div className="flex-shrink-0">
                       {feature.icon}
                     </div>
-                    <span className="text-sm font-medium text-gray-900 dark:text-white">
+                    <span className="text-sm font-medium text-white">
                       {feature.title}
                     </span>
                   </div>

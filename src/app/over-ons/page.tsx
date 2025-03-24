@@ -179,13 +179,13 @@ export default function OverOns() {
             >
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <div className="aspect-w-16 aspect-h-9 relative">
-                  <Image 
-                    src="/images/about/office.jpg" 
+                <Image 
+                  src="/images/about/office.jpg" 
                     alt="Digitaalgelijk kantoor"
                     fill
                     className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 </div>
                 <div className="absolute bottom-0 left-0 p-6">
                   <div className="text-white text-xl font-bold">Ons hoofdkantoor</div>
@@ -299,10 +299,10 @@ export default function OverOns() {
                 <div className={`p-6 flex flex-col items-center text-center`}>
                   <div className={`w-16 h-16 ${value.color} rounded-full flex items-center justify-center mb-4`}>
                     {value.icon}
-                  </div>
+              </div>
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{value.title}</h3>
                   <p className="text-gray-600 dark:text-gray-400">{value.description}</p>
-                </div>
+            </div>
               </motion.div>
             ))}
           </div>
@@ -345,8 +345,8 @@ export default function OverOns() {
                 <div className={`flex-1 ${index % 2 === 0 ? 'text-right pr-8' : 'order-last text-left pl-8'}`}>
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{milestone.title}</h3>
                   <p className="text-gray-600 dark:text-gray-400">{milestone.description}</p>
-                </div>
-                
+          </div>
+
                 <div className="relative flex-shrink-0">
                   <div className="w-16 h-16 bg-blue-600 text-white dark:bg-blue-500 rounded-full flex items-center justify-center font-bold text-xl shadow-lg z-10 relative">
                     {milestone.year}
@@ -436,14 +436,14 @@ export default function OverOns() {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
-                <Link href="/contact" className="px-8 py-4 bg-white text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-colors flex items-center gap-2">
-                  Contact Opnemen <FiArrowRight />
-                </Link>
+              <Link href="/contact" className="px-8 py-4 bg-white text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-colors flex items-center gap-2">
+                Contact Opnemen <FiArrowRight />
+              </Link>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
                 <Link href="/diensten" className="px-8 py-4 bg-blue-700 hover:bg-blue-800 text-white border border-blue-500 rounded-lg font-medium transition-colors flex items-center gap-2">
                   Onze Diensten <FiArrowRight />
-                </Link>
+              </Link>
               </motion.div>
             </div>
             <div className="mt-8 text-blue-200 flex items-center justify-center">
