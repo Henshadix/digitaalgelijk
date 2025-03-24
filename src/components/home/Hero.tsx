@@ -170,9 +170,13 @@ const Hero = () => {
                 src="/images/hero-image.jpg" 
                 alt="IT-hardware recycling en data verwijdering"
                 fill
-                sizes="(max-width: 768px) 100vw, 50vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 priority={true}
+                quality={90}
                 className="object-cover object-center"
+                onError={(e) => {
+                  console.error('Error loading hero image:', e);
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6">

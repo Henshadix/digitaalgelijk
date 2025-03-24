@@ -253,21 +253,19 @@ const CallToAction = () => {
                     className="group bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/30 dark:hover:bg-blue-800/50 text-blue-600 dark:text-blue-300 transition-all duration-300 px-6 py-3 rounded-lg font-medium text-center flex items-center justify-center border border-blue-100 dark:border-blue-800/50"
                     whileHover={{ scale: 1.03, y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    aria-label="Bel ons direct"
                   >
                     <FiPhone className="mr-2" aria-hidden="true" />
-                    <span>+31 6 49892654</span>
+                    <span>+31 6 4989 2654</span>
                   </motion.a>
                   
                   <motion.a 
                     href="mailto:info@digitaalgelijk.nl" 
-                    className="group bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/30 dark:hover:bg-blue-800/50 text-blue-600 dark:text-blue-300 transition-all duration-300 px-6 py-3 rounded-lg font-medium text-center flex items-center justify-center border border-blue-100 dark:border-blue-800/50"
+                    className="group bg-purple-50 hover:bg-purple-100 dark:bg-purple-900/30 dark:hover:bg-purple-800/50 text-purple-600 dark:text-purple-300 transition-all duration-300 px-6 py-3 rounded-lg font-medium text-center flex items-center justify-center border border-purple-100 dark:border-purple-800/50"
                     whileHover={{ scale: 1.03, y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    aria-label="Mail ons"
                   >
                     <FiMail className="mr-2" aria-hidden="true" />
-                    <span>E-mail ons</span>
+                    <span>info@digitaalgelijk.nl</span>
                   </motion.a>
                 </div>
               </div>
