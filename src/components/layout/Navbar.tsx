@@ -3,22 +3,15 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { FiMenu, FiX, FiPhone, FiMail, FiMapPin, FiChevronDown, FiShield, FiRefreshCw, FiMonitor, FiArrowRight, FiFileText, FiTruck, FiDollarSign } from 'react-icons/fi';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FiMenu, FiX, FiPhone, FiMail, FiMapPin, FiChevronDown, FiShield, FiRefreshCw, FiMonitor, FiArrowRight, FiTruck } from 'react-icons/fi';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [megaMenuOpen, setMegaMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const pathname = usePathname();
   
-  // Scroll progress for advanced animations
-  const { scrollYProgress } = useScroll();
-  const navbarOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0.98]);
-  const navbarBlur = useTransform(scrollYProgress, [0, 0.05], [0, 8]);
-  const navbarScale = useTransform(scrollYProgress, [0, 0.05], [1, 0.98]);
-
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
@@ -31,7 +24,6 @@ const Navbar = () => {
   // Close mobile menu when route changes
   useEffect(() => {
     setIsOpen(false);
-    setMegaMenuOpen(false);
     setActiveDropdown(null);
   }, [pathname]);
 
@@ -45,30 +37,26 @@ const Navbar = () => {
         { 
           name: 'Hardware Opkopen', 
           path: '/diensten/hardware-opkopen', 
-          icon: <FiMonitor />,
+          icon: <FiMonitor className="text-blue-600" size={18} />,
           description: 'Verkoop uw gebruikte IT-apparatuur voor een eerlijke prijs',
-          color: 'blue'
         },
         { 
           name: 'Hardware Recycling', 
           path: '/diensten/hardware-recycling', 
-          icon: <FiRefreshCw />,
+          icon: <FiRefreshCw className="text-green-600" size={18} />,
           description: 'Duurzame verwerking van afgedankte hardware',
-          color: 'green'
         },
         { 
           name: 'Data Verwijdering', 
           path: '/diensten/data-verwijdering', 
-          icon: <FiShield />,
+          icon: <FiShield className="text-purple-600" size={18} />,
           description: 'Veilige en gecertificeerde dataverwijdering',
-          color: 'purple'
         },
         { 
           name: 'Logistieke Diensten', 
           path: '/diensten/logistieke-diensten', 
-          icon: <FiTruck />,
+          icon: <FiTruck className="text-amber-600" size={18} />,
           description: 'Veilig transport en opslag van uw IT-apparatuur',
-          color: 'blue'
         },
       ]
     },
@@ -84,234 +72,75 @@ const Navbar = () => {
     }
   };
 
-  // Animation variants
-  const navItemVariants = {
-    hidden: { opacity: 0, y: -5 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.3 }
-    }
-  };
-
-  const logoVariants = {
-    initial: { scale: 1 },
-    hover: { scale: 1.05, transition: { duration: 0.2 } }
-  };
-
-  // Logo hover effect animatie
-  const logoHoverVariants = {
-    initial: { opacity: 0 },
-    hover: { opacity: 1, transition: { duration: 0.2 } }
-  };
-
-  const topBarItemVariants = {
-    initial: { y: 0 },
-    hover: { 
-      y: -2,
-      transition: { 
-        type: "spring",
-        stiffness: 300,
-        damping: 10
-      }
-    }
-  };
-
-  const megaMenuItemVariants = {
-    hidden: { opacity: 0, x: -10 },
-    visible: (i: number) => ({ 
-      opacity: 1, 
-      x: 0,
-      transition: { 
-        delay: i * 0.1,
-        duration: 0.3,
-        ease: "easeOut"
-      }
-    }),
-    hover: { 
-      x: 5,
-      transition: { 
-        type: "spring",
-        stiffness: 400,
-        damping: 10
-      }
-    }
-  };
-
   return (
     <header className="relative z-50">
-      {/* Top Bar with Contact Info - Enhanced with modern gradient and animated elements */}
-      <div className="hidden md:block bg-gradient-to-r from-blue-950 via-blue-900 to-blue-800 dark:from-blue-950 dark:via-blue-900 dark:to-blue-800 text-white py-2 relative overflow-hidden">
-        {/* Dynamic animated background elements */}
-        <div className="absolute inset-0 w-full h-full">
-          {/* Animated gradient overlay */}
-          <motion.div 
-            className="absolute inset-0 opacity-20 bg-gradient-conic from-blue-400 via-transparent to-transparent"
-            animate={{
-              rotate: [0, 360],
-              transition: {
-                duration: 20,
-                ease: "linear",
-                repeat: Infinity
-              }
-            }}
-          />
-          
-          {/* Animated dots/particles */}
-          <motion.div 
-            className="absolute inset-0"
-            initial={{ opacity: 0.1 }}
-            animate={{ opacity: 0.15 }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              repeatType: "reverse"
-            }}
-          >
-            <div className="absolute top-1/4 left-1/4 w-1 h-1 rounded-full bg-white"></div>
-            <div className="absolute top-3/4 left-1/3 w-1.5 h-1.5 rounded-full bg-blue-300"></div>
-            <div className="absolute top-1/2 left-2/3 w-1 h-1 rounded-full bg-white"></div>
-            <div className="absolute top-1/4 left-3/4 w-2 h-2 rounded-full bg-blue-200"></div>
-            <div className="absolute top-3/4 right-1/4 w-1 h-1 rounded-full bg-white"></div>
-          </motion.div>
-          
-          {/* Subtle light beam effect */}
-          <motion.div 
-            className="absolute -inset-1/2 opacity-10 bg-gradient-radial from-blue-100 to-transparent"
-            animate={{
-              scale: [1, 1.2, 1],
-              x: ['-10%', '110%'],
-              transition: {
-                duration: 15,
-                ease: "easeInOut",
-                repeat: Infinity,
-                repeatType: "mirror"
-              }
-            }}
-          />
-        </div>
-
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
+      {/* Top Bar - Verbeterd voor betere leesbaarheid en kleurcontrast */}
+      <div className="hidden md:block bg-blue-900 text-white py-1.5 border-b border-blue-800">
+        <div className="container mx-auto px-4 md:px-6">
           <div className="flex justify-between items-center">
-            <div className="flex items-center space-x-6">
-              <motion.a 
+            <div className="flex items-center gap-4 md:gap-6 text-sm">
+              <a 
                 href="tel:+31649892654" 
-                className="flex items-center text-sm hover:text-blue-200 transition-colors group"
-                variants={topBarItemVariants}
-                initial="initial"
-                whileHover="hover"
+                className="flex items-center gap-1.5 text-white/90 hover:text-white transition-colors"
                 aria-label="Bel ons op +31 6 4989 2654"
               >
-                <motion.div 
-                  className="bg-blue-700/50 p-1.5 rounded-full mr-2 group-hover:bg-blue-600 transition-colors"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                >
+                <span className="bg-blue-800 p-1 rounded-full">
                   <FiPhone size={14} />
-                </motion.div>
-                <span>+31 6 4989 2654</span>
-              </motion.a>
-              <motion.a 
+                </span>
+                <span className="font-medium">+31 6 4989 2654</span>
+              </a>
+              <a 
                 href="mailto:info@digitaalgelijk.nl" 
-                className="flex items-center text-sm hover:text-blue-200 transition-colors group"
-                variants={topBarItemVariants}
-                initial="initial"
-                whileHover="hover"
+                className="flex items-center gap-1.5 text-white/90 hover:text-white transition-colors"
                 aria-label="Email ons op info@digitaalgelijk.nl"
               >
-                <motion.div 
-                  className="bg-blue-700/50 p-1.5 rounded-full mr-2 group-hover:bg-blue-600 transition-colors"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                >
+                <span className="bg-blue-800 p-1 rounded-full">
                   <FiMail size={14} />
-                </motion.div>
-                <span>info@digitaalgelijk.nl</span>
-              </motion.a>
-              <motion.div 
-                className="flex items-center text-sm group"
-                variants={topBarItemVariants}
-                initial="initial"
-                whileHover="hover"
-              >
-                <motion.div 
-                  className="bg-blue-700/50 p-1.5 rounded-full mr-2"
-                  whileHover={{ scale: 1.1 }}
-                >
-                  <FiMapPin size={14} />
-                </motion.div>
-                <span>Aalsburg 3111, 6602WR Wijchen</span>
-              </motion.div>
+                </span>
+                <span className="font-medium">info@digitaalgelijk.nl</span>
+              </a>
             </div>
-            <motion.div 
-              className="text-sm font-medium"
-              initial={{ opacity: 0.8 }}
-              whileHover={{ opacity: 1, scale: 1.02 }}
-            >
-              <span>Ma-Vr: 9:00 - 17:00</span>
-            </motion.div>
+            <div className="flex items-center gap-2 text-sm text-white/90">
+              <div className="flex items-center gap-1.5">
+                <FiMapPin size={14} />
+                <span>Aalsburg 3111, Wijchen</span>
+              </div>
+              <div className="hidden lg:block h-4 w-px bg-blue-700 mx-2"></div>
+              <span className="hidden lg:block">Ma-Vr: 9:00 - 17:00</span>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Main Navigation - Enhanced with better glass effect */}
-      <motion.nav 
+      {/* Main Navigation - Verbeterd voor betere leesbaarheid en fijnere transitie */}
+      <div 
         className={`sticky top-0 w-full transition-all duration-300 ${
           scrolled 
-            ? 'bg-white/90 dark:bg-gray-900/90 py-2 backdrop-blur-md' 
-            : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-md py-3 md:py-4'
+            ? 'bg-white dark:bg-gray-900 shadow-md py-2' 
+            : 'bg-white dark:bg-gray-900 py-3 md:py-4'
         }`}
-        style={{ 
-          backdropFilter: `blur(${navbarBlur.get()}px)`,
-          opacity: navbarOpacity,
-          scale: navbarScale,
-        }}
       >
-        {/* Subtiele schaduw onderaan voor betere overgang */}
-        {/* <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-b from-transparent to-white/5 dark:to-gray-900/5 pointer-events-none"></div> */}
-        
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex justify-between items-center">
-            {/* Logo */}
-            <Link href="/" className="flex items-center space-x-2 z-10 group">
-              <motion.div 
-                className="relative w-10 h-10 md:w-12 md:h-12 transition-transform duration-300"
-                variants={logoVariants}
-                initial="initial"
-                whileHover="hover"
-              >
-                <div className="w-full h-full bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center shadow-md">
+            {/* Logo - Verbeterd voor betere herkenbaarheid */}
+            <Link href="/" className="flex items-center gap-2.5 z-10">
+              <div className="relative w-10 h-10 md:w-11 md:h-11">
+                <div className="w-full h-full bg-gradient-to-br from-blue-600 to-blue-700 rounded-md flex items-center justify-center shadow-md">
                   <span className="text-white font-bold text-lg md:text-xl">DG</span>
                 </div>
-                <motion.div 
-                  className="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center shadow-lg"
-                >
-                  <span className="text-white font-bold text-lg md:text-xl">DG</span>
-                </motion.div>
-              </motion.div>
+              </div>
               <div className="flex flex-col">
-                <span className="text-xl font-bold text-gray-900 dark:text-white">Digitaal<span className="text-blue-600">gelijk</span></span>
-                <div className="relative">
-                  <motion.span 
-                    className="text-xs font-medium bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent"
-                    initial={{ opacity: 0, y: -5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2, duration: 0.5 }}
-                  >
-                    Duurzame IT-oplossingen
-                  </motion.span>
-                  <motion.span 
-                    className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-green-500 to-blue-500"
-                    initial={{ width: 0 }}
-                    animate={{ width: '100%' }}
-                    transition={{ delay: 0.5, duration: 0.7 }}
-                  />
-                </div>
+                <span className="text-xl font-bold text-gray-900 dark:text-white leading-tight">
+                  Digitaal<span className="text-blue-600">gelijk</span>
+                </span>
+                <span className="text-xs font-medium text-gray-600 dark:text-gray-300">
+                  Duurzame IT-oplossingen
+                </span>
               </div>
             </Link>
 
-            {/* Desktop Navigation - Improved with better hover effects */}
-            <div className="hidden md:flex items-center space-x-1">
+            {/* Desktop Navigation - Verbeterd voor betere leesbaarheid en toegankelijkheid */}
+            <div className="hidden md:flex items-center gap-1">
               {navLinks.map((link) => (
                 link.dropdown ? (
                   <div key={link.name} className="relative">
@@ -319,15 +148,17 @@ const Navbar = () => {
                       onClick={() => toggleDropdown(link.name)}
                       className={`flex items-center px-3 py-2 rounded-md transition-colors duration-200 ${
                         activeDropdown === link.name 
-                          ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20' 
-                          : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20'
+                          ? 'text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 font-medium' 
+                          : 'text-gray-800 dark:text-gray-200 hover:text-blue-700 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20'
                       }`}
+                      aria-expanded={activeDropdown === link.name}
+                      aria-controls={`dropdown-${link.name}`}
                     >
-                      <span>{link.name}</span>
+                      <span className="font-medium">{link.name}</span>
                       <motion.div 
                         animate={{ rotate: activeDropdown === link.name ? 180 : 0 }}
                         transition={{ duration: 0.2 }}
-                        className="ml-1"
+                        className="ml-1.5"
                       >
                         <FiChevronDown size={16} />
                       </motion.div>
@@ -336,11 +167,12 @@ const Navbar = () => {
                     <AnimatePresence>
                       {activeDropdown === link.name && (
                         <motion.div 
-                          initial={{ opacity: 0, y: 10, height: 0 }}
-                          animate={{ opacity: 1, y: 0, height: 'auto' }}
-                          exit={{ opacity: 0, y: 10, height: 0 }}
+                          id={`dropdown-${link.name}`}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
                           transition={{ duration: 0.2 }}
-                          className="absolute left-0 mt-2 w-72 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden z-50"
+                          className="absolute left-0 mt-1 w-72 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-100 dark:border-gray-700 overflow-hidden z-50"
                         >
                           <div className="p-2">
                             <div className="grid gap-1">
@@ -348,15 +180,19 @@ const Navbar = () => {
                                 <Link 
                                   key={item.name}
                                   href={item.path}
-                                  className="flex items-start p-3 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-150"
+                                  className="flex items-start p-3 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-150 group"
                                   onClick={() => setActiveDropdown(null)}
                                 >
-                                  <div className={`p-2 rounded-md bg-${item.color}-500/20 text-${item.color}-600 dark:text-${item.color}-400 mr-3`}>
+                                  <div className="p-2 rounded-md bg-gray-100 dark:bg-gray-700 mr-3 group-hover:scale-105 transition-transform">
                                     {item.icon}
                                   </div>
                                   <div>
-                                    <div className="font-medium text-gray-900 dark:text-white">{item.name}</div>
-                                    <div className="text-sm text-gray-600 dark:text-gray-400">{item.description}</div>
+                                    <div className="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                      {item.name}
+                                    </div>
+                                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                                      {item.description}
+                                    </div>
                                   </div>
                                 </Link>
                               ))}
@@ -372,8 +208,8 @@ const Navbar = () => {
                     href={link.path}
                     className={`px-3 py-2 rounded-md transition-colors duration-200 ${
                       pathname === link.path 
-                        ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20' 
-                        : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20'
+                        ? 'text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 font-medium' 
+                        : 'text-gray-800 dark:text-gray-200 hover:text-blue-700 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 font-medium'
                     }`}
                   >
                     {link.name}
@@ -381,52 +217,50 @@ const Navbar = () => {
                 )
               ))}
               
-              {/* CTA Button - Improved with gradient and animation */}
+              {/* CTA Button - Verbeterd voor betere zichtbaarheid en toegankelijkheid */}
               <Link 
-                href="/offerte-aanvragen" 
-                className="ml-3 px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white font-medium rounded-md transition-all duration-200 shadow-sm hover:shadow-md flex items-center"
+                href="/contact" 
+                className="ml-3 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition-all duration-200 shadow-sm hover:shadow flex items-center gap-1.5"
               >
                 <span>Offerte Aanvragen</span>
-                <motion.div
-                  initial={{ x: 0 }}
-                  whileHover={{ x: 3 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <FiArrowRight className="ml-1" size={16} />
-                </motion.div>
+                <FiArrowRight size={16} />
               </Link>
             </div>
 
-            {/* Mobile Menu Button */}
-            <motion.button
-              className="md:hidden p-2 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none"
+            {/* Mobile Menu Button - Verbeterd voor betere zichtbaarheid */}
+            <button
+              className="md:hidden p-2 rounded-md text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500/40"
               onClick={() => setIsOpen(!isOpen)}
-              whileTap={{ scale: 0.9 }}
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
+              aria-label={isOpen ? "Sluit menu" : "Open menu"}
             >
               {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-            </motion.button>
+            </button>
           </div>
         </div>
-      </motion.nav>
+      </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Verbeterde layout en leesbaarheid */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            id="mobile-menu"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white dark:bg-gray-900 shadow-lg"
+            className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 shadow-lg"
           >
             <div className="container mx-auto px-4 py-4">
-              <nav className="flex flex-col space-y-2">
+              <nav className="flex flex-col space-y-1">
                 {navLinks.map((link) => (
                   link.dropdown ? (
-                    <div key={link.name}>
+                    <div key={link.name} className="border-b border-gray-100 dark:border-gray-800 pb-1">
                       <button
                         onClick={() => toggleDropdown(link.name)}
-                        className="w-full flex justify-between items-center px-4 py-3 rounded-md text-left font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+                        className="w-full flex justify-between items-center px-4 py-3 rounded-md text-left font-medium text-gray-800 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/60"
+                        aria-expanded={activeDropdown === link.name}
                       >
                         {link.name}
                         <motion.div
@@ -443,17 +277,19 @@ const Navbar = () => {
                             animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}
                             transition={{ duration: 0.3 }}
-                            className="pl-4 mt-1 space-y-1"
+                            className="pl-4 pb-2 space-y-1 mt-1 bg-gray-50 dark:bg-gray-800/50 rounded-md"
                           >
                             {link.items?.map((item) => (
                               <Link
                                 key={item.path}
                                 href={item.path}
-                                className="flex items-center px-4 py-2 rounded-md text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20"
+                                className="flex items-center gap-3 px-4 py-2.5 rounded-md text-gray-700 dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400"
                                 onClick={() => setIsOpen(false)}
                               >
-                                <span className="mr-2">{item.icon}</span>
-                                {item.name}
+                                <span className="bg-white dark:bg-gray-700 p-1.5 rounded-md shadow-sm">
+                                  {item.icon}
+                                </span>
+                                <span className="font-medium">{item.name}</span>
                               </Link>
                             ))}
                           </motion.div>
@@ -464,10 +300,10 @@ const Navbar = () => {
                     <Link
                       key={link.path}
                       href={link.path}
-                      className={`px-4 py-3 rounded-md font-medium ${
+                      className={`px-4 py-3 rounded-md font-medium border-b border-gray-100 dark:border-gray-800 ${
                         pathname === link.path 
-                          ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20' 
-                          : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800'
+                          ? 'text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20' 
+                          : 'text-gray-800 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/60'
                       }`}
                       onClick={() => setIsOpen(false)}
                     >
@@ -478,11 +314,29 @@ const Navbar = () => {
                 <div className="pt-2 mt-2">
                   <Link
                     href="/contact"
-                    className="block px-4 py-3 bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white font-medium rounded-md text-center"
+                    className="block px-4 py-3 bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-medium rounded-md text-center shadow-sm"
                     onClick={() => setIsOpen(false)}
                   >
                     Offerte Aanvragen
                   </Link>
+                </div>
+                
+                {/* Mobiele contactinformatie toevoegen */}
+                <div className="mt-4 pt-3 border-t border-gray-200 dark:border-gray-700">
+                  <div className="flex flex-col gap-3 text-sm text-gray-700 dark:text-gray-300">
+                    <a href="tel:+31649892654" className="flex items-center gap-2">
+                      <FiPhone size={16} className="text-blue-600 dark:text-blue-400" />
+                      <span>+31 6 4989 2654</span>
+                    </a>
+                    <a href="mailto:info@digitaalgelijk.nl" className="flex items-center gap-2">
+                      <FiMail size={16} className="text-blue-600 dark:text-blue-400" />
+                      <span>info@digitaalgelijk.nl</span>
+                    </a>
+                    <div className="flex items-center gap-2">
+                      <FiMapPin size={16} className="text-blue-600 dark:text-blue-400" />
+                      <span>Aalsburg 3111, 6602WR Wijchen</span>
+                    </div>
+                  </div>
                 </div>
               </nav>
             </div>
