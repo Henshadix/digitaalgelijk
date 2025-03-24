@@ -1,5 +1,5 @@
 # Fix-pages.ps1
-# Script om alle pagina's te converteren naar client components
+# Script om alle pagina's te converteren naar client components en dubbele imports te verwijderen
 
 $pageFilePaths = Get-ChildItem -Path "./src/app" -Recurse -Filter "page.tsx" | ForEach-Object { $_.FullName }
 
@@ -30,8 +30,42 @@ foreach ($filePath in $pageFilePaths) {
         Set-Content -Path $filePath -Value $newContent
     }
     else {
-        Write-Host "Skipping $filePath, already a client component."
+        Write-Host "Fixing $filePath, removing duplicate PageWrapper imports..."
+        
+        # Verwijder dubbele imports van PageWrapper
+        $lines = $content -split "`n"
+        $newLines = @()
+        $hasPageWrapperImport = $false
+        
+        foreach ($line in $lines) {
+            if ($line -match "import PageWrapper from '@/components/client/PageWrapper';") {
+                if (-not $hasPageWrapperImport) {
+                    $newLines += $line
+                    $hasPageWrapperImport = $true
+                }
+                # Skip this line if we already have a PageWrapper import
+            }
+            else {
+                $newLines += $line
+            }
+        }
+        
+        $newContent = $newLines -join "`n"
+        
+        # Corrigeer pagina's zonder PageWrapper rond de return
+        if (-not ($newContent -match "<PageWrapper>")) {
+            if ($newContent -match "return \(([^\)]*?)(<.*>)([^\)]*?)\);") {
+                $newContent = $newContent -replace "return \(([^\)]*?)(<.*>)([^\)]*?)\);", "return (`$1<PageWrapper>`$2`$3</PageWrapper>`$1);"
+            }
+            elseif ($newContent -match "return \(([^\)]*)<") {
+                $newContent = $newContent -replace "return \(([^\)]*)<", "return (`$1<PageWrapper><"
+                $newContent = $newContent -replace ">([^\)]*)\);", ">`$1</PageWrapper>);"
+            }
+        }
+        
+        # Sla het bestand op
+        Set-Content -Path $filePath -Value $newContent
     }
 }
 
-Write-Host "Done converting all pages to client components." 
+Write-Host "Done fixing all pages." 

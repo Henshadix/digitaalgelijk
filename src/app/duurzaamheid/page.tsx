@@ -1,314 +1,223 @@
 'use client';
 
-import { Metadata } from 'next';
-import PageWrapper from '@/components/client/PageWrapper';
-import Image from 'next/image';
-import PageWrapper from '@/components/client/PageWrapper';
+import React from 'react';
 import Link from 'next/link';
-import PageWrapper from '@/components/client/PageWrapper';
-import { FiGlobe, FiRefreshCw, FiAward, FiBarChart2, FiArrowRight, FiCheckCircle } from 'react-icons/fi';
+import Image from 'next/image';
+import { FiArrowRight } from 'react-icons/fi';
 import PageWrapper from '@/components/client/PageWrapper';
 
-export const metadata: Metadata = {
-  title: 'Duurzaamheid | Neiwu',
-  description: 'Ontdek hoe Neiwu bijdraagt aan een duurzamere wereld door circulaire IT-oplossingen, CO2-reductie en verantwoorde recycling van elektronisch afval.',
-};
-
-export default function Duurzaamheid() {
-  // Sustainability goals
-  const sustainabilityGoals = [
-    {
-      title: 'Circulaire Economie',
-      description: 'Wij streven naar een volledig circulaire aanpak waarbij materialen zo lang mogelijk in de keten blijven.',
-      icon: <FiRefreshCw className="w-6 h-6" />,
-      stats: '99% hergebruik van materialen',
-    },
-    {
-      title: 'CO2-Reductie',
-      description: 'Door hergebruik en recycling dragen we bij aan een significante vermindering van CO2-uitstoot.',
-      icon: <FiGlobe className="w-6 h-6" />,
-      stats: '1.5 ton CO2 bespaard per ton gerecyclede elektronica',
-    },
-    {
-      title: 'Transparante Rapportage',
-      description: 'We bieden volledige transparantie over onze duurzaamheidsprestaties en impact.',
-      icon: <FiBarChart2 className="w-6 h-6" />,
-      stats: '100% transparantie in duurzaamheidsrapportages',
-    },
-    {
-      title: 'Certificeringen',
-      description: 'Onze processen voldoen aan de hoogste internationale standaarden voor duurzaamheid.',
-      icon: <FiAward className="w-6 h-6" />,
-      stats: '5 internationale duurzaamheidscertificeringen',
-    }
+export default function DuurzaamheidPage() {
+  // Stats data
+  const stats = [
+    { value: '99.5%', label: 'Recycling ratio', description: 'Van de materialen wordt hergebruikt of gerecycled' },
+    { value: '100%', label: 'CO2-compensatie', description: 'Alle uitstoot wordt volledig gecompenseerd' },
+    { value: '5000+', label: 'Apparaten', description: 'Jaarlijks een tweede leven gegeven' },
+    { value: '50+', label: 'Bedrijven', description: 'Die we helpen duurzamer te worden' }
   ];
-
-  // SDG contributions
-  const sdgContributions = [
+  
+  // Certificeringen
+  const certifications = [
+    { name: 'ISO 14001', logo: '/images/certifications/iso-14001.svg', description: 'Milieumanagementsysteem' },
+    { name: 'GDPR Compliant', logo: '/images/certifications/gdpr.svg', description: 'Veilige dataverwerking' },
+    { name: 'CO2 Neutral', logo: '/images/certifications/co2-neutral.svg', description: 'CO2-neutrale operatie' }
+  ];
+  
+  // Circulaire stappen
+  const circularSteps = [
     {
-      number: 9,
-      title: 'Industrie, Innovatie en Infrastructuur',
-      description: 'We dragen bij aan duurzame industrialisatie door innovatieve recyclingtechnieken.',
-      color: 'bg-orange-500',
+      title: 'Inzameling',
+      description: 'We halen uw gebruikte IT-apparatuur gratis op of u kunt deze bij ons inleveren.'
     },
     {
-      number: 12,
-      title: 'Verantwoorde Consumptie en Productie',
-      description: 'We bevorderen duurzame consumptie- en productiepatronen door hergebruik van IT-apparatuur.',
-      color: 'bg-amber-600',
+      title: 'Dataverwijdering',
+      description: 'Alle data wordt volgens GDPR-normen veilig en permanent verwijderd.'
     },
     {
-      number: 13,
-      title: 'Klimaatactie',
-      description: 'Onze circulaire aanpak draagt bij aan de vermindering van broeikasgasemissies.',
-      color: 'bg-green-600',
+      title: 'Waardebepaling',
+      description: 'We bepalen de restwaarde van uw apparatuur voor een eerlijke vergoeding.'
+    },
+    {
+      title: 'Refurbishment',
+      description: 'Apparaten worden opgeknapt voor hergebruik wanneer mogelijk.'
+    },
+    {
+      title: 'Recycling',
+      description: 'Niet-herbruikbare componenten worden gerecycled volgens de hoogste standaarden.'
+    },
+    {
+      title: 'Rapportage',
+      description: 'U ontvangt een gedetailleerd duurzaamheidsrapport over de verwerking.'
     }
   ];
 
   return (
-    <main className="flex flex-col min-h-screen">
-      {/* Hero Section */}
-      <section className="relative py-20 md:py-28 bg-gradient-to-br from-green-50 to-green-100 dark:from-gray-900 dark:to-green-900/30 overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-green-500/10 blur-3xl rounded-full transform translate-x-1/2"></div>
-        <div className="absolute bottom-0 left-0 w-1/3 h-full bg-green-500/10 blur-3xl rounded-full transform -translate-x-1/2"></div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            <div className="lg:w-1/2">
-              <div className="inline-block px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full text-sm font-medium mb-6">
-                Onze Missie
+    <PageWrapper>
+      <main className="flex flex-col min-h-screen">
+        {/* Hero Section */}
+        <section className="relative py-20 md:py-28 bg-gradient-to-br from-green-50 to-green-100 dark:from-gray-900 dark:to-green-900/30 overflow-hidden">
+          <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+          <div className="absolute top-0 right-0 w-1/3 h-full bg-green-500/10 blur-3xl rounded-full transform translate-x-1/2"></div>
+          <div className="absolute bottom-0 left-0 w-1/3 h-full bg-green-500/10 blur-3xl rounded-full transform -translate-x-1/2"></div>
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-3xl mx-auto text-center">
+              <div className="inline-block mb-4 px-4 py-1 rounded-full bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400 font-medium text-sm">
+                Duurzame IT-oplossingen
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-                Onze <span className="text-green-600 dark:text-green-400">Duurzaamheid</span>
+                Duurzaamheid bij <span className="text-green-600 dark:text-green-400">Digitaalgelijk</span>
               </h1>
-              <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 max-w-xl">
-                Bij Neiwu staat duurzaamheid centraal in alles wat we doen. We streven naar een circulaire economie waarin IT-apparatuur en materialen zo lang mogelijk in de keten blijven, met minimale impact op het milieu.
+              <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
+                Onze circulaire aanpak geeft IT-apparatuur een tweede leven, minimaliseert afval en 
+                reduceert de ecologische voetafdruk van uw bedrijf. Wij maken duurzaamheid toegankelijk.
               </p>
-              <div className="flex flex-wrap gap-4">
-                <Link href="/contact" className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors flex items-center gap-2">
-                  Meer Informatie <FiArrowRight />
+              
+              <div className="flex flex-wrap justify-center gap-4 mt-8">
+                <Link href="/contact" className="px-8 py-4 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors shadow-lg">
+                  Neem contact op
                 </Link>
-                <Link href="/diensten/hardware-recycling" className="px-6 py-3 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700 rounded-lg font-medium transition-colors">
-                  Onze Recyclingdienst
+                <Link href="/certificeringen" className="px-8 py-4 bg-white dark:bg-gray-800 text-green-600 dark:text-green-400 hover:bg-green-50 dark:hover:bg-gray-700 rounded-lg font-medium transition-colors shadow-lg border border-green-200 dark:border-green-900/50">
+                  Onze certificeringen
                 </Link>
               </div>
             </div>
-            <div className="lg:w-1/2">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <Image 
-                  src="/images/sustainability.jpg" 
-                  alt="Duurzaamheid bij Neiwu" 
-                  width={600} 
-                  height={400}
-                  className="w-full h-auto object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                <div className="absolute bottom-0 left-0 p-6">
-                  <div className="text-white text-xl font-bold">Circulaire IT-oplossingen</div>
-                  <div className="text-green-200">Voor een duurzamere toekomst</div>
-                </div>
-              </div>
-            </div>
           </div>
-        </div>
-      </section>
-
-      {/* Sustainability Goals Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Onze Duurzaamheidsdoelen
-            </h2>
-            <div className="h-1 w-20 bg-green-600 mx-auto rounded"></div>
-            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-4">
-              We hebben ambitieuze doelen gesteld om onze impact op het milieu te minimaliseren en bij te dragen aan een duurzamere wereld.
-            </p>
-          </div>
-
-          <PageWrapper><div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {sustainabilityGoals.map((goal) => (
-              <div key={goal.title} className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl">
-                <div className="w-14 h-14 bg-green-100 dark:bg-green-800 rounded-full flex items-center justify-center text-green-600 dark:text-green-400 mb-4">
-                  {goal.icon}
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{goal.title}</h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">{goal.description}</p>
-                <div className="text-green-600 dark:text-green-400 font-medium">{goal.stats}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Environmental Impact Section */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Onze Milieu-impact
-            </h2>
-            <div className="h-1 w-20 bg-green-600 mx-auto rounded"></div>
-            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-4">
-              Door onze circulaire aanpak realiseren we een significante positieve impact op het milieu.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-md">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Jaarlijkse Impact</h3>
-              <div className="grid grid-cols-2 gap-6">
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-2">300K+</div>
-                  <div className="text-gray-600 dark:text-gray-400">Verwerkte apparaten</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-2">450 ton</div>
-                  <div className="text-gray-600 dark:text-gray-400">CO2 bespaard</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-2">900K m³</div>
-                  <div className="text-gray-600 dark:text-gray-400">Water bespaard</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-2">240 ton</div>
-                  <div className="text-gray-600 dark:text-gray-400">Grondstoffen bespaard</div>
-                </div>
-              </div>
+        </section>
+        
+        {/* Stats Section */}
+        <section className="py-20 bg-white dark:bg-gray-900">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                Onze impact in cijfers
+              </h2>
+              <div className="h-1 w-20 bg-green-600 mx-auto rounded"></div>
+              <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-4">
+                Bij Digitaalgelijk meten we onze impact op het milieu en streven we voortdurend 
+                naar verbetering van onze processen en resultaten.
+              </p>
             </div>
             
-            <div className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-md">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Materiaalhergebruik</h3>
-              <div className="space-y-4">
-                <div>
-                  <div className="flex justify-between mb-1">
-                    <span className="text-gray-700 dark:text-gray-300">Metalen</span>
-                    <span className="text-green-600 dark:text-green-400 font-medium">99.8%</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+              {stats.map((stat, index) => (
+                <div key={index} className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 text-center hover:shadow-xl transition-shadow">
+                  <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-2">
+                    {stat.value}
                   </div>
-                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                    <div className="bg-green-600 h-2.5 rounded-full" style={{ width: '99.8%' }}></div>
+                  <div className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                    {stat.label}
                   </div>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    {stat.description}
+                  </p>
                 </div>
-                <div>
-                  <div className="flex justify-between mb-1">
-                    <span className="text-gray-700 dark:text-gray-300">Kunststoffen</span>
-                    <span className="text-green-600 dark:text-green-400 font-medium">98.5%</span>
-                  </div>
-                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                    <div className="bg-green-600 h-2.5 rounded-full" style={{ width: '98.5%' }}></div>
-                  </div>
-                </div>
-                <div>
-                  <div className="flex justify-between mb-1">
-                    <span className="text-gray-700 dark:text-gray-300">Glas</span>
-                    <span className="text-green-600 dark:text-green-400 font-medium">97.2%</span>
-                  </div>
-                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                    <div className="bg-green-600 h-2.5 rounded-full" style={{ width: '97.2%' }}></div>
-                  </div>
-                </div>
-                <div>
-                  <div className="flex justify-between mb-1">
-                    <span className="text-gray-700 dark:text-gray-300">Overige materialen</span>
-                    <span className="text-green-600 dark:text-green-400 font-medium">95.0%</span>
-                  </div>
-                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                    <div className="bg-green-600 h-2.5 rounded-full" style={{ width: '95%' }}></div>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Certifications Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Onze Certificeringen
-            </h2>
-            <div className="h-1 w-20 bg-green-600 mx-auto rounded"></div>
-            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-4">
-              Wij voldoen aan de hoogste internationale standaarden voor duurzaamheid en milieubeheer.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md text-center border border-gray-100 dark:border-gray-700">
-              <div className="text-xl font-bold text-gray-900 dark:text-white mb-2">ISO 14001</div>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">Milieumanagement</p>
+        </section>
+        
+        {/* Circulaire Economie Section */}
+        <section className="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
+          
+          <div className="container mx-auto px-4 relative z-20">
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                Onze circulaire aanpak
+              </h2>
+              <div className="h-1 w-20 bg-green-600 mx-auto rounded"></div>
+              <p className="text-gray-600 dark:text-gray-400 mt-4">
+                We volgen een stapsgewijs proces om maximale duurzaamheid te garanderen en 
+                de levenscyclus van IT-apparatuur te verlengen.
+              </p>
             </div>
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md text-center border border-gray-100 dark:border-gray-700">
-              <div className="text-xl font-bold text-gray-900 dark:text-white mb-2">WEEELABEX</div>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">E-waste verwerking</p>
-            </div>
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md text-center border border-gray-100 dark:border-gray-700">
-              <div className="text-xl font-bold text-gray-900 dark:text-white mb-2">ADISA</div>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">Gecertificeerde dataverwijdering</p>
-            </div>
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md text-center border border-gray-100 dark:border-gray-700">
-              <div className="text-xl font-bold text-gray-900 dark:text-white mb-2">Blauer Engel</div>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">Milieuvriendelijke processen</p>
-            </div>
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md text-center border border-gray-100 dark:border-gray-700">
-              <div className="text-xl font-bold text-gray-900 dark:text-white mb-2">CO2 Prestatieladder</div>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">CO2-reductie</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SDG Section */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Bijdrage aan UN Sustainable Development Goals
-            </h2>
-            <div className="h-1 w-20 bg-green-600 mx-auto rounded"></div>
-            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-4">
-              Onze activiteiten dragen bij aan meerdere Duurzame Ontwikkelingsdoelen van de Verenigde Naties.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {sdgContributions.map((sdg) => (
-              <div key={sdg.number} className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-md relative overflow-hidden">
-                <div className={`absolute top-0 right-0 w-20 h-20 ${sdg.color} flex items-center justify-center text-white font-bold text-2xl`}>
-                  {sdg.number}
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {circularSteps.map((step, index) => (
+                <div key={index} className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700">
+                  <div className="flex items-center mb-4">
+                    <div className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mr-3">
+                      ✓
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                      {step.title}
+                    </h3>
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    {step.description}
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 pr-16">{sdg.title}</h3>
-                <p className="text-gray-600 dark:text-gray-400">{sdg.description}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-green-600 to-green-800 text-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Draag bij aan een duurzamere toekomst
-            </h2>
-            <p className="text-xl text-green-100 mb-8">
-              Kies voor onze duurzame IT-oplossingen en draag bij aan een circulaire economie en een gezondere planeet.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/contact" className="px-8 py-4 bg-white text-green-600 hover:bg-green-50 rounded-lg font-medium transition-colors flex items-center gap-2">
-                Neem Contact Op <FiArrowRight />
-              </Link>
-              <Link href="/diensten" className="px-8 py-4 bg-green-700 hover:bg-green-800 text-white border border-green-500 rounded-lg font-medium transition-colors">
-                Onze Diensten
+        </section>
+        
+        {/* Certificeringen Section */}
+        <section className="py-20 bg-white dark:bg-gray-900">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                Onze certificeringen
+              </h2>
+              <div className="h-1 w-20 bg-green-600 mx-auto rounded"></div>
+              <p className="text-gray-600 dark:text-gray-400 mt-4">
+                We voldoen aan internationale standaarden en hebben certificeringen 
+                die onze toewijding aan duurzaamheid en veiligheid bevestigen.
+              </p>
+            </div>
+            
+            <div className="flex flex-wrap justify-center gap-8 max-w-4xl mx-auto">
+              {certifications.map((cert, index) => (
+                <div key={index} className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 w-full md:w-64 text-center">
+                  <div className="h-20 flex items-center justify-center mb-4">
+                    <div className="w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center">
+                      🏆
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                    {cert.name}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    {cert.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+            
+            <div className="text-center mt-12">
+              <Link 
+                href="/certificeringen" 
+                className="inline-flex items-center font-medium text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-300"
+              >
+                Meer over onze certificeringen <span className="ml-2">→</span>
               </Link>
             </div>
           </div>
-        </div>
-      </section>
-    </main>
-  </PageWrapper>);
+        </section>
+        
+        {/* CTA Section */}
+        <section className="py-20 bg-gradient-to-br from-green-600 to-green-800 text-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                Maak uw bedrijf duurzamer
+              </h2>
+              <p className="text-xl text-green-100 mb-8">
+                Laat ons u helpen bij het verduurzamen van uw IT-infrastructuur. 
+                Neem vandaag nog contact op voor een vrijblijvend adviesgesprek.
+              </p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <Link href="/contact" className="px-8 py-4 bg-white text-green-600 hover:bg-green-50 rounded-lg font-medium transition-colors shadow-lg">
+                  Neem contact op
+                </Link>
+                <Link href="/diensten" className="px-8 py-4 bg-green-700 hover:bg-green-800 text-white border border-green-500 rounded-lg font-medium transition-colors shadow-lg">
+                  Bekijk onze diensten
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </PageWrapper>
+  );
 } 
