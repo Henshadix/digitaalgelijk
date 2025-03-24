@@ -96,11 +96,23 @@ const ServicesSection = () => {
               {/* Afbeelding sectie - nu full height */}
               <div className={`w-full lg:w-5/12 relative ${index % 2 === 0 ? 'lg:ml-0 pr-0' : 'lg:mr-0 pl-0'}`}>
                 <div className="w-full h-64 md:h-96 lg:h-[calc(100%+1px)] relative overflow-hidden">
-                  {/* De kleur fallback voor als de afbeelding niet laadt */}
-                  <div className={`absolute inset-0 bg-gradient-to-r ${service.gradient} opacity-80 z-10`}></div>
+                  {/* Achtergrond kleur gradient - geen afhankelijkheid van afbeeldingen */}
+                  <div className={`absolute inset-0 bg-gradient-to-r ${service.gradient} opacity-90 z-10`}></div>
                   
                   {/* De Gradiënt fade naar de achtergrond */}
                   <div className={`absolute inset-0 bg-gradient-to-${index % 2 === 0 ? 'r' : 'l'} from-transparent via-transparent to-gray-50 dark:to-gray-900 z-20 opacity-90`}></div>
+                  
+                  {/* Subtiel patroon overlay */}
+                  <div className="absolute inset-0 opacity-5 z-10" aria-hidden="true">
+                    <svg className="w-full h-full" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                      <defs>
+                        <pattern id={`${service.id}-pattern`} width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(5)">
+                          <path d="M0 20 L40 20 M20 0 L20 40" stroke="currentColor" strokeWidth="0.5" fill="none" />
+                        </pattern>
+                      </defs>
+                      <rect width="100%" height="100%" fill={`url(#${service.id}-pattern)`} />
+                    </svg>
+                  </div>
                   
                   {/* De service icon in een cirkel */}
                   <div className={`absolute ${index % 2 === 0 ? 'right-4' : 'left-4'} top-4 z-30 p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30`}>
@@ -108,13 +120,6 @@ const ServicesSection = () => {
                       {service.icon}
                     </div>
                   </div>
-                  
-                  {/* Afbeelding met absolute URL */}
-                  <img
-                    src={service.imageUrl}
-                    alt={service.title}
-                    className="absolute inset-0 w-full h-full object-cover object-center z-5 mix-blend-multiply"
-                  />
                 </div>
               </div>
               
