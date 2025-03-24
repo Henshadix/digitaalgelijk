@@ -25,186 +25,167 @@ const Hero = () => {
   const features = [
     {
       title: "Eerlijke prijzen",
+      description: "Transparante en concurrerende vergoedingen",
       icon: <FiCheck className="text-blue-600 dark:text-blue-400" size={20} />
     },
     {
       title: "GDPR-compliant",
+      description: "100% veilige dataverwijdering",
       icon: <FiShield className="text-purple-600 dark:text-purple-400" size={20} />
     },
     {
       title: "Duurzame recycling",
+      description: "Minimale impact op het milieu",
       icon: <FiRefreshCw className="text-green-600 dark:text-green-400" size={20} />
     },
     {
       title: "Gratis ophaalservice",
+      description: "Door heel Nederland",
       icon: <FiTruck className="text-amber-600 dark:text-amber-400" size={20} />
     }
   ];
 
   return (
-    <section ref={targetRef} className="relative overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 dark:from-blue-950 dark:via-blue-900 dark:to-blue-800 text-white min-h-[90vh] flex items-center">
-      {/* Enhanced dynamic background elements */}
+    <section 
+      ref={targetRef} 
+      className="relative overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 text-white"
+      aria-labelledby="hero-heading"
+    >
+      {/* Simplified background elements for better performance */}
       <div className="absolute inset-0 w-full h-full">
-        {/* Animated gradient overlay with improved opacity */}
-        <MotionDiv 
-          className="absolute inset-0 opacity-15 bg-gradient-conic from-blue-500 via-blue-300/10 to-transparent"
-          animate={{
-            rotate: [0, 360],
-            transition: {
-              duration: 25,
-              ease: "linear",
-              repeat: Infinity
-            }
-          }}
-        />
-        
-        {/* Mesh gradient overlay for depth */}
+        {/* Subtle gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-tr from-blue-800/20 via-indigo-900/10 to-purple-900/20 mix-blend-soft-light"></div>
         
-        {/* Enhanced animated particles with light trails */}
+        {/* Refined animated particles */}
         <MotionDiv 
-          className="absolute inset-0"
+          className="absolute inset-0 pointer-events-none"
           initial={{ opacity: 0.1 }}
           animate={{ opacity: 0.2 }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            repeatType: "reverse"
-          }}
+          transition={{ duration: 4, repeat: Infinity, repeatType: "reverse" }}
         >
-          <div className="absolute top-1/4 left-1/4 w-1 h-1 rounded-full bg-white blur-[1px]"></div>
-          <div className="absolute top-3/4 left-1/3 w-1.5 h-1.5 rounded-full bg-blue-300 blur-[1px]"></div>
-          <div className="absolute top-1/2 left-2/3 w-1 h-1 rounded-full bg-white blur-[1px]"></div>
-          <div className="absolute top-1/4 left-3/4 w-2 h-2 rounded-full bg-blue-200 blur-[1px]"></div>
-          <div className="absolute top-3/4 right-1/4 w-1 h-1 rounded-full bg-white blur-[1px]"></div>
-          
-          {/* Additional light particles */}
-          <div className="absolute top-1/3 right-1/2 w-0.5 h-0.5 rounded-full bg-blue-100 blur-[0.5px]"></div>
-          <div className="absolute top-2/3 left-1/2 w-0.5 h-0.5 rounded-full bg-blue-100 blur-[0.5px]"></div>
-          <div className="absolute top-1/6 right-1/3 w-0.5 h-0.5 rounded-full bg-blue-100 blur-[0.5px]"></div>
+          {[...Array(6)].map((_, i) => (
+            <div 
+              key={i}
+              className="absolute w-1 h-1 rounded-full bg-white/80 blur-[1px]"
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`
+              }}
+            ></div>
+          ))}
         </MotionDiv>
-        
-        {/* Subtle grid pattern for added texture */}
-        <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]"></div>
       </div>
       
-      <div className="relative w-full">
-        <div className="container mx-auto px-4 md:px-6 py-12 md:py-16 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Hero content */}
-            <div className="flex flex-col space-y-8">
-              <MotionDiv 
-                initial="hidden"
-                animate="visible"
-                variants={fadeIn}
-                custom={0}
-                className="flex flex-col space-y-5"
-              >
-                <span className="text-blue-300 font-medium flex items-center bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full w-fit">
-                  <FiMapPin className="mr-2" /> Aalsburg 3111, 6602WR Wijchen
-                </span>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
-                  Geef uw hardware een <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">tweede leven</span>
+      <div className="relative w-full py-16 md:py-24 lg:py-28">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Hero content - 7 columns on large screens */}
+            <div className="flex flex-col space-y-8 lg:col-span-7">
+              <div className="flex flex-col space-y-5">
+                <div className="inline-flex items-center self-start bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-2">
+                  <FiMapPin className="mr-2 text-blue-300" /> 
+                  <span className="text-blue-100 font-medium text-sm">Aalsburg 3111, Wijchen</span>
+                </div>
+                
+                <h1 
+                  id="hero-heading"
+                  className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1]"
+                >
+                  Geef uw hardware een <span className="bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent">tweede leven</span>
                 </h1>
-                <p className="text-lg md:text-xl text-gray-300 max-w-xl">
+                
+                <p className="text-lg sm:text-xl text-blue-100 max-w-2xl">
                   Wij kopen uw gebruikte IT-apparatuur op, wissen data veilig en geven hardware een tweede leven met oog voor duurzaamheid.
                 </p>
-              </MotionDiv>
+              </div>
               
-              {/* CTA Buttons */}
-              <MotionDiv 
-                className="flex flex-wrap gap-4"
-                variants={fadeIn}
-                initial="hidden"
-                animate="visible"
-                custom={1}
-              >
+              {/* CTA Buttons with improved accessibility */}
+              <div className="flex flex-wrap gap-4">
                 <Link href="/diensten" 
-                  className="inline-flex items-center px-6 py-3.5 text-base font-medium rounded-md text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
+                  className="inline-flex items-center px-6 py-3.5 text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-all duration-150 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-blue-900"
                 >
-                  Bekijk onze diensten
-                  <FiArrowRight className="ml-2" />
+                  <span>Bekijk onze diensten</span>
+                  <FiArrowRight className="ml-2" aria-hidden="true" />
                 </Link>
                 <a href="tel:+31649892654" 
-                  className="inline-flex items-center px-6 py-3.5 text-base font-medium rounded-md bg-white/10 hover:bg-white/20 text-white transition-all shadow-md hover:shadow-lg border border-white/20 backdrop-blur-sm hover:scale-105 active:scale-95"
+                  className="inline-flex items-center px-6 py-3.5 text-base font-medium rounded-md bg-white/10 hover:bg-white/15 text-white transition-all duration-150 shadow-sm hover:shadow border border-white/15 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-white/50"
                   aria-label="Bel ons op +31 6 4989 2654"
                 >
-                  Bel ons: +31 6 4989 2654
+                  <span>Bel ons: +31 6 4989 2654</span>
                 </a>
-              </MotionDiv>
+              </div>
               
-              {/* Features */}
-              <MotionDiv 
-                className="flex flex-wrap gap-4 mt-8"
-                variants={fadeIn}
-                initial="hidden"
-                animate="visible"
-                custom={2}
-              >
+              {/* Features grid with improved layout */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
                 {features.map((feature) => (
                   <div 
                     key={feature.title}
-                    className="flex items-center space-x-2 bg-white/10 hover:bg-white/15 px-4 py-2.5 rounded-lg transition-all duration-300 backdrop-blur-sm border border-white/5 hover:border-white/10 hover:scale-105"
+                    className="flex items-start p-3 bg-white/10 hover:bg-white/15 rounded-lg transition-all duration-200 backdrop-blur-sm border border-white/10"
                   >
-                    <div className="flex-shrink-0">
+                    <div className="flex-shrink-0 p-1.5 bg-white/10 rounded-lg mr-3">
                       {feature.icon}
                     </div>
-                    <span className="text-sm font-medium text-white">
-                      {feature.title}
-                    </span>
+                    <div>
+                      <h3 className="text-sm font-semibold text-white">
+                        {feature.title}
+                      </h3>
+                      <p className="text-xs text-blue-100/90 mt-0.5">
+                        {feature.description}
+                      </p>
+                    </div>
                   </div>
                 ))}
-              </MotionDiv>
+              </div>
               
-              {/* Scroll indicator */}
-              <MotionDiv
-                className="hidden md:flex justify-center mt-8"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.5, duration: 0.5 }}
-              >
-                <div className="flex flex-col items-center cursor-pointer group" onClick={() => document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' })}>
-                  <span className="text-sm text-blue-300 group-hover:text-blue-200 mb-2">Meer ontdekken</span>
+              {/* Scroll indicator - visible only on desktop */}
+              <div className="hidden md:flex justify-start mt-8">
+                <button 
+                  onClick={() => document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="flex flex-col items-center cursor-pointer group focus:outline-none"
+                  aria-label="Scroll naar onze diensten"
+                >
+                  <span className="text-sm text-blue-200 group-hover:text-blue-100 mb-2">Meer ontdekken</span>
                   <MotionDiv
                     animate={{ y: [0, 10, 0] }}
                     transition={{ repeat: Infinity, duration: 1.5 }}
-                    className="p-2 rounded-full bg-white/10 group-hover:bg-white/20 backdrop-blur-sm border border-white/10"
+                    className="p-2 rounded-full bg-white/10 group-hover:bg-white/15 backdrop-blur-sm"
                   >
-                    <FiArrowDown className="text-white" />
+                    <FiArrowDown className="text-white" aria-hidden="true" />
                   </MotionDiv>
-                </div>
-              </MotionDiv>
+                </button>
+              </div>
             </div>
             
-            {/* Hero image with enhanced styling */}
-            <MotionDiv 
-              className="relative w-full h-[320px] md:h-[450px] rounded-2xl overflow-hidden shadow-2xl"
-              variants={fadeIn}
-              initial="hidden"
-              animate="visible"
-              custom={1}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 mix-blend-overlay z-10 rounded-2xl"></div>
+            {/* Hero image - 5 columns on large screens */}
+            <div className="relative w-full h-[300px] sm:h-[380px] lg:h-[500px] lg:col-span-5 rounded-xl overflow-hidden shadow-2xl">
+              {/* Lightened overlay for better visibility */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 mix-blend-overlay z-10 rounded-xl"></div>
+              
+              {/* Image with simplified hover effect */}
               <Image
                 src="/images/hero-image.jpg" 
                 alt="IT-hardware recycling en data verwijdering"
                 fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 40vw, 500px"
                 priority={true}
                 quality={90}
-                className="object-cover object-center rounded-2xl hover:scale-105 transition-transform duration-700"
+                className="object-cover object-center rounded-xl transition-transform duration-700 hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent z-20 rounded-2xl"></div>
               
-              {/* Image overlay content */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 z-30">
-                <div className="flex items-center space-x-2 mb-2">
+              {/* Improved gradient overlay for better text contrast */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent z-20 rounded-xl"></div>
+              
+              {/* Image overlay content with improved readability */}
+              <div className="absolute bottom-0 left-0 right-0 p-5 z-30">
+                <div className="flex items-center space-x-2 mb-1.5">
                   <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
-                  <span className="text-sm text-white/90 font-medium">Duurzaam & Veilig</span>
+                  <span className="text-sm text-white font-medium">Duurzaam & Veilig</span>
                 </div>
-                <p className="text-white text-lg font-medium">Professionele data verwijdering volgens GDPR-normen</p>
+                <p className="text-white text-base sm:text-lg font-medium leading-snug">
+                  Professionele data verwijdering volgens GDPR-normen
+                </p>
               </div>
-            </MotionDiv>
+            </div>
           </div>
         </div>
       </div>
