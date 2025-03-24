@@ -3,7 +3,6 @@ import { FiMonitor, FiRefreshCw, FiShield, FiTruck, FiArrowRight } from 'react-i
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { MotionDiv } from '@/components/client/MotionWrapper';
-import Image from 'next/image';
 
 // Diensten data
 const services = [
@@ -15,10 +14,8 @@ const services = [
     icon: <FiMonitor className="w-7 h-7" />,
     link: '/diensten/hardware-opkopen',
     buttonText: 'Verkoop uw hardware',
-    color: 'blue',
-    gradient: 'from-blue-800 to-blue-600',
+    bgClass: 'bg-gradient-to-r from-blue-800 to-blue-600',
     textColor: 'text-blue-400',
-    imageUrl: 'https://digitaalgelijk.nl/images/services/hardware-opkopen-pro.jpg?v=3'
   },
   {
     id: 'data-verwijdering',
@@ -28,10 +25,8 @@ const services = [
     icon: <FiShield className="w-7 h-7" />,
     link: '/diensten/data-verwijdering',
     buttonText: 'Beveilig uw data',
-    color: 'purple',
-    gradient: 'from-purple-800 to-purple-600',
+    bgClass: 'bg-gradient-to-r from-purple-800 to-purple-600',
     textColor: 'text-purple-400',
-    imageUrl: 'https://digitaalgelijk.nl/images/services/data-verwijdering-pro.jpg?v=3'
   },
   {
     id: 'hardware-recycling',
@@ -41,10 +36,8 @@ const services = [
     icon: <FiRefreshCw className="w-7 h-7" />,
     link: '/diensten/hardware-recycling',
     buttonText: 'Start met recycling',
-    color: 'green',
-    gradient: 'from-green-800 to-green-600',
+    bgClass: 'bg-gradient-to-r from-green-800 to-green-600',
     textColor: 'text-green-400',
-    imageUrl: 'https://digitaalgelijk.nl/images/services/hardware-recycling-pro.jpg?v=3'
   },
   {
     id: 'logistieke-diensten',
@@ -54,31 +47,14 @@ const services = [
     icon: <FiTruck className="w-7 h-7" />,
     link: '/diensten/logistieke-diensten',
     buttonText: 'Plan uw transport',
-    color: 'amber',
-    gradient: 'from-amber-800 to-amber-600',
+    bgClass: 'bg-gradient-to-r from-amber-800 to-amber-600',
     textColor: 'text-amber-400',
-    imageUrl: 'https://digitaalgelijk.nl/images/services/logistieke-diensten-pro.jpg?v=3'
   }
 ];
 
 const ServicesSection = () => {
   return (
     <section id="services-section" className="bg-gray-50 dark:bg-gray-900 relative overflow-hidden pt-0">
-      {/* Achtergrond elementen */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Grid patroon */}
-        <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
-          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="0.5" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid-pattern)" />
-          </svg>
-        </div>
-      </div>
-
       {/* Diensten in alternerende layout */}
       <div className="space-y-0">
         {services.map((service, index) => (
@@ -86,36 +62,20 @@ const ServicesSection = () => {
             key={service.id}
             className={`border-t border-b border-gray-200 dark:border-gray-700 py-0 w-full`}
           >
-            <MotionDiv
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+            <div
               className={`relative container mx-auto px-0 flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center`}
             >
-              {/* Afbeelding sectie - nu full height */}
+              {/* Kleur sectie - vaste achtergrondkleur */}
               <div className={`w-full lg:w-5/12 relative ${index % 2 === 0 ? 'lg:ml-0 pr-0' : 'lg:mr-0 pl-0'}`}>
                 <div className="w-full h-64 md:h-96 lg:h-[calc(100%+1px)] relative overflow-hidden">
-                  {/* Achtergrond kleur gradient - geen afhankelijkheid van afbeeldingen */}
-                  <div className={`absolute inset-0 bg-gradient-to-r ${service.gradient} opacity-90 z-10`}></div>
+                  {/* Gradient achtergrond */}
+                  <div className={`absolute inset-0 ${service.bgClass} opacity-90`}></div>
                   
-                  {/* De Gradiënt fade naar de achtergrond */}
-                  <div className={`absolute inset-0 bg-gradient-to-${index % 2 === 0 ? 'r' : 'l'} from-transparent via-transparent to-gray-50 dark:to-gray-900 z-20 opacity-90`}></div>
-                  
-                  {/* Subtiel patroon overlay */}
-                  <div className="absolute inset-0 opacity-5 z-10" aria-hidden="true">
-                    <svg className="w-full h-full" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                      <defs>
-                        <pattern id={`${service.id}-pattern`} width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(5)">
-                          <path d="M0 20 L40 20 M20 0 L20 40" stroke="currentColor" strokeWidth="0.5" fill="none" />
-                        </pattern>
-                      </defs>
-                      <rect width="100%" height="100%" fill={`url(#${service.id}-pattern)`} />
-                    </svg>
-                  </div>
+                  {/* Vaste gradient fade (niet dynamisch) */}
+                  <div className={`absolute inset-0 ${index % 2 === 0 ? 'bg-gradient-to-r' : 'bg-gradient-to-l'} from-transparent to-gray-50 dark:to-gray-900 opacity-60`}></div>
                   
                   {/* De service icon in een cirkel */}
-                  <div className={`absolute ${index % 2 === 0 ? 'right-4' : 'left-4'} top-4 z-30 p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30`}>
+                  <div className={`absolute ${index % 2 === 0 ? 'right-4' : 'left-4'} top-4 z-10 p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30`}>
                     <div className={service.textColor}>
                       {service.icon}
                     </div>
@@ -125,12 +85,7 @@ const ServicesSection = () => {
               
               {/* Content sectie */}
               <div className="w-full lg:w-7/12 flex flex-col px-4 md:px-6 py-12">
-                <MotionDiv
-                  initial={{ opacity: 0, x: index % 2 === 0 ? 30 : -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                >
+                <div>
                   <div className={`inline-flex items-center gap-2 ${service.textColor} mb-2`}>
                     <span className="font-semibold uppercase tracking-wide text-sm">{service.subtitle}</span>
                   </div>
@@ -145,14 +100,14 @@ const ServicesSection = () => {
                   
                   <Link
                     href={service.link}
-                    className={`inline-flex items-center px-5 py-2.5 rounded-lg text-white bg-gradient-to-r ${service.gradient} hover:shadow-lg transition-all duration-300 font-medium border border-white/10`}
+                    className={`inline-flex items-center px-5 py-2.5 rounded-lg text-white ${service.bgClass} hover:shadow-lg transition-all duration-300 font-medium border border-white/10`}
                   >
                     <span>{service.buttonText}</span>
                     <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
                   </Link>
-                </MotionDiv>
+                </div>
               </div>
-            </MotionDiv>
+            </div>
           </div>
         ))}
       </div>
