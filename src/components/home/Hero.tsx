@@ -2,11 +2,13 @@
 import { MotionDiv } from '@/components/client/MotionWrapper';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRef } from 'react';
-import { FiArrowRight, FiCheck, FiShield, FiRefreshCw, FiTruck, FiMapPin, FiArrowDown } from 'react-icons/fi';
+import { useRef, useState, useEffect } from 'react';
+import { FiArrowRight, FiCheck, FiShield, FiRefreshCw, FiTruck, FiMapPin, FiArrowDown, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 const Hero = () => {
   const targetRef = useRef<HTMLDivElement>(null);
+  const [activeFeature, setActiveFeature] = useState(0);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
@@ -26,24 +28,55 @@ const Hero = () => {
     {
       title: "Eerlijke prijzen",
       description: "Transparante en concurrerende vergoedingen",
-      icon: <FiCheck className="text-blue-600 dark:text-blue-400" size={20} />
+      icon: <FiCheck className="text-blue-600 dark:text-blue-400" size={24} />
     },
     {
       title: "GDPR-compliant",
       description: "100% veilige dataverwijdering",
-      icon: <FiShield className="text-purple-600 dark:text-purple-400" size={20} />
+      icon: <FiShield className="text-purple-600 dark:text-purple-400" size={24} />
     },
     {
       title: "Duurzame recycling",
       description: "Minimale impact op het milieu",
-      icon: <FiRefreshCw className="text-green-600 dark:text-green-400" size={20} />
+      icon: <FiRefreshCw className="text-green-600 dark:text-green-400" size={24} />
     },
     {
       title: "Gratis ophaalservice",
       description: "Door heel Nederland",
-      icon: <FiTruck className="text-amber-600 dark:text-amber-400" size={20} />
+      icon: <FiTruck className="text-amber-600 dark:text-amber-400" size={24} />
     }
   ];
+
+  // Auto-rotate the features
+  useEffect(() => {
+    intervalRef.current = setInterval(() => {
+      setActiveFeature((prev) => (prev + 1) % features.length);
+    }, 5000);
+    
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [features.length]);
+
+  // Handle manual navigation
+  const goToFeature = (index: number) => {
+    setActiveFeature(index);
+    // Reset the timer when manually changing
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = setInterval(() => {
+        setActiveFeature((prev) => (prev + 1) % features.length);
+      }, 5000);
+    }
+  };
+
+  const nextFeature = () => {
+    goToFeature((activeFeature + 1) % features.length);
+  };
+
+  const prevFeature = () => {
+    goToFeature((activeFeature - 1 + features.length) % features.length);
+  };
 
   return (
     <section 
@@ -115,28 +148,6 @@ const Hero = () => {
                 </a>
               </div>
               
-              {/* Features grid with improved layout */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
-                {features.map((feature) => (
-                  <div 
-                    key={feature.title}
-                    className="flex items-start p-3 bg-white/10 hover:bg-white/15 rounded-lg transition-all duration-200 backdrop-blur-sm border border-white/10"
-                  >
-                    <div className="flex-shrink-0 p-1.5 bg-white/10 rounded-lg mr-3">
-                      {feature.icon}
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-semibold text-white">
-                        {feature.title}
-                      </h3>
-                      <p className="text-xs text-blue-100/90 mt-0.5">
-                        {feature.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              
               {/* Scroll indicator - visible only on desktop */}
               <div className="hidden md:flex justify-start mt-8">
                 <button 
@@ -156,8 +167,8 @@ const Hero = () => {
               </div>
             </div>
             
-            {/* Hero image - 5 columns on large screens */}
-            <div className="relative w-full h-[300px] sm:h-[380px] lg:h-[500px] lg:col-span-5 rounded-xl overflow-hidden shadow-2xl">
+            {/* Hero image with features slider - 5 columns on large screens */}
+            <div className="relative w-full h-[350px] sm:h-[430px] lg:h-[520px] lg:col-span-5 rounded-xl overflow-hidden shadow-2xl">
               {/* Lightened overlay for better visibility */}
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 mix-blend-overlay z-10 rounded-xl"></div>
               
@@ -169,21 +180,70 @@ const Hero = () => {
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 40vw, 500px"
                 priority={true}
                 quality={90}
-                className="object-cover object-center rounded-xl transition-transform duration-700 hover:scale-105"
+                className="object-cover object-center rounded-xl"
               />
               
-              {/* Improved gradient overlay for better text contrast */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent z-20 rounded-xl"></div>
+              {/* Gradient overlay for better content contrast */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent z-20 rounded-xl"></div>
               
-              {/* Image overlay content with improved readability */}
-              <div className="absolute bottom-0 left-0 right-0 p-5 z-30">
-                <div className="flex items-center space-x-2 mb-1.5">
-                  <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
-                  <span className="text-sm text-white font-medium">Duurzaam & Veilig</span>
+              {/* Features slider inside the image */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 z-30">
+                <div className="bg-black/50 backdrop-blur-sm rounded-lg p-4 md:p-6 border border-white/10">
+                  {/* Current slide */}
+                  <MotionDiv
+                    key={activeFeature}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
+                    className="flex items-start gap-4"
+                  >
+                    <div className="bg-white/10 p-3 rounded-lg">
+                      {features[activeFeature].icon}
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-semibold text-white">
+                        {features[activeFeature].title}
+                      </h3>
+                      <p className="text-sm text-blue-100 mt-1">
+                        {features[activeFeature].description}
+                      </p>
+                    </div>
+                  </MotionDiv>
+                  
+                  {/* Navigation controls */}
+                  <div className="flex justify-between items-center mt-5">
+                    <div className="flex gap-1">
+                      {features.map((_, index) => (
+                        <button
+                          key={index}
+                          className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                            index === activeFeature ? 'bg-blue-500' : 'bg-white/30 hover:bg-white/50'
+                          }`}
+                          onClick={() => goToFeature(index)}
+                          aria-label={`Ga naar dienst ${index + 1}`}
+                          aria-current={index === activeFeature ? 'true' : 'false'}
+                        />
+                      ))}
+                    </div>
+                    <div className="flex gap-2">
+                      <button 
+                        onClick={prevFeature}
+                        className="bg-white/10 hover:bg-white/20 p-1.5 rounded-full transition-colors"
+                        aria-label="Vorige dienst"
+                      >
+                        <FiChevronLeft className="text-white" size={18} />
+                      </button>
+                      <button 
+                        onClick={nextFeature}
+                        className="bg-white/10 hover:bg-white/20 p-1.5 rounded-full transition-colors"
+                        aria-label="Volgende dienst"
+                      >
+                        <FiChevronRight className="text-white" size={18} />
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                <p className="text-white text-base sm:text-lg font-medium leading-snug">
-                  Professionele data verwijdering volgens GDPR-normen
-                </p>
               </div>
             </div>
           </div>
