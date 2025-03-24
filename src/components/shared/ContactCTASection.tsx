@@ -52,9 +52,21 @@ const ContactCTASection = () => {
               <span className="transform transition-transform group-hover:translate-x-1">→</span>
             </Link>
           </div>
-          <div className="mt-8 text-blue-200 flex items-center justify-center">
-            <span className="mr-2">❤️</span>
-            <span>Met passie voor duurzaamheid vanuit Wijchen</span>
+          <div className="mt-8 text-blue-200 flex flex-col items-center justify-center">
+            <div className="flex items-center mb-2">
+              <span className="mr-2">❤️</span>
+              <span>Met passie voor duurzaamheid vanuit Wijchen</span>
+            </div>
+            <div className="flex items-center gap-6 mt-4">
+              <a href="tel:+31649892654" className="flex items-center hover:text-white transition-colors" aria-label="Bel ons op +31 6 4989 2654">
+                <span className="mr-2">📞</span>
+                <span>+31 6 4989 2654</span>
+              </a>
+              <div className="flex items-center">
+                <span className="mr-2">📍</span>
+                <span>Aalsburg 3111, 6602WR Wijchen</span>
+              </div>
+            </div>
           </div>
         </MotionDiv>
       </div>

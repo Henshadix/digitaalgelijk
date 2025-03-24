@@ -1,6 +1,6 @@
 'use client';
 
-import { FiDatabase, FiShield, FiInfo, FiSettings, FiCheckCircle, FiSliders, FiFile, FiEye, FiAlertCircle, FiArrowRight, FiHeart } from 'react-icons/fi';
+import { FiDatabase, FiShield, FiInfo, FiSettings, FiCheckCircle, FiSliders, FiFile, FiEye, FiAlertCircle, FiArrowRight, FiHeart, FiPhone } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
@@ -506,7 +506,10 @@ export default function Cookiebeleid() {
                     <div className="space-y-2 text-gray-700 dark:text-gray-300">
                       <p className="font-semibold text-gray-900 dark:text-white">Digitaalgelijk</p>
                       <p>E-mail: <a href="mailto:privacy@digitaalgelijk.nl" className="text-blue-600 dark:text-blue-400 hover:underline">privacy@digitaalgelijk.nl</a></p>
-                      <p>Telefoon: <a href="tel:0649892654" className="text-blue-600 dark:text-blue-400 hover:underline">06 49 89 26 54</a></p>
+                      <div className="flex items-center">
+                        <FiPhone className="w-5 h-5 text-blue-600 dark:text-blue-400 mr-2" />
+                        <p>Telefoon: <a href="tel:+31649892654" className="text-blue-600 dark:text-blue-400 hover:underline" aria-label="Bel ons op +31 6 4989 2654">+31 6 4989 2654</a></p>
+                      </div>
                       <p>Adres: Aalsburg 3111, 6602WR Wijchen</p>
                     </div>
                   </div>

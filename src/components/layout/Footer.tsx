@@ -183,6 +183,7 @@ const Footer = () => {
                 variants={topBarItemVariants}
                 initial="initial"
                 whileHover="hover"
+                aria-label="Bel ons op +31 6 4989 2654"
               >
                 <MotionDiv 
                   className="bg-blue-700/50 p-1.5 rounded-full mr-2 group-hover:bg-blue-600 transition-colors"
@@ -199,6 +200,7 @@ const Footer = () => {
                 variants={topBarItemVariants}
                 initial="initial"
                 whileHover="hover"
+                aria-label="Email ons op info@digitaalgelijk.nl"
               >
                 <MotionDiv 
                   className="bg-blue-700/50 p-1.5 rounded-full mr-2 group-hover:bg-blue-600 transition-colors"
@@ -221,7 +223,7 @@ const Footer = () => {
                 >
                   <FiMapPin size={14} />
                 </MotionDiv>
-                <span>Wijchen, Nederland</span>
+                <span>Aalsburg 3111, 6602WR Wijchen</span>
               </MotionDiv>
             </div>
           </div>

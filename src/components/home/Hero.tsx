@@ -3,7 +3,7 @@ import { MotionDiv } from '@/components/client/MotionWrapper';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRef } from 'react';
-import { FiArrowRight, FiCheck, FiShield, FiRefreshCw, FiTruck } from 'react-icons/fi';
+import { FiArrowRight, FiCheck, FiShield, FiRefreshCw, FiTruck, FiMapPin } from 'react-icons/fi';
 
 const Hero = () => {
   const targetRef = useRef<HTMLDivElement>(null);
@@ -89,8 +89,8 @@ const Hero = () => {
                 custom={0}
                 className="flex flex-col space-y-4"
               >
-                <span className="text-blue-300 font-medium">
-                  Digitaalgelijk - Aalsburg 3111, Wijchen
+                <span className="text-blue-300 font-medium flex items-center">
+                  <FiMapPin className="mr-2" /> Aalsburg 3111, 6602WR Wijchen
                 </span>
                 <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white">
                   Geef uw hardware een tweede leven
@@ -116,8 +116,9 @@ const Hero = () => {
                 </Link>
                 <a href="tel:+31649892654" 
                   className="inline-flex items-center px-6 py-3 text-base font-medium rounded-md bg-white/10 hover:bg-white/20 text-white transition shadow-md hover:shadow-lg border border-white/20"
+                  aria-label="Bel ons op +31 6 4989 2654"
                 >
-                  Bel ons: 06 4989 2654
+                  Bel ons: +31 6 4989 2654
                 </a>
               </MotionDiv>
               

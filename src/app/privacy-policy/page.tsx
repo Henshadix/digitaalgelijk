@@ -457,8 +457,8 @@ export default function PrivacyPolicy() {
                         </div>
                         <div className="flex items-center text-gray-700 dark:text-gray-300">
                           <FiPhone className="w-5 h-5 text-blue-600 dark:text-blue-400 mr-2" />
-                          <a href="tel:0649892654" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                            0649892654
+                          <a href="tel:+31649892654" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors" aria-label="Bel ons op +31 6 4989 2654">
+                            +31 6 4989 2654
                           </a>
                         </div>
                       </div>

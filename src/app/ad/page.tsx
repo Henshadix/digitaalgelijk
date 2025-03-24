@@ -66,8 +66,9 @@ export default function AdPage() {
                 <a 
                   href="tel:+31649892654" 
                   className="bg-blue-700 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium border border-blue-500 transition-colors duration-300 text-center"
+                  aria-label="Bel ons op +31 6 4989 2654"
                 >
-                  Bel 06 4989 2654
+                  Bel +31 6 4989 2654
                 </a>
               </div>
             </div>

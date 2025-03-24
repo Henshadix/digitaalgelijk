@@ -557,15 +557,15 @@ export default function HardwareOpkopen() {
                 whileTap={{ scale: 0.98 }}
               >
               <Link href="/contact" className="px-8 py-4 bg-white text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-colors flex items-center gap-2">
-                Offerte Aanvragen <FiArrowRight />
+                Offerte Aanvragen <FiArrowRight className="ml-2" />
               </Link>
               </motion.div>
               <motion.div 
                 whileHover={{ scale: 1.05 }} 
                 whileTap={{ scale: 0.98 }}
               >
-              <Link href="tel:+31649892654" className="px-8 py-4 bg-blue-700 hover:bg-blue-800 text-white border border-blue-500 rounded-lg font-medium transition-colors">
-                Bel Ons
+              <Link href="tel:+31649892654" className="px-8 py-4 bg-blue-700 hover:bg-blue-800 text-white border border-blue-500 rounded-lg font-medium transition-colors" aria-label="Bel ons op +31 6 4989 2654">
+                Bel +31 6 4989 2654
               </Link>
               </motion.div>
             </div>
