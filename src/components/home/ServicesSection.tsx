@@ -83,7 +83,7 @@ const ServicesSection = () => {
   };
 
   return (
-    <section id="services-section" className="bg-gray-50 dark:bg-gray-900 relative overflow-hidden pt-0">
+    <section id="services-section" className="bg-gray-50 dark:bg-gray-900 relative overflow-hidden pt-0" style={{ backgroundColor: '#f8fafc' }}>
       {/* Achtergrond elementen */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-blue-100/30 dark:bg-blue-900/10 blur-3xl"></div>
@@ -121,10 +121,10 @@ const ServicesSection = () => {
                     position: 'absolute',
                     inset: 0,
                     background: index % 2 === 0 
-                      ? 'linear-gradient(to right, transparent, rgb(249, 250, 251))'
-                      : 'linear-gradient(to left, transparent, rgb(249, 250, 251))',
+                      ? 'linear-gradient(to right, transparent, #f8fafc)'
+                      : 'linear-gradient(to left, transparent, #f8fafc)',
                     zIndex: 20,
-                    opacity: 0.85
+                    opacity: 0.9
                   }}
                   className="dark:bg-gradient-to-r dark:from-transparent dark:to-gray-900"></div>
                   
