@@ -28,6 +28,13 @@ const nextConfig = {
   // Productie URL
   env: {
     NEXT_PUBLIC_SITE_URL: 'https://digitaalgelijk.nl',
+  },
+  // Fix voor framer-motion
+  experimental: {
+    serverComponentsExternalPackages: ['framer-motion'],
+    serverActions: {
+      bodySizeLimit: '10mb'
+    }
   }
 };
 

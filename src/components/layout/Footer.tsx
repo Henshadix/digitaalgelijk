@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { MotionDiv, MotionA } from '@/components/client/MotionWrapper';
 import { FiMail, FiPhone, FiMapPin, FiClock, FiArrowRight, FiHeart, FiLinkedin, FiTwitter, FiFacebook, FiInstagram, FiChevronRight, FiAward, FiShield, FiCheckCircle } from 'react-icons/fi';
 
 const Footer = () => {
@@ -111,7 +111,7 @@ const Footer = () => {
         {/* Dynamic animated background elements */}
         <div className="absolute inset-0 w-full h-full">
           {/* Animated gradient overlay */}
-          <motion.div 
+          <MotionDiv 
             className="absolute inset-0 opacity-20 bg-gradient-conic from-blue-400 via-transparent to-transparent"
             animate={{
               rotate: [0, 360],
@@ -124,7 +124,7 @@ const Footer = () => {
           />
           
           {/* Animated dots/particles */}
-          <motion.div 
+          <MotionDiv 
             className="absolute inset-0"
             initial={{ opacity: 0.1 }}
             animate={{ opacity: 0.15 }}
@@ -139,10 +139,10 @@ const Footer = () => {
             <div className="absolute top-1/2 left-2/3 w-1 h-1 rounded-full bg-white"></div>
             <div className="absolute top-1/4 left-3/4 w-2 h-2 rounded-full bg-blue-200"></div>
             <div className="absolute top-3/4 right-1/4 w-1 h-1 rounded-full bg-white"></div>
-          </motion.div>
+          </MotionDiv>
           
           {/* Subtle light beam effect */}
-          <motion.div 
+          <MotionDiv 
             className="absolute -inset-1/2 opacity-10 bg-gradient-radial from-blue-100 to-transparent"
             animate={{
               scale: [1, 1.2, 1],
@@ -161,14 +161,14 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             {/* Logo and company name */}
             <div className="flex items-center space-x-3">
-              <motion.div 
+              <MotionDiv 
                 className="relative w-10 h-10 md:w-12 md:h-12 transition-transform duration-300"
                 whileHover={{ scale: 1.05 }}
               >
                 <div className="w-full h-full bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center shadow-md">
                   <span className="text-white font-bold text-lg md:text-xl">DG</span>
                 </div>
-              </motion.div>
+              </MotionDiv>
               <div className="flex flex-col">
                 <span className="text-xl font-bold text-white">Digitaal<span className="text-blue-300">gelijk</span></span>
                 <span className="text-xs font-medium text-blue-200">Duurzame IT-oplossingen</span>
@@ -177,52 +177,52 @@ const Footer = () => {
             
             {/* Contact info */}
             <div className="flex flex-wrap justify-center md:justify-end gap-4 md:gap-6">
-              <motion.a 
+              <MotionA 
                 href="tel:+31649892654" 
                 className="flex items-center text-sm hover:text-blue-200 transition-colors group"
                 variants={topBarItemVariants}
                 initial="initial"
                 whileHover="hover"
               >
-                <motion.div 
+                <MotionDiv 
                   className="bg-blue-700/50 p-1.5 rounded-full mr-2 group-hover:bg-blue-600 transition-colors"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                 >
                   <FiPhone size={14} />
-                </motion.div>
+                </MotionDiv>
                 <span>+31 6 4989 2654</span>
-              </motion.a>
-              <motion.a 
+              </MotionA>
+              <MotionA 
                 href="mailto:info@digitaalgelijk.nl" 
                 className="flex items-center text-sm hover:text-blue-200 transition-colors group"
                 variants={topBarItemVariants}
                 initial="initial"
                 whileHover="hover"
               >
-                <motion.div 
+                <MotionDiv 
                   className="bg-blue-700/50 p-1.5 rounded-full mr-2 group-hover:bg-blue-600 transition-colors"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                 >
                   <FiMail size={14} />
-                </motion.div>
+                </MotionDiv>
                 <span>info@digitaalgelijk.nl</span>
-              </motion.a>
-              <motion.div 
+              </MotionA>
+              <MotionDiv 
                 className="flex items-center text-sm group"
                 variants={topBarItemVariants}
                 initial="initial"
                 whileHover="hover"
               >
-                <motion.div 
+                <MotionDiv 
                   className="bg-blue-700/50 p-1.5 rounded-full mr-2"
                   whileHover={{ scale: 1.1 }}
                 >
                   <FiMapPin size={14} />
-                </motion.div>
+                </MotionDiv>
                 <span>Wijchen, Nederland</span>
-              </motion.div>
+              </MotionDiv>
             </div>
           </div>
         </div>
@@ -253,60 +253,60 @@ const Footer = () => {
         <div className="container mx-auto px-4 pt-24 pb-12 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Company Info */}
-            <motion.div 
+            <MotionDiv 
               className="lg:col-span-1"
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
             >
-              <motion.h3 
+              <MotionDiv 
                 className="text-lg font-bold mb-4 text-gray-900 dark:text-white flex items-center"
                 variants={itemVariants}
               >
                 <span className="bg-gradient-to-r from-blue-600 to-blue-400 h-5 w-1 rounded-full mr-2 inline-block"></span>
                 Over Digitaalgelijk
-              </motion.h3>
-              <motion.p 
+              </MotionDiv>
+              <MotionDiv 
                 className="text-sm text-gray-600 dark:text-gray-400 mb-6 max-w-md"
                 variants={itemVariants}
               >
                 Digitaalgelijk is gespecialiseerd in duurzame IT-oplossingen voor bedrijven. Wij bieden diensten aan op het gebied van hardware opkopen, data verwijdering, hardware recycling en logistieke diensten.
-              </motion.p>
+              </MotionDiv>
               
               {/* Certifications */}
-              <motion.div 
+              <MotionDiv 
                 className="mb-6"
                 variants={itemVariants}
               >
                 <h4 className="text-sm font-semibold mb-3 text-gray-800 dark:text-gray-200">Certificeringen</h4>
                 <div className="flex flex-wrap gap-3">
-                  <motion.div 
+                  <MotionDiv 
                     className="bg-white dark:bg-gray-800 p-2 rounded-lg shadow-sm flex items-center justify-center w-12 h-12"
                     whileHover={{ scale: 1.05 }}
                   >
                     <FiAward className="text-blue-600 dark:text-blue-400" size={24} />
-                  </motion.div>
-                  <motion.div 
+                  </MotionDiv>
+                  <MotionDiv 
                     className="bg-white dark:bg-gray-800 p-2 rounded-lg shadow-sm flex items-center justify-center w-12 h-12"
                     whileHover={{ scale: 1.05 }}
                   >
                     <FiShield className="text-green-600 dark:text-green-400" size={24} />
-                  </motion.div>
-                  <motion.div 
+                  </MotionDiv>
+                  <MotionDiv 
                     className="bg-white dark:bg-gray-800 p-2 rounded-lg shadow-sm flex items-center justify-center w-12 h-12"
                     whileHover={{ scale: 1.05 }}
                   >
                     <FiCheckCircle className="text-purple-600 dark:text-purple-400" size={24} />
-                  </motion.div>
+                  </MotionDiv>
                 </div>
-              </motion.div>
+              </MotionDiv>
               
               {/* Social Media */}
-              <motion.div variants={itemVariants}>
+              <MotionDiv variants={itemVariants}>
                 <h4 className="text-sm font-semibold mb-3 text-gray-800 dark:text-gray-200">Volg ons</h4>
                 <div className="flex space-x-3">
-                  <motion.a 
+                  <MotionA 
                     href="https://linkedin.com" 
                     target="_blank" 
                     rel="noopener noreferrer"
@@ -317,8 +317,8 @@ const Footer = () => {
                     whileTap="tap"
                   >
                     <FiLinkedin size={18} />
-                  </motion.a>
-                  <motion.a 
+                  </MotionA>
+                  <MotionA 
                     href="https://twitter.com" 
                     target="_blank" 
                     rel="noopener noreferrer"
@@ -329,8 +329,8 @@ const Footer = () => {
                     whileTap="tap"
                   >
                     <FiTwitter size={18} />
-                  </motion.a>
-                  <motion.a 
+                  </MotionA>
+                  <MotionA 
                     href="https://facebook.com" 
                     target="_blank" 
                     rel="noopener noreferrer"
@@ -341,8 +341,8 @@ const Footer = () => {
                     whileTap="tap"
                   >
                     <FiFacebook size={18} />
-                  </motion.a>
-                  <motion.a 
+                  </MotionA>
+                  <MotionA 
                     href="https://instagram.com" 
                     target="_blank" 
                     rel="noopener noreferrer"
@@ -353,14 +353,14 @@ const Footer = () => {
                     whileTap="tap"
                   >
                     <FiInstagram size={18} />
-                  </motion.a>
+                  </MotionA>
                 </div>
-              </motion.div>
-            </motion.div>
+              </MotionDiv>
+            </MotionDiv>
             
             {/* Footer Links */}
             {footerLinks.map((column, idx) => (
-              <motion.div 
+              <MotionDiv 
                 key={column.title}
                 variants={containerVariants}
                 initial="hidden"
@@ -368,18 +368,22 @@ const Footer = () => {
                 viewport={{ once: true, amount: 0.3 }}
                 className="flex flex-col"
               >
-                <motion.h3 
+                <MotionDiv 
                   className="text-lg font-bold mb-4 text-gray-900 dark:text-white flex items-center"
                   variants={itemVariants}
                 >
                   <span className="bg-gradient-to-r from-blue-600 to-blue-400 h-5 w-1 rounded-full mr-2 inline-block"></span>
                   {column.title}
-                </motion.h3>
-                <motion.ul className="space-y-2" variants={containerVariants}>
+                </MotionDiv>
+                <MotionDiv className="space-y-2" variants={containerVariants}>
                   {column.links.map((link, linkIdx) => (
-                    <motion.li key={link.name} variants={itemVariants} custom={linkIdx}>
+                    <MotionDiv 
+                      key={link.name}
+                      variants={itemVariants}
+                      custom={linkIdx}
+                    >
                       <Link href={link.href} passHref>
-                        <motion.div 
+                        <MotionA 
                           className="flex items-center text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors group cursor-pointer"
                           variants={linkVariants}
                           initial="initial"
@@ -387,17 +391,17 @@ const Footer = () => {
                         >
                           <FiChevronRight className="mr-1 text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" size={14} />
                           <span>{link.name}</span>
-                        </motion.div>
+                        </MotionA>
                       </Link>
-                    </motion.li>
+                    </MotionDiv>
                   ))}
-                </motion.ul>
-              </motion.div>
+                </MotionDiv>
+              </MotionDiv>
             ))}
           </div>
           
           {/* Bottom Bar */}
-          <motion.div 
+          <MotionDiv 
             className="mt-12 pt-6 border-t border-gray-200 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -412,7 +416,7 @@ const Footer = () => {
               <FiHeart className="mx-1 text-red-500" size={14} />
               <span>in Wijchen</span>
             </div>
-          </motion.div>
+          </MotionDiv>
         </div>
       </div>
     </footer>

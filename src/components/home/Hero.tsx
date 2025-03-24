@@ -1,5 +1,5 @@
 'use client';
-import { motion } from 'framer-motion';
+import { MotionDiv } from '@/components/client/MotionWrapper';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRef } from 'react';
@@ -46,7 +46,7 @@ const Hero = () => {
       {/* Dynamic animated background elements */}
       <div className="absolute inset-0 w-full h-full">
         {/* Animated gradient overlay */}
-        <motion.div 
+        <MotionDiv 
           className="absolute inset-0 opacity-20 bg-gradient-conic from-blue-400 via-transparent to-transparent"
           animate={{
             rotate: [0, 360],
@@ -59,7 +59,7 @@ const Hero = () => {
         />
         
         {/* Animated dots/particles */}
-        <motion.div 
+        <MotionDiv 
           className="absolute inset-0"
           initial={{ opacity: 0.1 }}
           animate={{ opacity: 0.15 }}
@@ -74,7 +74,7 @@ const Hero = () => {
           <div className="absolute top-1/2 left-2/3 w-1 h-1 rounded-full bg-white"></div>
           <div className="absolute top-1/4 left-3/4 w-2 h-2 rounded-full bg-blue-200"></div>
           <div className="absolute top-3/4 right-1/4 w-1 h-1 rounded-full bg-white"></div>
-        </motion.div>
+        </MotionDiv>
       </div>
       
       <div className="relative w-full">
@@ -82,7 +82,7 @@ const Hero = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Hero content */}
             <div className="flex flex-col space-y-6">
-              <motion.div 
+              <MotionDiv 
                 initial="hidden"
                 animate="visible"
                 variants={fadeIn}
@@ -98,10 +98,10 @@ const Hero = () => {
                 <p className="text-lg text-gray-300 max-w-xl">
                   Wij kopen uw gebruikte IT-apparatuur op, wissen data veilig en geven hardware een tweede leven.
                 </p>
-              </motion.div>
+              </MotionDiv>
               
               {/* CTA Buttons */}
-              <motion.div 
+              <MotionDiv 
                 className="flex flex-wrap gap-4"
                 variants={fadeIn}
                 initial="hidden"
@@ -119,10 +119,10 @@ const Hero = () => {
                 >
                   Bel ons: 06 4989 2654
                 </a>
-              </motion.div>
+              </MotionDiv>
               
               {/* Features */}
-              <motion.div 
+              <MotionDiv 
                 className="flex flex-wrap gap-4 mt-4"
                 variants={fadeIn}
                 initial="hidden"
@@ -142,11 +142,11 @@ const Hero = () => {
                     </span>
                   </div>
                 ))}
-              </motion.div>
+              </MotionDiv>
             </div>
             
             {/* Hero image */}
-            <motion.div 
+            <MotionDiv 
               className="relative w-full h-[300px] md:h-[400px] rounded-xl overflow-hidden shadow-2xl"
               variants={fadeIn}
               initial="hidden"
@@ -163,7 +163,7 @@ const Hero = () => {
                 className="object-cover object-center"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-            </motion.div>
+            </MotionDiv>
           </div>
         </div>
       </div>

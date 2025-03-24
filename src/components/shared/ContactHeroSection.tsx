@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { MotionDiv } from '@/components/client/MotionWrapper';
 
 /**
  * Server Component voor de hero sectie van de contactpagina
@@ -13,7 +13,7 @@ const ContactHeroSection = () => {
       {/* Dynamic animated background elements */}
       <div className="absolute inset-0 w-full h-full">
         {/* Animated gradient overlay */}
-        <motion.div 
+        <MotionDiv 
           className="absolute inset-0 opacity-20 bg-gradient-conic from-blue-400 via-transparent to-transparent"
           animate={{
             rotate: [0, 360],
@@ -26,7 +26,7 @@ const ContactHeroSection = () => {
         />
         
         {/* Animated dots/particles */}
-        <motion.div 
+        <MotionDiv 
           className="absolute inset-0"
           initial={{ opacity: 0.1 }}
           animate={{ opacity: 0.15 }}
@@ -41,7 +41,7 @@ const ContactHeroSection = () => {
           <div className="absolute top-1/2 left-2/3 w-1 h-1 rounded-full bg-white"></div>
           <div className="absolute top-1/4 left-3/4 w-2 h-2 rounded-full bg-blue-200"></div>
           <div className="absolute top-3/4 right-1/4 w-1 h-1 rounded-full bg-white"></div>
-        </motion.div>
+        </MotionDiv>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
