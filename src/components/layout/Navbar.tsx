@@ -192,7 +192,7 @@ const Navbar = () => {
             <div className="flex items-center gap-2 text-sm text-white/90">
               <div className="flex items-center gap-1.5">
                 <FiMapPin size={14} />
-                <span>Aalsburg 3111, Wijchen</span>
+                <span>Regio Nijmegen</span>
               </div>
               <div className="hidden lg:block h-4 w-px bg-blue-700 mx-2"></div>
               <span className="hidden lg:block">Ma-Vr: 9:00 - 17:00</span>
@@ -243,8 +243,8 @@ const Navbar = () => {
                       onClick={() => toggleDropdown(link.name)}
                       className={`flex items-center px-3 py-2 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500/50 ${
                         isDropdownVisible(link.name) 
-                          ? 'text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 font-medium' 
-                          : 'text-gray-800 dark:text-gray-200 hover:text-blue-700 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20'
+                          ? 'text-blue-700 dark:text-blue-400 font-medium' 
+                          : 'text-gray-800 dark:text-gray-200 hover:text-blue-700 dark:hover:text-blue-400 font-medium'
                       }`}
                       aria-expanded={isDropdownVisible(link.name)}
                       aria-controls={`dropdown-${link.name}`}
@@ -269,7 +269,7 @@ const Navbar = () => {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 10, scale: 0.95 }}
                           transition={{ duration: 0.2, ease: "easeOut" }}
-                          className="absolute left-0 mt-1 w-80 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-100 dark:border-gray-700 overflow-hidden z-50"
+                          className="absolute left-0 mt-1 w-80 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-blue-100 dark:border-blue-900/30 overflow-hidden z-50"
                           onMouseEnter={() => {
                             // When mouse enters dropdown menu, clear any timeout
                             if (hoverTimeoutRef.current) {
@@ -286,7 +286,7 @@ const Navbar = () => {
                           <div className="p-3">
                             {Object.entries(groupByCategory(link.items || [])).map(([category, items]) => (
                               <div key={category} className="mb-3 last:mb-0">
-                                <div className="font-medium text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-1.5 px-2">
+                                <div className="font-medium text-xs uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-1.5 px-2">
                                   {category}
                                 </div>
                                 <div className="grid gap-1">
@@ -305,7 +305,7 @@ const Navbar = () => {
                                           setHoverDropdown(null);
                                         }}
                                       >
-                                        <div className="p-2 rounded-md bg-gray-100 dark:bg-gray-700 mr-3 group-hover:scale-110 transition-transform group-hover:shadow-sm">
+                                        <div className="p-2 rounded-md bg-blue-50 dark:bg-blue-900/30 mr-3 group-hover:scale-110 transition-transform group-hover:shadow-sm">
                                           {item.icon}
                                         </div>
                                         <div className="pt-1">
@@ -322,7 +322,7 @@ const Navbar = () => {
                                 </div>
                               </div>
                             ))}
-                            <div className="mt-2 pt-2 border-t border-gray-100 dark:border-gray-700">
+                            <div className="mt-2 pt-2 border-t border-blue-100 dark:border-blue-900/30">
                               <Link
                                 href="/diensten"
                                 className="flex justify-between items-center px-2 py-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
@@ -346,8 +346,8 @@ const Navbar = () => {
                     href={link.path}
                     className={`px-3 py-2 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500/50 ${
                       pathname === link.path 
-                        ? 'text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 font-medium' 
-                        : 'text-gray-800 dark:text-gray-200 hover:text-blue-700 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 font-medium'
+                        ? 'text-blue-700 dark:text-blue-400 font-medium' 
+                        : 'text-gray-800 dark:text-gray-200 hover:text-blue-700 dark:hover:text-blue-400 font-medium'
                     }`}
                   >
                     {link.name}
@@ -489,7 +489,7 @@ const Navbar = () => {
                     </a>
                     <div className="flex items-center gap-2">
                       <FiMapPin size={16} className="text-blue-600 dark:text-blue-400" />
-                      <span>Aalsburg 3111, 6602WR Wijchen</span>
+                      <span>Regio Nijmegen</span>
                     </div>
                   </div>
                 </div>

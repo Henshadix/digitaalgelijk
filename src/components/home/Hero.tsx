@@ -45,11 +45,6 @@ const Hero = () => {
             {/* Hero content - nu gecentreerd op volledige breedte */}
             <div className="flex flex-col space-y-8 max-w-3xl text-center">
               <div className="flex flex-col space-y-5">
-                <div className="inline-flex items-center self-center bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-2">
-                  <FiMapPin className="mr-2 text-blue-300" /> 
-                  <span className="text-blue-100 font-medium text-sm">Aalsburg 3111, Wijchen</span>
-                </div>
-                
                 <h1 
                   id="hero-heading"
                   className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1]"

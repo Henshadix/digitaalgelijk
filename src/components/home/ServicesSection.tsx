@@ -119,30 +119,20 @@ const ServicesSection = () => {
                 {/* Service header with image and icon */}
                 <div className="relative h-48 overflow-hidden">
                   {/* Service image with overlay */}
-                  <div className="absolute inset-0 w-full h-full">
-                    <Image 
-                      src={service.imageUrl}
-                      alt={service.title}
-                      fill
-                      width={600}
-                      height={300}
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      unoptimized={true}
-                      loading="eager"
-                    />
-                    <div className={`absolute inset-0 bg-gradient-to-r ${service.color} opacity-90 mix-blend-multiply`}></div>
-                  </div>
-                  
-                  {/* Service title and icon */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <div className="flex items-center space-x-4">
-                      <div className="bg-white/20 w-14 h-14 rounded-lg flex items-center justify-center backdrop-blur-sm shadow-lg">
-                        {service.icon}
+                  <div className="absolute inset-0 w-full h-full bg-blue-100 dark:bg-blue-900/20">
+                    {/* Fallback solid color background */}
+                    <div className={`absolute inset-0 bg-gradient-to-r ${service.color} opacity-90`}></div>
+                    
+                    {/* Service title and icon */}
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                      <div className="flex items-center space-x-4">
+                        <div className="bg-white/20 w-14 h-14 rounded-lg flex items-center justify-center backdrop-blur-sm shadow-lg">
+                          {service.icon}
+                        </div>
+                        <h3 className="text-2xl font-bold">
+                          {service.title}
+                        </h3>
                       </div>
-                      <h3 className="text-2xl font-bold">
-                        {service.title}
-                      </h3>
                     </div>
                   </div>
                 </div>
