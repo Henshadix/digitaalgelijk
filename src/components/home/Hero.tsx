@@ -109,9 +109,6 @@ const Hero = () => {
                 quality={90}
                 className="object-cover object-center rounded-xl"
               />
-              
-              {/* Gradient overlay for better content contrast */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/20 z-20 rounded-xl"></div>
             </div>
           </div>
         </div>
