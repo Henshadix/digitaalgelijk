@@ -15,11 +15,9 @@ const services = [
     link: '/diensten/hardware-opkopen',
     buttonText: 'Verkoop uw hardware',
     gradient: 'from-blue-800 to-blue-600',
-    style: {
-      background: 'linear-gradient(to right, #1e40af, #2563eb)',
-      color: 'white'
-    },
+    bgColor: 'bg-blue-700',
     textColor: 'text-blue-400',
+    bgGradient: 'bg-gradient-to-r from-blue-800 to-blue-600',
   },
   {
     id: 'data-verwijdering',
@@ -30,11 +28,9 @@ const services = [
     link: '/diensten/data-verwijdering',
     buttonText: 'Beveilig uw data',
     gradient: 'from-purple-800 to-purple-600',
-    style: {
-      background: 'linear-gradient(to right, #6b21a8, #9333ea)',
-      color: 'white'
-    },
+    bgColor: 'bg-purple-700',
     textColor: 'text-purple-400',
+    bgGradient: 'bg-gradient-to-r from-purple-800 to-purple-600',
   },
   {
     id: 'hardware-recycling',
@@ -45,11 +41,9 @@ const services = [
     link: '/diensten/hardware-recycling',
     buttonText: 'Start met recycling',
     gradient: 'from-green-800 to-green-600',
-    style: {
-      background: 'linear-gradient(to right, #166534, #16a34a)',
-      color: 'white'
-    },
+    bgColor: 'bg-green-700',
     textColor: 'text-green-400',
+    bgGradient: 'bg-gradient-to-r from-green-800 to-green-600',
   },
   {
     id: 'logistieke-diensten',
@@ -60,11 +54,9 @@ const services = [
     link: '/diensten/logistieke-diensten',
     buttonText: 'Plan uw transport',
     gradient: 'from-amber-800 to-amber-600',
-    style: {
-      background: 'linear-gradient(to right, #92400e, #d97706)',
-      color: 'white'
-    },
+    bgColor: 'bg-amber-700',
     textColor: 'text-amber-400',
+    bgGradient: 'bg-gradient-to-r from-amber-800 to-amber-600',
   }
 ];
 
@@ -83,7 +75,7 @@ const ServicesSection = () => {
   };
 
   return (
-    <section id="services-section" className="bg-gray-50 dark:bg-gray-900 relative overflow-hidden pt-0" style={{ backgroundColor: '#f8fafc' }}>
+    <section id="services-section" className="bg-white dark:bg-gray-900 relative overflow-hidden pt-0">
       {/* Achtergrond elementen */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-blue-100/30 dark:bg-blue-900/10 blur-3xl"></div>
@@ -107,36 +99,18 @@ const ServicesSection = () => {
               {/* Kleur sectie - combinatie van class en style */}
               <div className={`w-full lg:w-5/12 relative ${index % 2 === 0 ? 'lg:ml-0' : 'lg:mr-0'}`}>
                 <div className="w-full h-64 md:h-80 lg:h-[350px] relative overflow-hidden">
-                  {/* Gradient achtergrond met directe inline styles */}
-                  <div style={{
-                    position: 'absolute',
-                    inset: 0,
-                    ...service.style,
-                    opacity: 1,
-                    zIndex: 10
-                  }}></div>
+                  {/* Gradient achtergrond met Tailwind klassen */}
+                  <div className={`absolute inset-0 ${service.bgGradient} z-10`}></div>
                   
-                  {/* De Gradiënt fade naar de achtergrond met inline styles */}
-                  <div style={{
-                    position: 'absolute',
-                    inset: 0,
-                    background: index % 2 === 0 
-                      ? 'linear-gradient(to right, transparent, #f8fafc)'
-                      : 'linear-gradient(to left, transparent, #f8fafc)',
-                    zIndex: 20,
-                    opacity: 0.9
-                  }}
-                  className="dark:bg-gradient-to-r dark:from-transparent dark:to-gray-900"></div>
+                  {/* De Gradiënt fade naar de achtergrond - simpele, betrouwbare aanpak */}
+                  <div className={`absolute inset-0 ${index % 2 === 0 ? 'bg-gradient-to-r' : 'bg-gradient-to-l'} from-transparent to-white z-20 opacity-90 dark:to-gray-900`}></div>
                   
                   {/* Subtiel patroon voor visuele diepte */}
-                  <div style={{
-                    position: 'absolute',
-                    inset: 0,
-                    zIndex: 5,
-                    opacity: 0.2,
-                    backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)',
-                    backgroundSize: '20px 20px'
-                  }}></div>
+                  <div className="absolute inset-0 bg-pattern opacity-20 z-5" 
+                    style={{
+                      backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)',
+                      backgroundSize: '20px 20px'
+                    }}></div>
                   
                   {/* De service icon in een cirkel */}
                   <div 
@@ -171,18 +145,7 @@ const ServicesSection = () => {
                   
                   <Link
                     href={service.link}
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      padding: '0.625rem 1.25rem',
-                      borderRadius: '0.5rem',
-                      ...service.style,
-                      fontWeight: 500,
-                      transition: 'all 300ms',
-                      border: '1px solid rgba(255, 255, 255, 0.1)',
-                      boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)'
-                    }}
-                    className="hover:shadow-lg"
+                    className={`inline-flex items-center px-5 py-2.5 rounded-lg text-white ${service.bgGradient} hover:shadow-lg transition-all duration-300 font-medium border border-white/10`}
                   >
                     <span>{service.buttonText}</span>
                     <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
