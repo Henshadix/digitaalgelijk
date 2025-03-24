@@ -1,11 +1,11 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
+import { MotionDiv } from '@/components/client/MotionWrapper';
 
 /**
- * Server Component voor de Call-to-Action sectie op de contactpagina
- * 
- * Dit component is statisch (geen client-side interactiviteit nodig)
- * en daarom geïmplementeerd als een Server Component voor betere prestaties
+ * Client Component voor de Call-to-Action sectie op de contactpagina
  */
 const ContactCTASection = () => {
   return (
@@ -22,7 +22,13 @@ const ContactCTASection = () => {
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-3xl mx-auto text-center">
+        <MotionDiv 
+          className="max-w-3xl mx-auto text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Duurzame IT-oplossingen voor uw bedrijf
           </h2>
@@ -50,7 +56,7 @@ const ContactCTASection = () => {
             <span className="mr-2">❤️</span>
             <span>Met passie voor duurzaamheid vanuit Wijchen</span>
           </div>
-        </div>
+        </MotionDiv>
       </div>
     </section>
   );

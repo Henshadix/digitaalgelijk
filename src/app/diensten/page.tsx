@@ -1,7 +1,13 @@
+'use client';
+
 import { Metadata } from 'next';
+import PageWrapper from '@/components/client/PageWrapper';
 import Image from 'next/image';
+import PageWrapper from '@/components/client/PageWrapper';
 import Link from 'next/link';
+import PageWrapper from '@/components/client/PageWrapper';
 import { FiMonitor, FiShield, FiRefreshCw, FiFileText, FiTruck, FiDollarSign, FiArrowRight } from 'react-icons/fi';
+import PageWrapper from '@/components/client/PageWrapper';
 
 export const metadata: Metadata = {
   title: 'Onze Diensten | Neiwu',
@@ -112,7 +118,7 @@ export default function Diensten() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <PageWrapper><div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {mainServices.map((service) => (
               <div 
                 key={service.title}
@@ -246,5 +252,5 @@ export default function Diensten() {
         </div>
       </section>
     </main>
-  );
+  </PageWrapper>);
 } 

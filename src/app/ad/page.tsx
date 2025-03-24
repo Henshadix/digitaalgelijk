@@ -1,6 +1,11 @@
+'use client';
+
 import { Metadata } from 'next';
+import PageWrapper from '@/components/client/PageWrapper';
 import Image from 'next/image';
+import PageWrapper from '@/components/client/PageWrapper';
 import dynamic from 'next/dynamic';
+import PageWrapper from '@/components/client/PageWrapper';
 
 // Dynamisch importeren van client component
 const PageHeader = dynamic(() => import('@/components/ui/PageHeader'), { ssr: true });
@@ -12,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function AdPage() {
   return (
-    <>
+    <PageWrapper><>
       <PageHeader
         title="Ad's Nieuwe iPhone 16"
         description="Goed nieuws! Ad heeft een nieuwe iPhone 16 gekocht."
@@ -77,5 +82,6 @@ export default function AdPage() {
         </div>
       </section>
     </>
-  );
+  </PageWrapper>
+    );
 } 

@@ -1,7 +1,13 @@
+'use client';
+
 import { Metadata } from 'next';
+import PageWrapper from '@/components/client/PageWrapper';
 import Image from 'next/image';
+import PageWrapper from '@/components/client/PageWrapper';
 import Link from 'next/link';
+import PageWrapper from '@/components/client/PageWrapper';
 import { FiGlobe, FiRefreshCw, FiAward, FiBarChart2, FiArrowRight, FiCheckCircle } from 'react-icons/fi';
+import PageWrapper from '@/components/client/PageWrapper';
 
 export const metadata: Metadata = {
   title: 'Duurzaamheid | Neiwu',
@@ -121,7 +127,7 @@ export default function Duurzaamheid() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <PageWrapper><div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {sustainabilityGoals.map((goal) => (
               <div key={goal.title} className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl">
                 <div className="w-14 h-14 bg-green-100 dark:bg-green-800 rounded-full flex items-center justify-center text-green-600 dark:text-green-400 mb-4">
@@ -304,5 +310,5 @@ export default function Duurzaamheid() {
         </div>
       </section>
     </main>
-  );
+  </PageWrapper>);
 } 

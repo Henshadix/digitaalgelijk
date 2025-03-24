@@ -34,8 +34,33 @@ const nextConfig = {
     serverComponentsExternalPackages: ['framer-motion'],
     serverActions: {
       bodySizeLimit: '10mb'
-    }
-  }
+    },
+    optimizePackageImports: ['framer-motion']
+  },
+  // Compiler optimalisaties
+  compiler: {
+    styledComponents: true,
+    removeConsole: process.env.NODE_ENV === 'production'
+  },
+  // Verhogen webpack memory limit
+  webpack: (config) => {
+    config.infrastructureLogging = {
+      level: 'error',
+    };
+    
+    // Verhoog memory limiet voor de build
+    config.performance = {
+      hints: false,
+      maxEntrypointSize: 512000,
+      maxAssetSize: 512000
+    };
+    
+    return config;
+  },
+  // Uitschakelen van strict mode in productie voor betere performance
+  reactStrictMode: process.env.NODE_ENV !== 'production',
+  // Optimalisatie voor statische pagina's
+  output: 'standalone'
 };
 
 export default nextConfig; 

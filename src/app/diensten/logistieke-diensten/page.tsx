@@ -1,7 +1,13 @@
+'use client';
+
 import { Metadata } from 'next';
+import PageWrapper from '@/components/client/PageWrapper';
 import Link from 'next/link';
+import PageWrapper from '@/components/client/PageWrapper';
 import { FiTruck, FiCheckCircle, FiPackage, FiMap, FiShield, FiArrowRight } from 'react-icons/fi';
+import PageWrapper from '@/components/client/PageWrapper';
 import Image from 'next/image';
+import PageWrapper from '@/components/client/PageWrapper';
 
 export const metadata: Metadata = {
   title: 'Logistieke Diensten | Neiwu',
@@ -10,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function LogistiekeDiensten() {
   return (
-    <main className="flex flex-col min-h-screen">
+    <PageWrapper><main className="flex flex-col min-h-screen">
       {/* Hero Section */}
       <section className="relative py-20 md:py-28 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-gray-900 dark:to-blue-900/30 overflow-hidden">
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
@@ -343,5 +349,6 @@ export default function LogistiekeDiensten() {
         </div>
       </section>
     </main>
-  );
+  </PageWrapper>
+    );
 } 
