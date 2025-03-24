@@ -83,7 +83,7 @@ const ServicesSection = () => {
   };
 
   return (
-    <section id="services-section" className="bg-gray-100 dark:bg-gray-900 relative overflow-hidden pt-0">
+    <section id="services-section" className="bg-gray-50 dark:bg-gray-900 relative overflow-hidden pt-0">
       {/* Achtergrond elementen */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-blue-100/30 dark:bg-blue-900/10 blur-3xl"></div>
@@ -97,12 +97,16 @@ const ServicesSection = () => {
             key={service.id}
             className="border-t border-b border-gray-200 dark:border-gray-700 w-full py-0"
           >
-            <div
+            <MotionDiv
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
               className={`relative max-w-[1400px] mx-auto px-0 flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center`}
             >
               {/* Kleur sectie - combinatie van class en style */}
               <div className={`w-full lg:w-5/12 relative ${index % 2 === 0 ? 'lg:ml-0' : 'lg:mr-0'}`}>
-                <div className="w-full h-64 md:h-96 lg:h-[32rem] relative overflow-hidden">
+                <div className="w-full h-64 md:h-80 lg:h-[350px] relative overflow-hidden">
                   {/* Gradient achtergrond met directe inline styles */}
                   <div style={{
                     position: 'absolute',
@@ -117,12 +121,12 @@ const ServicesSection = () => {
                     position: 'absolute',
                     inset: 0,
                     background: index % 2 === 0 
-                      ? 'linear-gradient(to right, transparent, #f1f5f9)'
-                      : 'linear-gradient(to left, transparent, #f1f5f9)',
+                      ? 'linear-gradient(to right, transparent, rgb(249, 250, 251))'
+                      : 'linear-gradient(to left, transparent, rgb(249, 250, 251))',
                     zIndex: 20,
-                    opacity: 0.8
+                    opacity: 0.85
                   }}
-                  className="dark:bg-opacity-50 dark:bg-gray-900"></div>
+                  className="dark:bg-gradient-to-r dark:from-transparent dark:to-gray-900"></div>
                   
                   {/* Subtiel patroon voor visuele diepte */}
                   <div style={{
@@ -146,8 +150,13 @@ const ServicesSection = () => {
               </div>
               
               {/* Content sectie */}
-              <div className="w-full lg:w-7/12 flex flex-col px-4 md:px-6 py-12">
-                <div>
+              <div className="w-full lg:w-7/12 flex flex-col px-4 md:px-6 py-10">
+                <MotionDiv
+                  initial={{ opacity: 0, x: index % 2 === 0 ? 30 : -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                >
                   <div className={`inline-flex items-center gap-2 ${service.textColor} mb-2`}>
                     <span className="font-semibold uppercase tracking-wide text-sm">{service.subtitle}</span>
                   </div>
@@ -178,9 +187,9 @@ const ServicesSection = () => {
                     <span>{service.buttonText}</span>
                     <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
                   </Link>
-                </div>
+                </MotionDiv>
               </div>
-            </div>
+            </MotionDiv>
           </div>
         ))}
       </div>
