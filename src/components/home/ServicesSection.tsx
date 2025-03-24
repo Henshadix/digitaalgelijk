@@ -3,7 +3,6 @@ import { FiMonitor, FiRefreshCw, FiShield, FiTruck, FiArrowRight } from 'react-i
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { MotionDiv } from '@/components/client/MotionWrapper';
-import Image from 'next/image';
 
 // Diensten data
 const services = [
@@ -16,9 +15,9 @@ const services = [
     link: '/diensten/hardware-opkopen',
     buttonText: 'Verkoop uw hardware',
     gradient: 'from-blue-800 to-blue-600',
+    bgGradient: 'bg-gradient-to-r from-blue-800 to-blue-600',
     textColor: 'text-blue-400',
     fallbackBg: 'bg-blue-700',
-    imageUrl: '/images/services/hardware-opkopen-pro.jpg'
   },
   {
     id: 'data-verwijdering',
@@ -29,9 +28,9 @@ const services = [
     link: '/diensten/data-verwijdering',
     buttonText: 'Beveilig uw data',
     gradient: 'from-purple-800 to-purple-600',
+    bgGradient: 'bg-gradient-to-r from-purple-800 to-purple-600',
     textColor: 'text-purple-400',
     fallbackBg: 'bg-purple-700',
-    imageUrl: '/images/services/data-verwijdering-pro.jpg'
   },
   {
     id: 'hardware-recycling',
@@ -42,9 +41,9 @@ const services = [
     link: '/diensten/hardware-recycling',
     buttonText: 'Start met recycling',
     gradient: 'from-green-800 to-green-600',
+    bgGradient: 'bg-gradient-to-r from-green-800 to-green-600',
     textColor: 'text-green-400',
     fallbackBg: 'bg-green-700',
-    imageUrl: '/images/services/hardware-recycling-pro.jpg'
   },
   {
     id: 'logistieke-diensten',
@@ -55,9 +54,9 @@ const services = [
     link: '/diensten/logistieke-diensten',
     buttonText: 'Plan uw transport',
     gradient: 'from-amber-800 to-amber-600',
+    bgGradient: 'bg-gradient-to-r from-amber-800 to-amber-600',
     textColor: 'text-amber-400',
     fallbackBg: 'bg-amber-700',
-    imageUrl: '/images/services/logistieke-diensten-pro.jpg'
   }
 ];
 
@@ -97,34 +96,22 @@ const ServicesSection = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className={`relative container mx-auto px-0 flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center`}
             >
-              {/* Afbeelding sectie - nu full height */}
+              {/* Kleur sectie - nu volledige CSS-oplossing zonder afbeeldingen */}
               <div className={`w-full lg:w-5/12 relative ${index % 2 === 0 ? 'lg:ml-0 pr-0' : 'lg:mr-0 pl-0'}`}>
                 <div className="w-full h-64 md:h-96 lg:h-[calc(100%+1px)] relative overflow-hidden">
-                  {/* Fallback achtergrond als image niet laadt */}
-                  <div className={`absolute inset-0 ${service.fallbackBg} z-0`}></div>
-                  
-                  {/* Image met error handling */}
-                  <div className="absolute inset-0 z-5">
-                    <Image 
-                      src={service.imageUrl}
-                      alt={service.title}
-                      fill
-                      className="object-cover object-center"
-                      sizes="(max-width: 768px) 100vw, 40vw"
-                      priority={index === 0}
-                      onError={(e) => {
-                        // Verberg de afbeelding bij error, laat fallback zien
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = 'none';
-                      }}
-                    />
-                  </div>
-                  
-                  {/* Gradient overlay voor beide gevallen */}
-                  <div className={`absolute inset-0 bg-gradient-to-r ${service.gradient} opacity-70 mix-blend-multiply z-10`}></div>
+                  {/* Gradient achtergrond */}
+                  <div className={`absolute inset-0 ${service.bgGradient} z-10`}></div>
                   
                   {/* De Gradiënt fade naar de achtergrond */}
-                  <div className={`absolute inset-0 bg-gradient-to-${index % 2 === 0 ? 'r' : 'l'} from-transparent to-gray-50 dark:to-gray-900 z-20 opacity-90`}></div>
+                  <div className={`absolute inset-0 ${index % 2 === 0 ? 'bg-gradient-to-r' : 'bg-gradient-to-l'} from-transparent to-gray-50 dark:to-gray-900 z-20 opacity-80`}></div>
+                  
+                  {/* Subtiel patroon voor visuele diepte */}
+                  <div className="absolute inset-0 z-5 bg-opacity-10 opacity-20" 
+                    style={{
+                      backgroundImage: `radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+                      backgroundSize: '20px 20px'
+                    }}>
+                  </div>
                   
                   {/* De service icon in een cirkel */}
                   <div className={`absolute ${index % 2 === 0 ? 'right-4' : 'left-4'} top-4 z-30 p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30`}>
