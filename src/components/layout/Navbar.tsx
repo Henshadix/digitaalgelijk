@@ -269,7 +269,7 @@ const Navbar = () => {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 10, scale: 0.95 }}
                           transition={{ duration: 0.2, ease: "easeOut" }}
-                          className="absolute left-0 mt-1 w-80 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-blue-100 dark:border-blue-900/30 overflow-hidden z-50"
+                          className="absolute left-0 mt-1 w-80 bg-gray-900 dark:bg-gray-900 rounded-lg shadow-lg border border-gray-800 dark:border-gray-800 overflow-hidden z-50 text-white"
                           onMouseEnter={() => {
                             // When mouse enters dropdown menu, clear any timeout
                             if (hoverTimeoutRef.current) {
@@ -286,7 +286,7 @@ const Navbar = () => {
                           <div className="p-3">
                             {Object.entries(groupByCategory(link.items || [])).map(([category, items]) => (
                               <div key={category} className="mb-3 last:mb-0">
-                                <div className="font-medium text-xs uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-1.5 px-2">
+                                <div className="font-medium text-xs uppercase tracking-wider text-blue-400 dark:text-blue-400 mb-1.5 px-2">
                                   {category}
                                 </div>
                                 <div className="grid gap-1">
@@ -299,20 +299,20 @@ const Navbar = () => {
                                     >
                                       <Link 
                                         href={item.path}
-                                        className="flex items-start p-2 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all duration-150 group focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500/50"
+                                        className="flex items-start p-2 rounded-md hover:bg-gray-800 dark:hover:bg-gray-800 transition-all duration-150 group focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500/50"
                                         onClick={() => {
                                           setActiveDropdown(null);
                                           setHoverDropdown(null);
                                         }}
                                       >
-                                        <div className="p-2 rounded-md bg-blue-50 dark:bg-blue-900/30 mr-3 group-hover:scale-110 transition-transform group-hover:shadow-sm">
+                                        <div className="p-2 rounded-md bg-gray-800 dark:bg-gray-800 mr-3 group-hover:scale-110 transition-transform group-hover:shadow-sm">
                                           {item.icon}
                                         </div>
                                         <div className="pt-1">
-                                          <div className="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                                          <div className="font-medium text-white dark:text-white group-hover:text-blue-400 dark:group-hover:text-blue-400 transition-colors">
                                             {item.name}
                                           </div>
-                                          <div className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
+                                          <div className="text-sm text-gray-300 dark:text-gray-300 line-clamp-2">
                                             {item.description}
                                           </div>
                                         </div>
@@ -322,10 +322,10 @@ const Navbar = () => {
                                 </div>
                               </div>
                             ))}
-                            <div className="mt-2 pt-2 border-t border-blue-100 dark:border-blue-900/30">
+                            <div className="mt-2 pt-2 border-t border-gray-800 dark:border-gray-800">
                               <Link
                                 href="/diensten"
-                                className="flex justify-between items-center px-2 py-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                                className="flex justify-between items-center px-2 py-1.5 text-sm font-medium text-blue-400 dark:text-blue-400 hover:underline"
                                 onClick={() => {
                                   setActiveDropdown(null);
                                   setHoverDropdown(null);
@@ -415,21 +415,21 @@ const Navbar = () => {
                             animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}
                             transition={{ duration: 0.3 }}
-                            className="pl-4 pb-2 space-y-1 mt-1 bg-gray-50 dark:bg-gray-800/50 rounded-md"
+                            className="pl-4 pb-2 space-y-1 mt-1 bg-gray-900 dark:bg-gray-900 rounded-md"
                           >
                             {Object.entries(groupByCategory(link.items || [])).map(([category, items]) => (
                               <div key={category} className="pt-2 first:pt-0">
-                                <div className="text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400 px-4 pb-1">
+                                <div className="text-xs font-medium uppercase tracking-wider text-blue-400 dark:text-blue-400 px-4 pb-1">
                                   {category}
                                 </div>
                                 {items.map((item) => (
                                   <Link
                                     key={item.path}
                                     href={item.path}
-                                    className="flex items-center gap-3 px-4 py-2.5 rounded-md text-gray-700 dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500/40"
+                                    className="flex items-center gap-3 px-4 py-2.5 rounded-md text-white dark:text-white hover:text-blue-400 dark:hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500/40"
                                     onClick={() => setIsOpen(false)}
                                   >
-                                    <span className="bg-white dark:bg-gray-700 p-1.5 rounded-md shadow-sm">
+                                    <span className="bg-gray-800 dark:bg-gray-800 p-1.5 rounded-md shadow-sm">
                                       {item.icon}
                                     </span>
                                     <span className="font-medium">{item.name}</span>
@@ -437,10 +437,10 @@ const Navbar = () => {
                                 ))}
                               </div>
                             ))}
-                            <div className="mt-2 pt-2 px-4 border-t border-gray-200 dark:border-gray-700">
+                            <div className="mt-2 pt-2 px-4 border-t border-gray-800 dark:border-gray-800">
                               <Link
                                 href="/diensten"
-                                className="flex items-center justify-between text-sm font-medium text-blue-600 dark:text-blue-400 py-1"
+                                className="flex items-center justify-between text-sm font-medium text-blue-400 dark:text-blue-400 py-1"
                                 onClick={() => setIsOpen(false)}
                               >
                                 <span>Alle diensten bekijken</span>
