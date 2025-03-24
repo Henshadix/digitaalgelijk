@@ -89,24 +89,20 @@ const ServicesSection = () => {
             key={service.id}
             className={`border-t border-b border-gray-200 dark:border-gray-700 py-0 w-full`}
           >
-            <MotionDiv
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className={`relative container mx-auto px-0 flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center`}
+            <div
+              className={`relative max-w-[1400px] mx-auto px-0 flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center`}
             >
               {/* Kleur sectie - nu volledige CSS-oplossing zonder afbeeldingen */}
               <div className={`w-full lg:w-5/12 relative ${index % 2 === 0 ? 'lg:ml-0 pr-0' : 'lg:mr-0 pl-0'}`}>
                 <div className="w-full h-64 md:h-96 lg:h-[calc(100%+1px)] relative overflow-hidden">
-                  {/* Gradient achtergrond */}
-                  <div className={`absolute inset-0 ${service.bgGradient} z-10`}></div>
+                  {/* Gradient achtergrond - zet!important voor betrouwbaarheid */}
+                  <div className={`absolute inset-0 ${service.bgGradient} z-10`} style={{opacity: '1 !important'}}></div>
                   
                   {/* De Gradiënt fade naar de achtergrond */}
                   <div className={`absolute inset-0 ${index % 2 === 0 ? 'bg-gradient-to-r' : 'bg-gradient-to-l'} from-transparent to-gray-50 dark:to-gray-900 z-20 opacity-80`}></div>
                   
                   {/* Subtiel patroon voor visuele diepte */}
-                  <div className="absolute inset-0 z-5 bg-opacity-10 opacity-20" 
+                  <div className="absolute inset-0 z-5 opacity-20"
                     style={{
                       backgroundImage: `radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)`,
                       backgroundSize: '20px 20px'
@@ -124,12 +120,7 @@ const ServicesSection = () => {
               
               {/* Content sectie */}
               <div className="w-full lg:w-7/12 flex flex-col px-4 md:px-6 py-12">
-                <MotionDiv
-                  initial={{ opacity: 0, x: index % 2 === 0 ? 30 : -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                >
+                <div>
                   <div className={`inline-flex items-center gap-2 ${service.textColor} mb-2`}>
                     <span className="font-semibold uppercase tracking-wide text-sm">{service.subtitle}</span>
                   </div>
@@ -149,9 +140,9 @@ const ServicesSection = () => {
                     <span>{service.buttonText}</span>
                     <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
                   </Link>
-                </MotionDiv>
+                </div>
               </div>
-            </MotionDiv>
+            </div>
           </div>
         ))}
       </div>
