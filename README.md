@@ -2,6 +2,10 @@
 
 Een moderne, responsieve website voor EcoTech, een bedrijf gespecialiseerd in het opkopen van hardware, recyclen van elektronische apparaten en het veilig verwijderen van data.
 
+## Deployment Status
+- Laatste update: 23 juli 2024
+- Status: Live op [digitaalgelijk.nl](https://digitaalgelijk.nl)
+
 ## Technologieën
 
 - **Next.js 14** - React framework met App Router
