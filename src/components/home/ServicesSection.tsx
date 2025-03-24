@@ -1,76 +1,73 @@
 'use client';
-import { FiMonitor, FiRefreshCw, FiShield, FiTruck, FiArrowRight, FiCheck } from 'react-icons/fi';
+import { FiMonitor, FiRefreshCw, FiShield, FiTruck, FiArrowRight } from 'react-icons/fi';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { MotionDiv } from '@/components/client/MotionWrapper';
 import Image from 'next/image';
 
+// Diensten data
+const services = [
+  {
+    id: 'hardware-opkopen',
+    title: 'Hardware Opkopen',
+    subtitle: 'Maximale waarde voor uw apparatuur',
+    description: 'Wij kopen uw gebruikte IT-apparatuur op tegen eerlijke prijzen, ongeacht het aantal of de staat. Krijg een professionele waardebepaling binnen 24 uur en gebruik onze gratis ophaalservice in heel Nederland.',
+    icon: <FiMonitor className="w-7 h-7" />,
+    link: '/diensten/hardware-opkopen',
+    buttonText: 'Verkoop uw hardware',
+    color: 'blue',
+    gradient: 'from-blue-800 to-blue-600',
+    textColor: 'text-blue-400',
+    imageUrl: '/images/services/hardware-opkopen-pro.jpg'
+  },
+  {
+    id: 'data-verwijdering',
+    title: 'Data Verwijdering',
+    subtitle: 'Veilig en gecertificeerd',
+    description: 'Onze gecertificeerde dataverwijdering voldoet aan de hoogste veiligheidsnormen en GDPR-eisen. Wij leveren uitgebreide rapportage en certificering voor volledige traceerbaarheid en compliance.',
+    icon: <FiShield className="w-7 h-7" />,
+    link: '/diensten/data-verwijdering',
+    buttonText: 'Beveilig uw data',
+    color: 'purple',
+    gradient: 'from-purple-800 to-purple-600',
+    textColor: 'text-purple-400',
+    imageUrl: '/images/services/data-verwijdering-pro.jpg'
+  },
+  {
+    id: 'hardware-recycling',
+    title: 'Hardware Recycling',
+    subtitle: 'Duurzame verwerking',
+    description: 'Minimaliseer uw milieu-impact met onze duurzame IT-recycling diensten. Wij zorgen voor maximaal hergebruik van materialen, leveren een CO2-besparingsrapport en garanderen 100% circulaire verwerking.',
+    icon: <FiRefreshCw className="w-7 h-7" />,
+    link: '/diensten/hardware-recycling',
+    buttonText: 'Start met recycling',
+    color: 'green',
+    gradient: 'from-green-800 to-green-600',
+    textColor: 'text-green-400',
+    imageUrl: '/images/services/hardware-recycling-pro.jpg'
+  },
+  {
+    id: 'logistieke-diensten',
+    title: 'Logistieke Diensten',
+    subtitle: 'Veilig transport en opslag',
+    description: 'Veilig transport en opslag van uw IT-apparatuur, met volledige tracking en tracing in heel Nederland. Onze beveiligde transportmiddelen en flexibele planning maken het proces zorgeloos.',
+    icon: <FiTruck className="w-7 h-7" />,
+    link: '/diensten/logistieke-diensten',
+    buttonText: 'Plan uw transport',
+    color: 'amber',
+    gradient: 'from-amber-800 to-amber-600',
+    textColor: 'text-amber-400',
+    imageUrl: '/images/services/logistieke-diensten-pro.jpg'
+  }
+];
+
 const ServicesSection = () => {
-  // Vereenvoudigde services data
-  const mainServices = [
-    {
-      title: 'Hardware Opkopen',
-      description: 'Wij kopen uw gebruikte IT-apparatuur op tegen eerlijke prijzen, ongeacht het aantal of de staat.',
-      icon: <FiMonitor className="w-8 h-8" />,
-      link: '/diensten/hardware-opkopen',
-      color: 'from-blue-500 to-blue-600',
-      hoverColor: 'group-hover:from-blue-600 group-hover:to-blue-700',
-      benefits: ['Waardebepaling binnen 24 uur', 'Ophaalservice in heel Nederland', 'Transparante prijsstructuur'],
-      imageUrl: 'https://digitaalgelijk.nl/images/services/hardware-opkopen-pro.jpg?v=2'
-    },
-    {
-      title: 'Data Verwijdering',
-      description: 'Gecertificeerde dataverwijdering volgens de hoogste veiligheidsnormen, met uitgebreide rapportage en certificering.',
-      icon: <FiShield className="w-8 h-8" />,
-      link: '/diensten/data-verwijdering',
-      color: 'from-purple-500 to-purple-600',
-      hoverColor: 'group-hover:from-purple-600 group-hover:to-purple-700',
-      benefits: ['GDPR-compliant', 'Certificaat van vernietiging', 'Volledige traceerbaarheid'],
-      imageUrl: 'https://digitaalgelijk.nl/images/services/data-verwijdering-pro.jpg?v=2'
-    },
-    {
-      title: 'Hardware Recycling',
-      description: 'Duurzame recycling van IT-apparatuur met maximaal hergebruik van materialen en minimale milieubelasting.',
-      icon: <FiRefreshCw className="w-8 h-8" />,
-      link: '/diensten/hardware-recycling',
-      color: 'from-green-500 to-green-600',
-      hoverColor: 'group-hover:from-green-600 group-hover:to-green-700',
-      benefits: ['CO2-besparingsrapport', 'Milieucertificaat', '100% circulaire verwerking'],
-      imageUrl: 'https://digitaalgelijk.nl/images/services/hardware-recycling-pro.jpg?v=2'
-    },
-    {
-      title: 'Logistieke Diensten',
-      description: 'Veilig transport en opslag van uw IT-apparatuur, met volledige tracking en tracing in heel Nederland.',
-      icon: <FiTruck className="w-8 h-8" />,
-      link: '/diensten/logistieke-diensten',
-      color: 'from-amber-500 to-amber-600',
-      hoverColor: 'group-hover:from-amber-600 group-hover:to-amber-700',
-      benefits: ['Beveiligde transportmiddelen', 'Track & trace', 'Flexibele planning'],
-      imageUrl: 'https://digitaalgelijk.nl/images/services/logistieke-diensten-pro.jpg?v=2'
-    }
-  ];
-
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: (custom: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: custom * 0.1,
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    })
-  };
-
   return (
-    <section id="services-section" className="py-24 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
-      {/* Enhanced background design elements */}
-      <div className="absolute inset-0 overflow-hidden opacity-40 pointer-events-none">
-        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-blue-100 dark:bg-blue-900/20 blur-3xl"></div>
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-green-100 dark:bg-green-900/20 blur-3xl"></div>
-        
-        {/* Added subtle grid pattern */}
-        <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]">
+    <section id="services-section" className="bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
+      {/* Achtergrond elementen */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Grid patroon */}
+        <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
           <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -82,10 +79,10 @@ const ServicesSection = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Section header with enhanced animation */}
+      <div className="container mx-auto px-4 md:px-6 relative z-10 py-16 md:py-24">
+        {/* Section header */}
         <MotionDiv 
-          className="text-center mb-16"
+          className="text-center mb-20"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -94,7 +91,7 @@ const ServicesSection = () => {
           <span className="inline-block text-blue-600 dark:text-blue-400 font-medium text-sm px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-900/30 mb-4">
             Onze Specialisaties
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
             Complete IT Oplossingen
           </h2>
           <div className="h-1 w-24 bg-gradient-to-r from-blue-400 to-blue-600 mx-auto rounded mb-6" />
@@ -103,66 +100,74 @@ const ServicesSection = () => {
           </p>
         </MotionDiv>
 
-        {/* Redesigned services grid with improved card design */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 xl:gap-10">
-          {mainServices.map((service, index) => (
-            <MotionDiv 
-              key={service.title} 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-              variants={fadeInUp}
-              custom={index}
-              className="group"
+        {/* Diensten in alternerende layout */}
+        <div className="space-y-32 lg:space-y-40">
+          {services.map((service, index) => (
+            <MotionDiv
+              key={service.id}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className={`relative flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-8 lg:gap-12`}
             >
-              <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col overflow-hidden border border-gray-100 dark:border-gray-700 hover:border-blue-100 dark:hover:border-blue-800 hover:-translate-y-1">
-                {/* Service header with image and icon */}
-                <div className="relative h-48 overflow-hidden">
-                  {/* Service image with overlay */}
-                  <div className="absolute inset-0 w-full h-full bg-blue-100 dark:bg-blue-900/20">
-                    {/* Fallback solid color background */}
-                    <div className={`absolute inset-0 bg-gradient-to-r ${service.color} opacity-90`}></div>
-                    
-                    {/* Service title and icon */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                      <div className="flex items-center space-x-4">
-                        <div className="bg-white/20 w-14 h-14 rounded-lg flex items-center justify-center backdrop-blur-sm shadow-lg">
-                          {service.icon}
-                        </div>
-                        <h3 className="text-2xl font-bold">
-                          {service.title}
-                        </h3>
-                      </div>
+              {/* Afbeelding sectie */}
+              <div className="w-full lg:w-1/2 relative">
+                <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden relative">
+                  {/* Overlay voor de afbeelding */}
+                  <div className={`absolute inset-0 bg-gradient-to-r ${service.gradient} opacity-90 mix-blend-multiply z-10`}></div>
+                  
+                  {/* De Gradiënt fade naar de achtergrond */}
+                  <div className={`absolute inset-0 bg-gradient-to-${index % 2 === 0 ? 'r' : 'l'} from-transparent via-transparent to-gray-50 dark:to-gray-900 z-20 opacity-70`}></div>
+                  
+                  {/* De service icon in een cirkel */}
+                  <div className={`absolute ${index % 2 === 0 ? 'right-6' : 'left-6'} top-6 z-30 p-3 rounded-full bg-white/20 backdrop-blur-sm`}>
+                    <div className={service.textColor}>
+                      {service.icon}
                     </div>
                   </div>
+                  
+                  {/* Afbeelding */}
+                  <Image
+                    src={service.imageUrl}
+                    alt={service.title}
+                    fill
+                    className="object-cover object-center z-0"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    priority={index === 0}
+                    unoptimized={true}
+                  />
                 </div>
-                
-                <div className="p-6 flex-grow flex flex-col">
-                  <p className="text-gray-600 dark:text-gray-300 mb-5 flex-grow">
+              </div>
+              
+              {/* Content sectie */}
+              <div className="w-full lg:w-1/2 flex flex-col">
+                <MotionDiv
+                  initial={{ opacity: 0, x: index % 2 === 0 ? 30 : -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                >
+                  <div className={`inline-flex items-center gap-2 ${service.textColor} mb-3`}>
+                    <span className="font-semibold uppercase tracking-wide text-sm">{service.subtitle}</span>
+                  </div>
+                  
+                  <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-5 tracking-tight">
+                    {service.title}
+                  </h3>
+                  
+                  <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-xl">
                     {service.description}
                   </p>
                   
-                  {/* Key benefits with checkmarks */}
-                  <div className="mb-6">
-                    <h4 className="text-sm font-semibold uppercase text-gray-500 dark:text-gray-400 mb-3">Voordelen</h4>
-                    <ul className="space-y-2">
-                      {service.benefits.map((benefit, i) => (
-                        <li key={i} className="flex items-start">
-                          <FiCheck className="text-green-500 mt-1 mr-2 flex-shrink-0" />
-                          <span className="text-sm text-gray-600 dark:text-gray-300">{benefit}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  
-                  <Link 
-                    href={service.link} 
-                    className={`self-start inline-flex items-center px-5 py-2.5 text-sm font-medium rounded-lg text-white bg-gradient-to-r ${service.color} ${service.hoverColor} transition-all duration-300 shadow-sm hover:shadow mt-auto`}
+                  <Link
+                    href={service.link}
+                    className={`inline-flex items-center px-6 py-3.5 rounded-lg text-white bg-gradient-to-r ${service.gradient} hover:shadow-lg transition-all duration-300 font-medium`}
                   >
-                    <span>Meer informatie</span>
+                    <span>{service.buttonText}</span>
                     <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
                   </Link>
-                </div>
+                </MotionDiv>
               </div>
             </MotionDiv>
           ))}
