@@ -83,7 +83,7 @@ const ServicesSection = () => {
   };
 
   return (
-    <section id="services-section" style={{ backgroundColor: '#f9fafb', paddingTop: 0, position: 'relative', overflow: 'hidden' }}>
+    <section id="services-section" className="bg-gray-100 dark:bg-gray-900 relative overflow-hidden pt-0">
       {/* Achtergrond elementen */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-blue-100/30 dark:bg-blue-900/10 blur-3xl"></div>
@@ -91,47 +91,18 @@ const ServicesSection = () => {
       </div>
 
       {/* Diensten in alternerende layout */}
-      <div style={{ margin: 0, padding: 0 }}>
+      <div className="space-y-0">
         {services.map((service, index) => (
           <div 
             key={service.id}
-            style={{ 
-              borderTop: '1px solid #e5e7eb', 
-              borderBottom: '1px solid #e5e7eb', 
-              width: '100%',
-              padding: 0
-            }}
+            className="border-t border-b border-gray-200 dark:border-gray-700 w-full py-0"
           >
             <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                maxWidth: '1400px',
-                margin: '0 auto',
-                padding: 0,
-                '@media (min-width: 1024px)': {
-                  flexDirection: index % 2 === 0 ? 'row' : 'row-reverse'
-                }
-              }}
-              className={`flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}
+              className={`relative max-w-[1400px] mx-auto px-0 flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center`}
             >
-              {/* Kleur sectie - nu met inline styles */}
-              <div style={{ 
-                width: '100%', 
-                position: 'relative',
-                marginLeft: index % 2 === 0 ? 0 : undefined,
-                marginRight: index % 2 === 0 ? undefined : 0,
-                '@media (min-width: 1024px)': { width: '41.666667%' }
-              }} className="lg:w-5/12">
-                <div style={{ 
-                  width: '100%', 
-                  height: '16rem', 
-                  position: 'relative',
-                  overflow: 'hidden',
-                  '@media (min-width: 768px)': { height: '24rem' },
-                  '@media (min-width: 1024px)': { height: 'calc(100% + 1px)' }
-                }} className="h-64 md:h-96 lg:h-[calc(100%+1px)]">
+              {/* Kleur sectie - combinatie van class en style */}
+              <div className={`w-full lg:w-5/12 relative ${index % 2 === 0 ? 'lg:ml-0' : 'lg:mr-0'}`}>
+                <div className="w-full h-64 md:h-96 lg:h-[32rem] relative overflow-hidden">
                   {/* Gradient achtergrond met directe inline styles */}
                   <div style={{
                     position: 'absolute',
@@ -146,11 +117,12 @@ const ServicesSection = () => {
                     position: 'absolute',
                     inset: 0,
                     background: index % 2 === 0 
-                      ? 'linear-gradient(to right, transparent, #f9fafb)'
-                      : 'linear-gradient(to left, transparent, #f9fafb)',
+                      ? 'linear-gradient(to right, transparent, #f1f5f9)'
+                      : 'linear-gradient(to left, transparent, #f1f5f9)',
                     zIndex: 20,
                     opacity: 0.8
-                  }}></div>
+                  }}
+                  className="dark:bg-opacity-50 dark:bg-gray-900"></div>
                   
                   {/* Subtiel patroon voor visuele diepte */}
                   <div style={{
@@ -163,17 +135,9 @@ const ServicesSection = () => {
                   }}></div>
                   
                   {/* De service icon in een cirkel */}
-                  <div style={{
-                    position: 'absolute',
-                    top: '1rem',
-                    [index % 2 === 0 ? 'right' : 'left']: '1rem',
-                    zIndex: 30,
-                    padding: '0.75rem',
-                    borderRadius: '9999px',
-                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                    backdropFilter: 'blur(4px)',
-                    border: '1px solid rgba(255, 255, 255, 0.3)'
-                  }}>
+                  <div 
+                    className={`absolute ${index % 2 === 0 ? 'right-4' : 'left-4'} top-4 z-30 p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30`}
+                  >
                     <div className={service.textColor}>
                       {service.icon}
                     </div>
@@ -182,14 +146,7 @@ const ServicesSection = () => {
               </div>
               
               {/* Content sectie */}
-              <div style={{ 
-                width: '100%', 
-                display: 'flex', 
-                flexDirection: 'column',
-                padding: '3rem 1rem',
-                '@media (min-width: 768px)': { padding: '3rem 1.5rem' },
-                '@media (min-width: 1024px)': { width: '58.333333%' }
-              }} className="px-4 md:px-6 py-12 lg:w-7/12">
+              <div className="w-full lg:w-7/12 flex flex-col px-4 md:px-6 py-12">
                 <div>
                   <div className={`inline-flex items-center gap-2 ${service.textColor} mb-2`}>
                     <span className="font-semibold uppercase tracking-wide text-sm">{service.subtitle}</span>
