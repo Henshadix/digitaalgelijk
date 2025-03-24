@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { MotionDiv } from '@/components/client/MotionWrapper';
 
-// Diensten data
+// Diensten data met inline styles in plaats van Tailwind classes
 const services = [
   {
     id: 'hardware-opkopen',
@@ -15,9 +15,11 @@ const services = [
     link: '/diensten/hardware-opkopen',
     buttonText: 'Verkoop uw hardware',
     gradient: 'from-blue-800 to-blue-600',
-    bgGradient: 'bg-gradient-to-r from-blue-800 to-blue-600',
+    style: {
+      background: 'linear-gradient(to right, #1e40af, #2563eb)',
+      color: 'white'
+    },
     textColor: 'text-blue-400',
-    fallbackBg: 'bg-blue-700',
   },
   {
     id: 'data-verwijdering',
@@ -28,9 +30,11 @@ const services = [
     link: '/diensten/data-verwijdering',
     buttonText: 'Beveilig uw data',
     gradient: 'from-purple-800 to-purple-600',
-    bgGradient: 'bg-gradient-to-r from-purple-800 to-purple-600',
+    style: {
+      background: 'linear-gradient(to right, #6b21a8, #9333ea)',
+      color: 'white'
+    },
     textColor: 'text-purple-400',
-    fallbackBg: 'bg-purple-700',
   },
   {
     id: 'hardware-recycling',
@@ -41,9 +45,11 @@ const services = [
     link: '/diensten/hardware-recycling',
     buttonText: 'Start met recycling',
     gradient: 'from-green-800 to-green-600',
-    bgGradient: 'bg-gradient-to-r from-green-800 to-green-600',
+    style: {
+      background: 'linear-gradient(to right, #166534, #16a34a)',
+      color: 'white'
+    },
     textColor: 'text-green-400',
-    fallbackBg: 'bg-green-700',
   },
   {
     id: 'logistieke-diensten',
@@ -54,9 +60,11 @@ const services = [
     link: '/diensten/logistieke-diensten',
     buttonText: 'Plan uw transport',
     gradient: 'from-amber-800 to-amber-600',
-    bgGradient: 'bg-gradient-to-r from-amber-800 to-amber-600',
+    style: {
+      background: 'linear-gradient(to right, #92400e, #d97706)',
+      color: 'white'
+    },
     textColor: 'text-amber-400',
-    fallbackBg: 'bg-amber-700',
   }
 ];
 
@@ -75,7 +83,7 @@ const ServicesSection = () => {
   };
 
   return (
-    <section id="services-section" className="bg-gray-50 dark:bg-gray-900 relative overflow-hidden pt-0">
+    <section id="services-section" style={{ backgroundColor: '#f9fafb', paddingTop: 0, position: 'relative', overflow: 'hidden' }}>
       {/* Achtergrond elementen */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-blue-100/30 dark:bg-blue-900/10 blur-3xl"></div>
@@ -83,34 +91,89 @@ const ServicesSection = () => {
       </div>
 
       {/* Diensten in alternerende layout */}
-      <div className="space-y-0">
+      <div style={{ margin: 0, padding: 0 }}>
         {services.map((service, index) => (
           <div 
             key={service.id}
-            className={`border-t border-b border-gray-200 dark:border-gray-700 py-0 w-full`}
+            style={{ 
+              borderTop: '1px solid #e5e7eb', 
+              borderBottom: '1px solid #e5e7eb', 
+              width: '100%',
+              padding: 0
+            }}
           >
             <div
-              className={`relative max-w-[1400px] mx-auto px-0 flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center`}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                maxWidth: '1400px',
+                margin: '0 auto',
+                padding: 0,
+                '@media (min-width: 1024px)': {
+                  flexDirection: index % 2 === 0 ? 'row' : 'row-reverse'
+                }
+              }}
+              className={`flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}
             >
-              {/* Kleur sectie - nu volledige CSS-oplossing zonder afbeeldingen */}
-              <div className={`w-full lg:w-5/12 relative ${index % 2 === 0 ? 'lg:ml-0 pr-0' : 'lg:mr-0 pl-0'}`}>
-                <div className="w-full h-64 md:h-96 lg:h-[calc(100%+1px)] relative overflow-hidden">
-                  {/* Gradient achtergrond - zet!important voor betrouwbaarheid */}
-                  <div className={`absolute inset-0 ${service.bgGradient} z-10`} style={{opacity: '1 !important'}}></div>
+              {/* Kleur sectie - nu met inline styles */}
+              <div style={{ 
+                width: '100%', 
+                position: 'relative',
+                marginLeft: index % 2 === 0 ? 0 : undefined,
+                marginRight: index % 2 === 0 ? undefined : 0,
+                '@media (min-width: 1024px)': { width: '41.666667%' }
+              }} className="lg:w-5/12">
+                <div style={{ 
+                  width: '100%', 
+                  height: '16rem', 
+                  position: 'relative',
+                  overflow: 'hidden',
+                  '@media (min-width: 768px)': { height: '24rem' },
+                  '@media (min-width: 1024px)': { height: 'calc(100% + 1px)' }
+                }} className="h-64 md:h-96 lg:h-[calc(100%+1px)]">
+                  {/* Gradient achtergrond met directe inline styles */}
+                  <div style={{
+                    position: 'absolute',
+                    inset: 0,
+                    ...service.style,
+                    opacity: 1,
+                    zIndex: 10
+                  }}></div>
                   
-                  {/* De Gradiënt fade naar de achtergrond */}
-                  <div className={`absolute inset-0 ${index % 2 === 0 ? 'bg-gradient-to-r' : 'bg-gradient-to-l'} from-transparent to-gray-50 dark:to-gray-900 z-20 opacity-80`}></div>
+                  {/* De Gradiënt fade naar de achtergrond met inline styles */}
+                  <div style={{
+                    position: 'absolute',
+                    inset: 0,
+                    background: index % 2 === 0 
+                      ? 'linear-gradient(to right, transparent, #f9fafb)'
+                      : 'linear-gradient(to left, transparent, #f9fafb)',
+                    zIndex: 20,
+                    opacity: 0.8
+                  }}></div>
                   
                   {/* Subtiel patroon voor visuele diepte */}
-                  <div className="absolute inset-0 z-5 opacity-20"
-                    style={{
-                      backgroundImage: `radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-                      backgroundSize: '20px 20px'
-                    }}>
-                  </div>
+                  <div style={{
+                    position: 'absolute',
+                    inset: 0,
+                    zIndex: 5,
+                    opacity: 0.2,
+                    backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)',
+                    backgroundSize: '20px 20px'
+                  }}></div>
                   
                   {/* De service icon in een cirkel */}
-                  <div className={`absolute ${index % 2 === 0 ? 'right-4' : 'left-4'} top-4 z-30 p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30`}>
+                  <div style={{
+                    position: 'absolute',
+                    top: '1rem',
+                    [index % 2 === 0 ? 'right' : 'left']: '1rem',
+                    zIndex: 30,
+                    padding: '0.75rem',
+                    borderRadius: '9999px',
+                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                    backdropFilter: 'blur(4px)',
+                    border: '1px solid rgba(255, 255, 255, 0.3)'
+                  }}>
                     <div className={service.textColor}>
                       {service.icon}
                     </div>
@@ -119,7 +182,14 @@ const ServicesSection = () => {
               </div>
               
               {/* Content sectie */}
-              <div className="w-full lg:w-7/12 flex flex-col px-4 md:px-6 py-12">
+              <div style={{ 
+                width: '100%', 
+                display: 'flex', 
+                flexDirection: 'column',
+                padding: '3rem 1rem',
+                '@media (min-width: 768px)': { padding: '3rem 1.5rem' },
+                '@media (min-width: 1024px)': { width: '58.333333%' }
+              }} className="px-4 md:px-6 py-12 lg:w-7/12">
                 <div>
                   <div className={`inline-flex items-center gap-2 ${service.textColor} mb-2`}>
                     <span className="font-semibold uppercase tracking-wide text-sm">{service.subtitle}</span>
@@ -135,7 +205,18 @@ const ServicesSection = () => {
                   
                   <Link
                     href={service.link}
-                    className={`inline-flex items-center px-5 py-2.5 rounded-lg text-white bg-gradient-to-r ${service.gradient} hover:shadow-lg transition-all duration-300 font-medium border border-white/10`}
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      padding: '0.625rem 1.25rem',
+                      borderRadius: '0.5rem',
+                      ...service.style,
+                      fontWeight: 500,
+                      transition: 'all 300ms',
+                      border: '1px solid rgba(255, 255, 255, 0.1)',
+                      boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)'
+                    }}
+                    className="hover:shadow-lg"
                   >
                     <span>{service.buttonText}</span>
                     <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
