@@ -1,38 +1,29 @@
 'use client';
 
 import React from 'react';
-import PageWrapper from '@/components/client/PageWrapper';
 import Link from 'next/link';
-import PageWrapper from '@/components/client/PageWrapper';
 import Script from 'next/script';
-import PageWrapper from '@/components/client/PageWrapper';
 import { ContactFormClient } from '@/components/client/ContactFormClient';
-import PageWrapper from '@/components/client/PageWrapper';
 import ContactInfo from '@/components/shared/ContactInfo';
-import PageWrapper from '@/components/client/PageWrapper';
 import ContactHeroSection from '@/components/shared/ContactHeroSection';
-import PageWrapper from '@/components/client/PageWrapper';
 import ContactCTASection from '@/components/shared/ContactCTASection';
-import PageWrapper from '@/components/client/PageWrapper';
 import DecorativeBackground from '@/components/ui/DecorativeBackground';
-import PageWrapper from '@/components/client/PageWrapper';
-import PageWrapper from '@/components/client/PageWrapper';
 import PageWrapper from '@/components/client/PageWrapper';
 
 // Contact information gedefinieerd op server-side
-  const contactInfo = {
-    address: {
-      street: 'Aalsburg 3111',
-      city: '6602WR Wijchen',
-      country: 'Nederland'
-    },
-    phone: '06 49 89 26 54',
-    email: 'info@digitaalgelijk.nl',
-    hours: [
-      { days: 'Maandag - Vrijdag', hours: '09:00 - 17:00' },
-      { days: 'Zaterdag - Zondag', hours: 'Op afspraak' }
-    ]
-  };
+const contactInfo = {
+  address: {
+    street: 'Aalsburg 3111',
+    city: '6602WR Wijchen',
+    country: 'Nederland'
+  },
+  phone: '06 49 89 26 54',
+  email: 'info@digitaalgelijk.nl',
+  hours: [
+    { days: 'Maandag - Vrijdag', hours: '09:00 - 17:00' },
+    { days: 'Zaterdag - Zondag', hours: 'Op afspraak' }
+  ]
+};
 
 // JSON-LD data genereren op de server
 const generateJsonLd = () => {
@@ -59,18 +50,18 @@ const generateJsonLd = () => {
   };
 };
 
-// Server Component voor de contactpagina
+// Client Component voor de contactpagina
 export default function Contact() {
   const jsonLd = generateJsonLd();
 
   return (
-    <>
-      {/* JSON-LD structured data voor betere SEO */}
-      <PageWrapper><Script id="contact-jsonld" type="application/ld+json" strategy="afterInteractive">
-        {JSON.stringify(jsonLd)}
-      </Script>
-      
-      <PageWrapper>
+    <PageWrapper>
+      <>
+        {/* JSON-LD structured data voor betere SEO */}
+        <Script id="contact-jsonld" type="application/ld+json" strategy="afterInteractive">
+          {JSON.stringify(jsonLd)}
+        </Script>
+        
         <main className="flex flex-col min-h-screen relative">
           {/* Decoratieve achtergrond elementen - nu als apart component */}
           <DecorativeBackground />
@@ -100,7 +91,7 @@ export default function Contact() {
           {/* CTA Section - statisch, server-side gerenderd */}
           <ContactCTASection />
         </main>
-      </PageWrapper>
-    </>
-  </PageWrapper>);
+      </>
+    </PageWrapper>
+  );
 } 

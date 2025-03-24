@@ -31,12 +31,13 @@ const nextConfig = {
   },
   // Fix voor framer-motion
   experimental: {
-    serverComponentsExternalPackages: ['framer-motion'],
     serverActions: {
       bodySizeLimit: '10mb'
     },
     optimizePackageImports: ['framer-motion']
   },
+  // Gebruik transpilePackages in plaats van serverComponentsExternalPackages
+  transpilePackages: ['framer-motion'],
   // Compiler optimalisaties
   compiler: {
     styledComponents: true,
