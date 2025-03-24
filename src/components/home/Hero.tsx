@@ -41,11 +41,11 @@ const Hero = () => {
       
       <div className="relative w-full py-16 md:py-24 lg:py-28">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Hero content - 7 columns on large screens */}
-            <div className="flex flex-col space-y-8 lg:col-span-7">
+          <div className="flex justify-center">
+            {/* Hero content - nu gecentreerd op volledige breedte */}
+            <div className="flex flex-col space-y-8 max-w-3xl text-center">
               <div className="flex flex-col space-y-5">
-                <div className="inline-flex items-center self-start bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-2">
+                <div className="inline-flex items-center self-center bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-2">
                   <FiMapPin className="mr-2 text-blue-300" /> 
                   <span className="text-blue-100 font-medium text-sm">Aalsburg 3111, Wijchen</span>
                 </div>
@@ -57,13 +57,13 @@ const Hero = () => {
                   Geef uw hardware een <span className="bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent">tweede leven</span>
                 </h1>
                 
-                <p className="text-lg sm:text-xl text-blue-100 max-w-2xl">
+                <p className="text-lg sm:text-xl text-blue-100 mx-auto">
                   Wij kopen uw gebruikte IT-apparatuur op, wissen data veilig en geven hardware een tweede leven met oog voor duurzaamheid.
                 </p>
               </div>
               
-              {/* CTA Buttons with improved accessibility */}
-              <div className="flex flex-wrap gap-4">
+              {/* CTA Buttons met verbeterde toegankelijkheid, nu gecentreerd */}
+              <div className="flex flex-wrap gap-4 justify-center">
                 <Link href="/diensten" 
                   className="inline-flex items-center px-6 py-3.5 text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-all duration-150 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-blue-900"
                 >
@@ -78,8 +78,8 @@ const Hero = () => {
                 </a>
               </div>
               
-              {/* Scroll indicator - visible only on desktop */}
-              <div className="hidden md:flex justify-start mt-8">
+              {/* Scroll indicator - nu gecentreerd */}
+              <div className="hidden md:flex justify-center mt-8">
                 <button 
                   onClick={() => document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' })}
                   className="flex flex-col items-center cursor-pointer group focus:outline-none"
@@ -95,20 +95,6 @@ const Hero = () => {
                   </MotionDiv>
                 </button>
               </div>
-            </div>
-            
-            {/* Hero image - 5 columns on large screens */}
-            <div className="relative w-full h-[375px] sm:h-[450px] lg:h-[570px] lg:col-span-5 rounded-xl overflow-hidden shadow-2xl">
-              {/* Image */}
-              <Image
-                src="/images/hero-image.jpg" 
-                alt="IT-hardware recycling en data verwijdering"
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 40vw, 500px"
-                priority={true}
-                quality={90}
-                className="object-cover object-center rounded-xl"
-              />
             </div>
           </div>
         </div>

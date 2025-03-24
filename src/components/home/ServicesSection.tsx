@@ -15,7 +15,7 @@ const ServicesSection = () => {
       color: 'from-blue-500 to-blue-600',
       hoverColor: 'group-hover:from-blue-600 group-hover:to-blue-700',
       benefits: ['Waardebepaling binnen 24 uur', 'Ophaalservice in heel Nederland', 'Transparante prijsstructuur'],
-      imageUrl: '/images/services/hardware-opkopen-pro.jpg?v=1'
+      imageUrl: 'https://digitaalgelijk.nl/images/services/hardware-opkopen-pro.jpg?v=2'
     },
     {
       title: 'Data Verwijdering',
@@ -25,7 +25,7 @@ const ServicesSection = () => {
       color: 'from-purple-500 to-purple-600',
       hoverColor: 'group-hover:from-purple-600 group-hover:to-purple-700',
       benefits: ['GDPR-compliant', 'Certificaat van vernietiging', 'Volledige traceerbaarheid'],
-      imageUrl: '/images/services/data-verwijdering-pro.jpg?v=1'
+      imageUrl: 'https://digitaalgelijk.nl/images/services/data-verwijdering-pro.jpg?v=2'
     },
     {
       title: 'Hardware Recycling',
@@ -35,7 +35,7 @@ const ServicesSection = () => {
       color: 'from-green-500 to-green-600',
       hoverColor: 'group-hover:from-green-600 group-hover:to-green-700',
       benefits: ['CO2-besparingsrapport', 'Milieucertificaat', '100% circulaire verwerking'],
-      imageUrl: '/images/services/hardware-recycling-pro.jpg?v=1'
+      imageUrl: 'https://digitaalgelijk.nl/images/services/hardware-recycling-pro.jpg?v=2'
     },
     {
       title: 'Logistieke Diensten',
@@ -45,7 +45,7 @@ const ServicesSection = () => {
       color: 'from-amber-500 to-amber-600',
       hoverColor: 'group-hover:from-amber-600 group-hover:to-amber-700',
       benefits: ['Beveiligde transportmiddelen', 'Track & trace', 'Flexibele planning'],
-      imageUrl: '/images/services/logistieke-diensten-pro.jpg?v=1'
+      imageUrl: 'https://digitaalgelijk.nl/images/services/logistieke-diensten-pro.jpg?v=2'
     }
   ];
 
@@ -128,7 +128,8 @@ const ServicesSection = () => {
                       height={300}
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, 50vw"
-                      unoptimized
+                      unoptimized={true}
+                      loading="eager"
                     />
                     <div className={`absolute inset-0 bg-gradient-to-r ${service.color} opacity-90 mix-blend-multiply`}></div>
                   </div>
