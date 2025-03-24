@@ -52,7 +52,7 @@ const ContactInfo: React.FC<ContactInfoProps> = ({ contactInfo }) => {
           <div className="ml-4">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Telefoon</h3>
             <p className="text-gray-600 dark:text-gray-400 mt-1">
-              <a href={`tel:${contactInfo.phone.replace(/\s/g, '')}`} className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
+              <a href={`tel:${contactInfo.phone.replace(/\s/g, '')}`} className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors min-w-[180px] inline-block">
                 {contactInfo.phone}
               </a>
             </p>
@@ -66,7 +66,7 @@ const ContactInfo: React.FC<ContactInfoProps> = ({ contactInfo }) => {
           <div className="ml-4">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">E-mail</h3>
             <p className="text-gray-600 dark:text-gray-400 mt-1">
-              <a href={`mailto:${contactInfo.email}`} className="hover:text-green-600 dark:hover:text-green-400 transition-colors">
+              <a href={`mailto:${contactInfo.email}`} className="hover:text-green-600 dark:hover:text-green-400 transition-colors min-w-[200px] inline-block">
                 {contactInfo.email}
               </a>
             </p>

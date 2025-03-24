@@ -48,7 +48,7 @@ const ContactCTASection = () => {
           </div>
           <div className="mt-8 text-blue-200 flex items-center justify-center">
             <span className="mr-2">❤️</span>
-            <span>Met passie voor duurzaamheid</span>
+            <span>Met passie voor duurzaamheid vanuit Wijchen</span>
           </div>
         </div>
       </div>

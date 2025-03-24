@@ -336,7 +336,7 @@ export default function LogistiekeDiensten() {
                 Offerte Aanvragen <FiArrowRight />
               </Link>
               <a href="tel:+31649892654" className="px-8 py-4 bg-blue-700 hover:bg-blue-800 text-white border border-blue-500 rounded-lg font-medium transition-colors">
-                Bel +31 (0)6 4989 2654
+                Bel 06 4989 2654
               </a>
             </div>
           </div>
