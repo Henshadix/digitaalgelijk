@@ -1,9 +1,0 @@
-@echo off
-echo Setting environment to production...
-set NODE_ENV=production
-
-echo Building the website...
-call npm run build
-
-echo Starting the website...
-call npm start 
