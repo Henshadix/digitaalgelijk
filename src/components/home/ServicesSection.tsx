@@ -79,10 +79,10 @@ const ServicesSection = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 md:px-6 relative z-10 py-16 md:py-24">
-        {/* Section header */}
+      {/* Section header */}
+      <div className="container mx-auto px-4 md:px-6 relative z-10 py-16 md:py-16">
         <MotionDiv 
-          className="text-center mb-16"
+          className="text-center mb-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -92,26 +92,30 @@ const ServicesSection = () => {
             Onze Specialisaties
           </span>
         </MotionDiv>
+      </div>
 
-        {/* Diensten in alternerende layout */}
-        <div className="space-y-24 lg:space-y-32">
-          {services.map((service, index) => (
+      {/* Diensten in alternerende layout */}
+      <div className="space-y-0">
+        {services.map((service, index) => (
+          <div 
+            key={service.id}
+            className={`border-t border-b border-gray-200 dark:border-gray-700 py-0 w-full`}
+          >
             <MotionDiv
-              key={service.id}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className={`relative flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-8 lg:gap-12 py-8 border-t border-b border-gray-200 dark:border-gray-700`}
+              className={`relative container mx-auto px-0 flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center`}
             >
-              {/* Afbeelding sectie */}
-              <div className="w-full lg:w-5/12 relative">
-                <div className="w-full aspect-[16/9] rounded-xl overflow-hidden relative shadow-lg border border-gray-200 dark:border-gray-700">
+              {/* Afbeelding sectie - nu full height */}
+              <div className={`w-full lg:w-5/12 relative ${index % 2 === 0 ? 'lg:ml-0 pr-0' : 'lg:mr-0 pl-0'}`}>
+                <div className="w-full h-64 md:h-96 lg:h-[calc(100%+1px)] relative overflow-hidden">
                   {/* Overlay voor de afbeelding */}
                   <div className={`absolute inset-0 bg-gradient-to-r ${service.gradient} opacity-80 mix-blend-multiply z-10`}></div>
                   
                   {/* De Gradiënt fade naar de achtergrond */}
-                  <div className={`absolute inset-0 bg-gradient-to-${index % 2 === 0 ? 'r' : 'l'} from-transparent via-transparent to-gray-50 dark:to-gray-900 z-20 opacity-70`}></div>
+                  <div className={`absolute inset-0 bg-gradient-to-${index % 2 === 0 ? 'r' : 'l'} from-transparent via-transparent to-gray-50 dark:to-gray-900 z-20 opacity-90`}></div>
                   
                   {/* De service icon in een cirkel */}
                   <div className={`absolute ${index % 2 === 0 ? 'right-4' : 'left-4'} top-4 z-30 p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30`}>
@@ -134,7 +138,7 @@ const ServicesSection = () => {
               </div>
               
               {/* Content sectie */}
-              <div className="w-full lg:w-7/12 flex flex-col">
+              <div className="w-full lg:w-7/12 flex flex-col px-4 md:px-6 py-12">
                 <MotionDiv
                   initial={{ opacity: 0, x: index % 2 === 0 ? 30 : -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -163,8 +167,8 @@ const ServicesSection = () => {
                 </MotionDiv>
               </div>
             </MotionDiv>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );
