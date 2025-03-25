@@ -143,9 +143,9 @@ export default function AdPage() {
                 </div>
               </div>
               
-              <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Aalsburg 3111, 6602WR Wijchen | <a href="mailto:info@digitaalgelijk.nl" className="text-blue-600 dark:text-blue-400">info@digitaalgelijk.nl</a>
+              <div className="mt-6 text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-center">
+                  Regio Nijmegen | <a href="mailto:info@digitaalgelijk.nl" className="text-blue-600 dark:text-blue-400">info@digitaalgelijk.nl</a>
                 </p>
               </div>
             </div>

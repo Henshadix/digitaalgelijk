@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { MotionDiv } from '@/components/client/MotionWrapper';
+import { FiMapPin } from 'react-icons/fi';
 
 /**
  * Client Component voor de Call-to-Action sectie op de contactpagina
@@ -62,9 +63,9 @@ const ContactCTASection = () => {
                 <span className="mr-2">📞</span>
                 <span>+31 6 4989 2654</span>
               </a>
-              <div className="flex items-center">
-                <span className="mr-2">📍</span>
-                <span>Aalsburg 3111, 6602WR Wijchen</span>
+              <div className="flex items-center gap-2">
+                <FiMapPin className="text-blue-600 dark:text-blue-400" size={18} />
+                <span>Regio Nijmegen</span>
               </div>
             </div>
           </div>

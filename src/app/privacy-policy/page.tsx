@@ -444,23 +444,9 @@ export default function PrivacyPolicy() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-1 text-gray-700 dark:text-gray-300">
                         <p className="font-semibold text-gray-900 dark:text-white">Digitaalgelijk</p>
-                        <p>Aalsburg 3111</p>
-                        <p>6602WR</p>
-                        <p>Te Wijchen</p>
-                      </div>
-                      <div className="space-y-3">
-                        <div className="flex items-center text-gray-700 dark:text-gray-300">
-                          <FiMail className="w-5 h-5 text-blue-600 dark:text-blue-400 mr-2" />
-                          <a href="mailto:Privacy@digitaalgelijk.nl" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                            Privacy@digitaalgelijk.nl
-                          </a>
-                        </div>
-                        <div className="flex items-center text-gray-700 dark:text-gray-300">
-                          <FiPhone className="w-5 h-5 text-blue-600 dark:text-blue-400 mr-2" />
-                          <a href="tel:+31649892654" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors" aria-label="Bel ons op +31 6 4989 2654">
-                            +31 6 4989 2654
-                          </a>
-                        </div>
+                        <p>Regio Nijmegen</p>
+                        <p>Email: <a href="mailto:info@digitaalgelijk.nl" className="text-blue-600 dark:text-blue-400">info@digitaalgelijk.nl</a></p>
+                        <p>Telefoon: <a href="tel:+31649892654" className="text-blue-600 dark:text-blue-400">+31 6 4989 2654</a></p>
                       </div>
                     </div>
                   </div>

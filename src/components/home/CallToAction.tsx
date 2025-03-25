@@ -2,8 +2,9 @@
 
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { FiArrowRight, FiCheck, FiMail, FiPhone, FiSend, FiShield, FiAward, FiClock, FiTruck, FiLock, FiRefreshCw } from 'react-icons/fi';
+import { FiArrowRight, FiCheck, FiMail, FiPhone, FiSend, FiShield, FiAward, FiClock, FiTruck, FiLock, FiRefreshCw, FiMapPin } from 'react-icons/fi';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const CallToAction = () => {
   // Form state
@@ -18,46 +19,84 @@ const CallToAction = () => {
   
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState<{[key: string]: string}>({});
   const formRef = useRef<HTMLFormElement>(null);
   
   // Benefits list
   const benefits = [
     {
-      icon: <FiAward size={18} />,
+      icon: <FiAward size={20} />,
       text: "Gecertificeerde dataverwijdering volgens GDPR-normen",
       color: "bg-gradient-to-r from-blue-500 to-blue-600"
     },
     {
-      icon: <FiRefreshCw size={18} />,
+      icon: <FiRefreshCw size={20} />,
       text: "Duurzame verwerking en recycling van IT-apparatuur",
       color: "bg-gradient-to-r from-green-500 to-green-600"
     },
     {
-      icon: <FiTruck size={18} />,
+      icon: <FiTruck size={20} />,
       text: "Gratis ophaalservice in heel Nederland",
       color: "bg-gradient-to-r from-indigo-500 to-indigo-600"
     },
     {
-      icon: <FiLock size={18} />,
+      icon: <FiLock size={20} />,
       text: "Veilige en vertrouwelijke afhandeling",
       color: "bg-gradient-to-r from-purple-500 to-purple-600"
     },
     {
-      icon: <FiClock size={18} />,
+      icon: <FiClock size={20} />,
       text: "Snelle service en transparante prijzen",
       color: "bg-gradient-to-r from-blue-600 to-blue-700"
     }
   ];
-  
+
   // Handle form input changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormState(prev => ({ ...prev, [name]: value }));
+    
+    // Clear error when user types
+    if (errors[name]) {
+      setErrors(prev => {
+        const newErrors = {...prev};
+        delete newErrors[name];
+        return newErrors;
+      });
+    }
+  };
+  
+  // Validate form
+  const validateForm = () => {
+    const newErrors: {[key: string]: string} = {};
+    
+    if (!formState.name.trim()) {
+      newErrors.name = "Naam is verplicht";
+    }
+    
+    if (!formState.email.trim()) {
+      newErrors.email = "E-mail is verplicht";
+    } else if (!/^\S+@\S+\.\S+$/.test(formState.email)) {
+      newErrors.email = "Voer een geldig e-mailadres in";
+    }
+    
+    if (!formState.message.trim()) {
+      newErrors.message = "Bericht is verplicht";
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
   
   // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate form before submission
+    if (!validateForm()) {
+      return;
+    }
+    
     setIsSubmitting(true);
     
     // Simulate form submission
@@ -88,14 +127,14 @@ const CallToAction = () => {
       className="py-24 relative overflow-hidden bg-gradient-to-b from-white to-gray-50 dark:from-gray-800 dark:to-gray-900"
       id="contact"
     >
-      {/* Background with gradient and pattern */}
+      {/* Enhanced background with gradient and pattern */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Decorative shapes */}
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 opacity-70"></div>
-        <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-blue-100 dark:bg-blue-900/20 blur-3xl opacity-60"></div>
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-indigo-100 dark:bg-indigo-900/20 blur-3xl opacity-60"></div>
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 opacity-80"></div>
+        <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-blue-100 dark:bg-blue-900/20 blur-3xl opacity-70"></div>
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-indigo-100 dark:bg-indigo-900/20 blur-3xl opacity-70"></div>
         
-        {/* Subtle grid pattern */}
+        {/* Enhanced grid pattern */}
         <div className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03]">
           <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -146,69 +185,86 @@ const CallToAction = () => {
         </motion.div>
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left column - Benefits */}
+          {/* Left column - Benefits and Map */}
           <motion.div 
-            className="lg:col-span-5 bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-100 dark:border-gray-700 shadow-lg overflow-hidden relative"
+            className="lg:col-span-5 space-y-8"
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6 }}
           >
-            {/* Decorative corner accent */}
-            <div className="absolute -top-10 -left-10 w-20 h-20 bg-blue-400/30 rounded-full blur-xl"></div>
+            {/* Benefits card */}
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-100 dark:border-gray-700 shadow-lg overflow-hidden relative">
+              {/* Decorative corner accent */}
+              <div className="absolute -top-10 -left-10 w-20 h-20 bg-blue-400/30 rounded-full blur-xl"></div>
+              
+              <div className="space-y-6 relative z-10">
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Waarom kiezen voor Digitaalgelijk?</h3>
+                  <div className="h-1 w-20 bg-gradient-to-r from-blue-500 to-indigo-500 rounded mb-6"></div>
+                </div>
+                
+                <motion.ul 
+                  className="space-y-4"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ staggerChildren: 0.1, delayChildren: 0.3 }}
+                >
+                  {benefits.map((benefit, index) => (
+                    <motion.li 
+                      key={index}
+                      className="flex items-start group"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                      whileHover={{ x: 5 }}
+                    >
+                      <div className={`flex-shrink-0 w-10 h-10 rounded-lg ${benefit.color} flex items-center justify-center mr-3 shadow-md group-hover:shadow-lg group-hover:scale-110 transition-all duration-300`}>
+                        <span className="text-white">{benefit.icon}</span>
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors duration-300 mt-1">{benefit.text}</span>
+                    </motion.li>
+                  ))}
+                </motion.ul>
+              </div>
+            </div>
             
-            <div className="space-y-6 relative z-10">
-              <div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Waarom kiezen voor Digitaalgelijk?</h3>
-                <div className="h-1 w-20 bg-gradient-to-r from-blue-500 to-indigo-500 rounded mb-6"></div>
+            {/* Location Map Card */}
+            <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-700 shadow-lg">
+              <div className="aspect-video relative overflow-hidden bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900 dark:to-blue-800">
+                {/* Map placeholder until we have a real map image */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <FiMapPin className="text-blue-500 dark:text-blue-400" size={36} />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                  <div className="flex items-center">
+                    <FiMapPin className="mr-2 text-blue-300" size={18} />
+                    <span className="font-medium">Regio Nijmegen</span>
+                  </div>
+                </div>
               </div>
               
-              <motion.ul 
-                className="space-y-4"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ staggerChildren: 0.1, delayChildren: 0.3 }}
-              >
-                {benefits.map((benefit, index) => (
-                  <motion.li 
-                    key={index}
-                    className="flex items-start group"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ x: 5 }}
-                  >
-                    <div className={`flex-shrink-0 w-10 h-10 rounded-lg ${benefit.color} flex items-center justify-center mr-3 shadow-md group-hover:shadow-lg group-hover:scale-110 transition-all duration-300`}>
-                      <span className="text-white">{benefit.icon}</span>
-                    </div>
-                    <span className="text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors duration-300 mt-1">{benefit.text}</span>
-                  </motion.li>
-                ))}
-              </motion.ul>
-              
-              <div className="pt-6 mt-2 border-t border-gray-100 dark:border-gray-700">
-                <p className="text-gray-700 dark:text-gray-300 mb-4">Direct contact opnemen?</p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <a 
-                    href="tel:+31649892654" 
-                    className="inline-flex items-center px-5 py-2.5 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 transition-colors"
-                  >
-                    <FiPhone className="mr-2" /> +31 6 4989 2654
-                  </a>
-                  <a 
-                    href="mailto:info@digitaalgelijk.nl" 
-                    className="inline-flex items-center px-5 py-2.5 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 transition-colors"
-                  >
-                    <FiMail className="mr-2" /> info@digitaalgelijk.nl
-                  </a>
-                </div>
+              <div className="p-6 flex flex-col sm:flex-row gap-4">
+                <a 
+                  href="tel:+31649892654" 
+                  className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium rounded-lg bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-800/40 text-blue-700 dark:text-blue-300 transition-colors border border-blue-100 dark:border-blue-800 flex-1"
+                >
+                  <FiPhone className="mr-2" /> +31 6 4989 2654
+                </a>
+                <a 
+                  href="mailto:info@digitaalgelijk.nl" 
+                  className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium rounded-lg bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-800/40 text-blue-700 dark:text-blue-300 transition-colors border border-blue-100 dark:border-blue-800 flex-1"
+                >
+                  <FiMail className="mr-2" /> info@digitaalgelijk.nl
+                </a>
               </div>
             </div>
           </motion.div>
           
-          {/* Right column - Contact form */}
+          {/* Right column - Enhanced Contact form */}
           <motion.div 
             className="lg:col-span-7"
             initial={{ opacity: 0, x: 50 }}
@@ -222,22 +278,23 @@ const CallToAction = () => {
               
               {/* Form content */}
               <div className="relative z-10">
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+                  <FiMail className="text-blue-500 mr-3" />
                   Stuur ons een bericht
                 </h3>
                 
                 {isSubmitted ? (
-                  <div className="bg-green-50 dark:bg-green-900/20 border border-green-100 dark:border-green-800 rounded-lg p-6 text-center">
+                  <div className="bg-green-50 dark:bg-green-900/20 border border-green-100 dark:border-green-800 rounded-lg p-8 text-center">
                     <div className="w-16 h-16 bg-green-100 dark:bg-green-800/40 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <FiCheck className="text-green-600 dark:text-green-400" size={24} />
+                      <FiCheck className="text-green-600 dark:text-green-400" size={28} />
                     </div>
                     <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Bericht verzonden!</h4>
-                    <p className="text-gray-600 dark:text-gray-300">
+                    <p className="text-gray-600 dark:text-gray-300 mb-6">
                       Bedankt voor uw bericht. We nemen zo snel mogelijk contact met u op.
                     </p>
                     <button
                       onClick={() => setIsSubmitted(false)}
-                      className="mt-6 px-5 py-2.5 bg-green-100 dark:bg-green-800/40 hover:bg-green-200 dark:hover:bg-green-800/60 text-green-700 dark:text-green-300 font-medium rounded-lg transition-colors"
+                      className="px-6 py-3 bg-green-100 dark:bg-green-800/40 hover:bg-green-200 dark:hover:bg-green-800/60 text-green-700 dark:text-green-300 font-medium rounded-lg transition-colors"
                     >
                       Nieuw bericht opstellen
                     </button>
@@ -255,9 +312,12 @@ const CallToAction = () => {
                           name="name"
                           required
                           onChange={handleChange}
-                          className="w-full rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 py-3 text-gray-700 dark:text-gray-300 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                          className={`w-full rounded-lg border ${errors.name ? 'border-red-300 dark:border-red-700 bg-red-50 dark:bg-red-900/10' : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800'} px-4 py-3 text-gray-700 dark:text-gray-300 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
                           placeholder="Uw naam"
                         />
+                        {errors.name && (
+                          <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.name}</p>
+                        )}
                       </div>
                       <div>
                         <label htmlFor="company" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -285,9 +345,12 @@ const CallToAction = () => {
                           name="email"
                           required
                           onChange={handleChange}
-                          className="w-full rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 py-3 text-gray-700 dark:text-gray-300 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                          className={`w-full rounded-lg border ${errors.email ? 'border-red-300 dark:border-red-700 bg-red-50 dark:bg-red-900/10' : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800'} px-4 py-3 text-gray-700 dark:text-gray-300 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
                           placeholder="uw.email@voorbeeld.nl"
                         />
+                        {errors.email && (
+                          <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.email}</p>
+                        )}
                       </div>
                       <div>
                         <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -333,9 +396,12 @@ const CallToAction = () => {
                         rows={4}
                         required
                         onChange={handleChange}
-                        className="w-full rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 py-3 text-gray-700 dark:text-gray-300 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                        className={`w-full rounded-lg border ${errors.message ? 'border-red-300 dark:border-red-700 bg-red-50 dark:bg-red-900/10' : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800'} px-4 py-3 text-gray-700 dark:text-gray-300 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20`}
                         placeholder="Vertel ons waar we u mee kunnen helpen"
                       ></textarea>
+                      {errors.message && (
+                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.message}</p>
+                      )}
                     </div>
                     
                     <div className="flex items-center">
@@ -382,16 +448,16 @@ const CallToAction = () => {
           </motion.div>
         </div>
         
-        {/* Trust badges section */}
+        {/* Trust badges section - Enhanced */}
         <motion.div 
-          className="mt-16 text-center"
+          className="mt-20 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
         >
           <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-8">Vertrouwd door</h3>
-          <div className="flex flex-wrap justify-center items-center gap-8 opacity-70 dark:opacity-50">
+          <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-70 dark:opacity-50">
             <div className="w-24 h-12 bg-gray-200 dark:bg-gray-700 rounded-md flex items-center justify-center">Logo</div>
             <div className="w-24 h-12 bg-gray-200 dark:bg-gray-700 rounded-md flex items-center justify-center">Logo</div>
             <div className="w-24 h-12 bg-gray-200 dark:bg-gray-700 rounded-md flex items-center justify-center">Logo</div>

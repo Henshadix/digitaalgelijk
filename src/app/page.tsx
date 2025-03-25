@@ -16,11 +16,6 @@ const ServicesSection = dynamic(() => import('@/components/home/ServicesSection'
   ssr: false // Client-side rendering voor niet-kritieke componenten
 });
 
-const CallToAction = dynamic(() => import('@/components/home/CallToAction'), {
-  loading: () => <div className="min-h-[30vh] bg-gray-50 dark:bg-gray-900 animate-pulse flex items-center justify-center">Laden...</div>,
-  ssr: false
-});
-
 // Gebruik van React.memo voor betere performance
 const Home = () => {
   return (
@@ -35,10 +30,6 @@ const Home = () => {
             <ServicesSection />
           </Suspense>
         </div>
-        
-        <Suspense fallback={<div aria-live="polite" aria-busy="true" className="min-h-[30vh] bg-gray-50 dark:bg-gray-900 animate-pulse flex items-center justify-center">Laden van call-to-action...</div>}>
-          <CallToAction />
-        </Suspense>
       </div>
     </PageWrapper>
   );

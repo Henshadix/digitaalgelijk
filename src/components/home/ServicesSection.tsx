@@ -3,8 +3,9 @@ import { FiMonitor, FiRefreshCw, FiShield, FiTruck, FiArrowRight } from 'react-i
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { MotionDiv } from '@/components/client/MotionWrapper';
+import Image from 'next/image';
 
-// Diensten data met inline styles in plaats van Tailwind classes
+// Diensten data met afbeeldingen
 const services = [
   {
     id: 'hardware-opkopen',
@@ -14,10 +15,10 @@ const services = [
     icon: <FiMonitor className="w-7 h-7" />,
     link: '/diensten/hardware-opkopen',
     buttonText: 'Verkoop uw hardware',
-    gradient: 'from-blue-800 to-blue-600',
-    bgColor: 'bg-blue-700',
+    gradient: 'from-blue-800/90 to-blue-600/90',
     textColor: 'text-blue-400',
-    bgGradient: 'bg-gradient-to-r from-blue-800 to-blue-600',
+    bgGradient: 'bg-gradient-to-r from-blue-800/90 to-blue-600/90',
+    image: '/images/services/new/hardware-inkoop-pro.jpg',
   },
   {
     id: 'data-verwijdering',
@@ -27,10 +28,10 @@ const services = [
     icon: <FiShield className="w-7 h-7" />,
     link: '/diensten/data-verwijdering',
     buttonText: 'Beveilig uw data',
-    gradient: 'from-purple-800 to-purple-600',
-    bgColor: 'bg-purple-700',
+    gradient: 'from-purple-800/90 to-purple-600/90',
     textColor: 'text-purple-400',
-    bgGradient: 'bg-gradient-to-r from-purple-800 to-purple-600',
+    bgGradient: 'bg-gradient-to-r from-purple-800/90 to-purple-600/90',
+    image: '/images/services/new/data-verwijdering-hero.jpg',
   },
   {
     id: 'hardware-recycling',
@@ -40,10 +41,10 @@ const services = [
     icon: <FiRefreshCw className="w-7 h-7" />,
     link: '/diensten/hardware-recycling',
     buttonText: 'Start met recycling',
-    gradient: 'from-green-800 to-green-600',
-    bgColor: 'bg-green-700',
+    gradient: 'from-green-800/90 to-green-600/90',
     textColor: 'text-green-400',
-    bgGradient: 'bg-gradient-to-r from-green-800 to-green-600',
+    bgGradient: 'bg-gradient-to-r from-green-800/90 to-green-600/90',
+    image: '/images/services/new/hardware-recycling-pro.jpg',
   },
   {
     id: 'logistieke-diensten',
@@ -53,10 +54,10 @@ const services = [
     icon: <FiTruck className="w-7 h-7" />,
     link: '/diensten/logistieke-diensten',
     buttonText: 'Plan uw transport',
-    gradient: 'from-amber-800 to-amber-600',
-    bgColor: 'bg-amber-700',
+    gradient: 'from-amber-800/90 to-amber-600/90',
     textColor: 'text-amber-400',
-    bgGradient: 'bg-gradient-to-r from-amber-800 to-amber-600',
+    bgGradient: 'bg-gradient-to-r from-amber-800/90 to-amber-600/90',
+    image: '/images/services/logistieke-diensten-pro.jpg',
   }
 ];
 
@@ -75,7 +76,7 @@ const ServicesSection = () => {
   };
 
   return (
-    <section id="services-section" className="bg-white dark:bg-gray-900 relative overflow-hidden pt-0">
+    <section id="services-section" className="relative overflow-hidden pt-0">
       {/* Achtergrond elementen */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-blue-100/30 dark:bg-blue-900/10 blur-3xl"></div>
@@ -96,22 +97,49 @@ const ServicesSection = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className={`relative max-w-[1400px] mx-auto px-0 flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center`}
             >
-              {/* Kleur sectie - combinatie van class en style */}
+              {/* Afbeelding sectie */}
               <div className={`w-full lg:w-5/12 relative ${index % 2 === 0 ? 'lg:ml-0' : 'lg:mr-0'}`}>
                 <div className="w-full h-64 md:h-80 lg:h-[350px] relative overflow-hidden">
-                  {/* Gradient achtergrond met Tailwind klassen */}
-                  <div className={`absolute inset-0 ${service.bgGradient} z-10`}></div>
-                  
-                  {/* De Gradiënt fade naar de achtergrond - simpele, betrouwbare aanpak */}
-                  <div className={`absolute inset-0 ${index % 2 === 0 ? 'bg-gradient-to-r' : 'bg-gradient-to-l'} from-transparent to-white z-20 opacity-90 dark:to-gray-900`}></div>
-                  
-                  {/* Subtiel patroon voor visuele diepte */}
-                  <div className="absolute inset-0 bg-pattern opacity-20 z-5" 
+                  {/* Base image met mask */}
+                  <div
                     style={{
-                      backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)',
-                      backgroundSize: '20px 20px'
-                    }}></div>
+                      position: 'absolute',
+                      inset: 0,
+                      maskImage: index % 2 === 0
+                        ? 'linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)'
+                        : 'linear-gradient(270deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)',
+                      WebkitMaskImage: index % 2 === 0
+                        ? 'linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)'
+                        : 'linear-gradient(270deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)'
+                    }}
+                  >
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      priority={index < 2}
+                      quality={85}
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  </div>
                   
+                  {/* Kleur overlay */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      maskImage: index % 2 === 0
+                        ? 'linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)'
+                        : 'linear-gradient(270deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)',
+                      WebkitMaskImage: index % 2 === 0
+                        ? 'linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)'
+                        : 'linear-gradient(270deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 100%)'
+                    }}
+                  >
+                    <div className={`absolute inset-0 ${service.bgGradient} mix-blend-multiply`}></div>
+                  </div>
+
                   {/* De service icon in een cirkel */}
                   <div 
                     className={`absolute ${index % 2 === 0 ? 'right-4' : 'left-4'} top-4 z-30 p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30`}

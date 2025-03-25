@@ -1,21 +1,20 @@
 import React from 'react';
 
-// Types voor de contactinformatie
-interface Hours {
-  days: string;
-  hours: string;
-}
-
+// Updated types for the contact information
 interface ContactInfoProps {
   contactInfo: {
     address: {
       street: string;
       city: string;
+      postalCode?: string;
       country: string;
     };
     phone: string;
     email: string;
-    hours: Hours[];
+    businessHours: {
+      weekdays: string;
+      weekend: string;
+    };
   };
 }
 
@@ -80,12 +79,14 @@ const ContactInfo: React.FC<ContactInfoProps> = ({ contactInfo }) => {
           <div className="ml-4">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Openingstijden</h3>
             <div className="text-gray-600 dark:text-gray-400 mt-1 space-y-2">
-              {contactInfo.hours.map((item, index) => (
-                <div key={index} className="flex justify-between border-b border-amber-100 dark:border-amber-900/20 pb-2">
-                  <span>{item.days}</span>
-                  <span className="ml-4 font-medium">{item.hours}</span>
-                </div>
-              ))}
+              <div className="flex justify-between border-b border-amber-100 dark:border-amber-900/20 pb-2">
+                <span>Maandag - Vrijdag</span>
+                <span className="ml-4 font-medium">{contactInfo.businessHours.weekdays}</span>
+              </div>
+              <div className="flex justify-between border-b border-amber-100 dark:border-amber-900/20 pb-2">
+                <span>Zaterdag - Zondag</span>
+                <span className="ml-4 font-medium">{contactInfo.businessHours.weekend}</span>
+              </div>
             </div>
           </div>
         </div>

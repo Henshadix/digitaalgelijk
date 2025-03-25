@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { FiMail, FiPhone, FiMapPin, FiChevronRight, FiAward, FiShield, FiCheckCircle } from 'react-icons/fi';
+import { FiMail, FiPhone, FiMapPin, FiChevronRight } from 'react-icons/fi';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -81,7 +81,7 @@ const Footer = () => {
                 <span className="bg-blue-800 p-1.5 rounded-full">
                   <FiMapPin size={14} />
                 </span>
-                <span>Aalsburg 3111, Wijchen</span>
+                <span>Regio Nijmegen</span>
               </div>
             </div>
           </div>
@@ -99,22 +99,6 @@ const Footer = () => {
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 max-w-md">
               Digitaalgelijk is gespecialiseerd in duurzame IT-oplossingen voor bedrijven. Wij bieden diensten aan op het gebied van hardware opkopen, data verwijdering, hardware recycling en logistieke diensten.
             </p>
-            
-            {/* Certifications */}
-            <div className="mb-4">
-              <h4 className="text-sm font-semibold mb-3 text-gray-800 dark:text-gray-200">Certificeringen</h4>
-              <div className="flex flex-wrap gap-3">
-                <div className="bg-white dark:bg-gray-800 p-2 rounded-lg shadow-sm flex items-center justify-center w-12 h-12">
-                  <FiAward className="text-blue-600 dark:text-blue-400" size={24} />
-                </div>
-                <div className="bg-white dark:bg-gray-800 p-2 rounded-lg shadow-sm flex items-center justify-center w-12 h-12">
-                  <FiShield className="text-green-600 dark:text-green-400" size={24} />
-                </div>
-                <div className="bg-white dark:bg-gray-800 p-2 rounded-lg shadow-sm flex items-center justify-center w-12 h-12">
-                  <FiCheckCircle className="text-purple-600 dark:text-purple-400" size={24} />
-                </div>
-              </div>
-            </div>
           </div>
           
           {/* Footer Links */}

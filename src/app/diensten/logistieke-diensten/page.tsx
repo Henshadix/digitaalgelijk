@@ -1,9 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { FiTruck, FiCheckCircle, FiPackage, FiMap, FiShield, FiArrowRight } from 'react-icons/fi';
+import { FiTruck, FiCheckCircle, FiPackage, FiMap, FiShield, FiArrowRight, FiList, FiClock, FiGlobe, FiCalendar, FiAward } from 'react-icons/fi';
 import Image from 'next/image';
 import PageWrapper from '@/components/client/PageWrapper';
+import { motion } from 'framer-motion';
 
 export default function LogistiekeDienstenPage() {
   const features = [
@@ -56,64 +57,169 @@ export default function LogistiekeDienstenPage() {
     <PageWrapper>
       <main className="flex flex-col min-h-screen">
         {/* Hero Section */}
-        <section className="relative py-20 bg-gradient-to-br from-blue-50 via-indigo-50 to-blue-50 dark:from-gray-900 dark:via-indigo-950 dark:to-gray-900 overflow-hidden">
-          <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-          
+        <section className="relative py-20 md:py-28 bg-gradient-to-br from-amber-950 via-amber-900 to-amber-800 overflow-hidden">
+          {/* Achtergrond effecten */}
+          <div className="absolute inset-0">
+            {/* Gradient orbs */}
+            <motion.div 
+              className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-amber-500/10 blur-[100px]"
+              animate={{ 
+                scale: [1, 1.2, 1],
+                opacity: [0.1, 0.15, 0.1],
+              }}
+              transition={{
+                duration: 10,
+                repeat: Infinity,
+                repeatType: "reverse"
+              }}
+            />
+            <motion.div 
+              className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-orange-500/10 blur-[100px]"
+              animate={{ 
+                scale: [1.2, 1, 1.2],
+                opacity: [0.1, 0.15, 0.1],
+              }}
+              transition={{
+                duration: 10,
+                repeat: Infinity,
+                repeatType: "reverse",
+                delay: 2
+              }}
+            />
+
+            {/* Circuit patroon */}
+            <div className="absolute inset-0" style={{ opacity: 0.03 }}>
+              <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <pattern id="circuit" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                  <circle cx="50" cy="50" r="1" fill="white"/>
+                  <path d="M50 50 L50 0 M50 50 L100 50 M50 50 L50 100 M50 50 L0 50" stroke="white" strokeWidth="0.5"/>
+                  <circle cx="50" cy="0" r="2" fill="none" stroke="white" strokeWidth="0.5"/>
+                  <circle cx="100" cy="50" r="2" fill="none" stroke="white" strokeWidth="0.5"/>
+                  <circle cx="50" cy="100" r="2" fill="none" stroke="white" strokeWidth="0.5"/>
+                  <circle cx="0" cy="50" r="2" fill="none" stroke="white" strokeWidth="0.5"/>
+                </pattern>
+                <rect width="100%" height="100%" fill="url(#circuit)"/>
+              </svg>
+            </div>
+          </div>
+
           <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-4xl mx-auto">
-              <div className="bg-blue-600 text-white text-sm w-max rounded-full px-4 py-1 mb-6">
-                Diensten
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-                Logistieke Diensten
-              </h1>
-              <p className="text-xl text-gray-700 dark:text-gray-300 mb-10 max-w-3xl">
-                Complete logistieke oplossingen voor uw IT-apparatuur: veilig transport, 
-                professionele handling en beveiligde opslag. Wij zorgen voor een zorgeloze 
-                overgang van uw hardware.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Link 
-                  href="/contact" 
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-medium transition-colors shadow-lg flex items-center"
+            <div className="max-w-4xl mx-auto text-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <span className="inline-block text-3xl mb-6 bg-gradient-to-br from-white/10 to-white/5 p-3 rounded-xl border border-white/10">
+                  <FiTruck className="text-amber-300" />
+                </span>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+                  Logistieke{" "}
+                  <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
+                    Diensten
+                  </span>
+                </h1>
+                <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                  Professionele logistieke oplossingen voor uw IT-hardware. Veilig transport en opslag met complete tracking.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="flex flex-wrap justify-center gap-4"
+              >
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center px-6 py-3 rounded-lg bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white font-medium transition-all duration-200 group"
                 >
-                  Offerte Aanvragen <FiArrowRight className="ml-2" />
+                  Vraag transport aan
+                  <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
-                <a href="tel:+31649892654" className="px-8 py-4 bg-blue-700 hover:bg-blue-800 text-white border border-blue-500 rounded-lg font-medium transition-colors" aria-label="Bel ons op +31 6 4989 2654">
-                  Bel +31 6 4989 2654
-                </a>
-              </div>
+                <Link
+                  href="#process"
+                  className="inline-flex items-center px-6 py-3 rounded-lg bg-white/10 hover:bg-white/15 text-white font-medium transition-all duration-200"
+                >
+                  Bekijk ons proces
+                </Link>
+              </motion.div>
             </div>
           </div>
         </section>
         
         {/* Features Section */}
-        <section className="py-20 bg-white dark:bg-gray-900">
+        <section className="py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                Voordelen van onze logistieke diensten
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                Waarom kiezen voor{" "}
+                <span className="bg-gradient-to-r from-amber-600 to-amber-800 dark:from-amber-400 dark:to-amber-600 bg-clip-text text-transparent">
+                  Digitaalgelijk
+                </span>
               </h2>
-              <div className="h-1 w-20 bg-blue-600 mx-auto rounded"></div>
-              <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mt-4">
-                Wij bieden een complete logistieke oplossing voor uw IT-apparatuur, met de hoogste 
-                standaarden voor veiligheid en betrouwbaarheid.
+              <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                Wij bieden complete logistieke oplossingen voor uw IT-hardware, met focus op veiligheid en efficiëntie.
               </p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-              {features.map((feature, index) => (
-                <div key={index} className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-shadow">
-                  <div className="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-6">
-                    {feature.icon}
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                {
+                  icon: <FiTruck className="text-amber-600 dark:text-amber-400" size={24} />,
+                  title: "Landelijke Dekking",
+                  description: "Transport door heel Nederland met eigen transportmiddelen en professionele chauffeurs."
+                },
+                {
+                  icon: <FiShield className="text-orange-600 dark:text-orange-400" size={24} />,
+                  title: "Verzekerd Transport",
+                  description: "Volledig verzekerd transport van uw kostbare IT-apparatuur met track & trace."
+                },
+                {
+                  icon: <FiPackage className="text-amber-600 dark:text-amber-400" size={24} />,
+                  title: "Professionele Verpakking",
+                  description: "Speciale verpakkingsmaterialen voor veilig transport van gevoelige apparatuur."
+                },
+                {
+                  icon: <FiMap className="text-orange-600 dark:text-orange-400" size={24} />,
+                  title: "Real-time Tracking",
+                  description: "Volg uw zending in real-time met ons geavanceerde tracking systeem."
+                },
+                {
+                  icon: <FiCalendar className="text-amber-600 dark:text-amber-400" size={24} />,
+                  title: "Flexibele Planning",
+                  description: "Transport op afspraak met flexibele planning en snelle reactietijd."
+                },
+                {
+                  icon: <FiAward className="text-orange-600 dark:text-orange-400" size={24} />,
+                  title: "Gecertificeerd",
+                  description: "Transport volgens de hoogste kwaliteits- en veiligheidsstandaarden."
+                }
+              ].map((voordeel, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
+                >
+                  <div className="bg-gray-50 dark:bg-gray-700/50 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                    {voordeel.icon}
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                    {feature.title}
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                    {voordeel.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    {feature.description}
+                  <p className="text-gray-600 dark:text-gray-300">
+                    {voordeel.description}
                   </p>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -167,92 +273,125 @@ export default function LogistiekeDienstenPage() {
         </section>
         
         {/* Process Section */}
-        <section className="py-20 bg-white dark:bg-gray-900">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                Ons logistieke proces
-              </h2>
-              <div className="h-1 w-20 bg-blue-600 mx-auto rounded"></div>
-              <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mt-4">
-                Wij hanteren een gestructureerd proces voor de logistieke afhandeling van uw IT-apparatuur.
-              </p>
+        <section id="process" className="py-20 bg-gradient-to-br from-amber-950 via-amber-900 to-amber-800 text-white relative overflow-hidden">
+          <div className="absolute inset-0">
+            {/* Circuit patroon */}
+            <div className="absolute inset-0" style={{ opacity: 0.03 }}>
+              <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <pattern id="circuit-2" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                  <circle cx="50" cy="50" r="1" fill="white"/>
+                  <path d="M50 50 L50 0 M50 50 L100 50 M50 50 L50 100 M50 50 L0 50" stroke="white" strokeWidth="0.5"/>
+                  <circle cx="50" cy="0" r="2" fill="none" stroke="white" strokeWidth="0.5"/>
+                  <circle cx="100" cy="50" r="2" fill="none" stroke="white" strokeWidth="0.5"/>
+                  <circle cx="50" cy="100" r="2" fill="none" stroke="white" strokeWidth="0.5"/>
+                  <circle cx="0" cy="50" r="2" fill="none" stroke="white" strokeWidth="0.5"/>
+                </pattern>
+                <rect width="100%" height="100%" fill="url(#circuit-2)"/>
+              </svg>
             </div>
-            
-            <div className="max-w-4xl mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="relative pl-10 pb-10 border-l-2 border-blue-500 dark:border-blue-400">
-                  <div className="absolute top-0 left-0 w-8 h-8 bg-blue-500 dark:bg-blue-600 rounded-full transform -translate-x-1/2 flex items-center justify-center text-white font-bold">1</div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Aanvraag & Planning</h3>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    U doet een aanvraag voor onze logistieke diensten en we plannen samen het transport in.
+          </div>
+
+          <div className="container mx-auto px-4 relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Ons{" "}
+                <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
+                  Logistiek Proces
+                </span>
+              </h2>
+              <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+                Een efficiënt en veilig proces voor het transport van uw IT-hardware.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {[
+                {
+                  icon: <FiList className="text-amber-400" size={24} />,
+                  title: "1. Aanvraag",
+                  description: "Plan uw transport en ontvang direct een offerte op maat."
+                },
+                {
+                  icon: <FiPackage className="text-orange-400" size={24} />,
+                  title: "2. Verpakking",
+                  description: "Professionele verpakking van uw hardware voor veilig transport."
+                },
+                {
+                  icon: <FiTruck className="text-amber-400" size={24} />,
+                  title: "3. Transport",
+                  description: "Veilig transport door heel Nederland met real-time tracking."
+                },
+                {
+                  icon: <FiClock className="text-orange-400" size={24} />,
+                  title: "4. Levering",
+                  description: "Stipte levering op de afgesproken locatie en tijdstip."
+                }
+              ].map((stap, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10"
+                >
+                  <div className="bg-gradient-to-br from-white/10 to-white/5 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                    {stap.icon}
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-white">
+                    {stap.title}
+                  </h3>
+                  <p className="text-gray-300">
+                    {stap.description}
                   </p>
-                </div>
-                
-                <div className="relative pl-10 pb-10 border-l-2 border-blue-500 dark:border-blue-400">
-                  <div className="absolute top-0 left-0 w-8 h-8 bg-blue-500 dark:bg-blue-600 rounded-full transform -translate-x-1/2 flex items-center justify-center text-white font-bold">2</div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Inventarisatie</h3>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    We maken een gedetailleerde inventarisatie van alle apparatuur die vervoerd moet worden.
-                  </p>
-                </div>
-                
-                <div className="relative pl-10 pb-10 border-l-2 border-blue-500 dark:border-blue-400">
-                  <div className="absolute top-0 left-0 w-8 h-8 bg-blue-500 dark:bg-blue-600 rounded-full transform -translate-x-1/2 flex items-center justify-center text-white font-bold">3</div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Veilig Verpakken</h3>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    Alle apparatuur wordt zorgvuldig verpakt om beschadiging tijdens transport te voorkomen.
-                  </p>
-                </div>
-                
-                <div className="relative pl-10 pb-10 border-l-2 border-blue-500 dark:border-blue-400">
-                  <div className="absolute top-0 left-0 w-8 h-8 bg-blue-500 dark:bg-blue-600 rounded-full transform -translate-x-1/2 flex items-center justify-center text-white font-bold">4</div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Transport</h3>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    Beveiligd transport met gekwalificeerde chauffeurs en tracking van de apparatuur.
-                  </p>
-                </div>
-                
-                <div className="relative pl-10 pb-10 border-l-2 border-blue-500 dark:border-blue-400">
-                  <div className="absolute top-0 left-0 w-8 h-8 bg-blue-500 dark:bg-blue-600 rounded-full transform -translate-x-1/2 flex items-center justify-center text-white font-bold">5</div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Aflevering of Opslag</h3>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    Aflevering op de gewenste locatie of veilige opslag in onze beveiligde faciliteiten.
-                  </p>
-                </div>
-                
-                <div className="relative pl-10">
-                  <div className="absolute top-0 left-0 w-8 h-8 bg-blue-500 dark:bg-blue-600 rounded-full transform -translate-x-1/2 flex items-center justify-center text-white font-bold">6</div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Rapportage</h3>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    Gedetailleerde rapportage van alle getransporteerde of opgeslagen items.
-                  </p>
-                </div>
-              </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
         
         {/* CTA Section */}
-        <section className="py-16 bg-blue-600">
+        <section className="py-20 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
           <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center text-white">
-              <h2 className="text-3xl font-bold mb-6">
-                Klaar voor veilig transport van uw IT-apparatuur?
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="max-w-4xl mx-auto text-center"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+                Klaar om uw transport te{" "}
+                <span className="bg-gradient-to-r from-amber-600 to-amber-800 dark:from-amber-400 dark:to-amber-600 bg-clip-text text-transparent">
+                  plannen
+                </span>
+                ?
               </h2>
-              <p className="text-xl text-blue-100 mb-8">
-                Neem contact met ons op voor een vrijblijvende offerte of bel direct voor meer informatie.
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+                Neem vandaag nog contact met ons op voor een transport op maat.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <a href="/contact" className="px-8 py-4 bg-white text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-colors flex items-center gap-2">
-                  Offerte Aanvragen
-                  <FiArrowRight className="ml-2" />
-                </a>
-                <a href="tel:+31649892654" className="px-8 py-4 bg-blue-700 hover:bg-blue-800 text-white border border-blue-500 rounded-lg font-medium transition-colors" aria-label="Bel ons op +31 6 4989 2654">
-                  Bel +31 6 4989 2654
-                </a>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center px-8 py-4 rounded-lg bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white font-medium transition-all duration-200 group"
+                >
+                  Start direct
+                  <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <Link
+                  href="/certificeringen"
+                  className="inline-flex items-center px-8 py-4 rounded-lg bg-gray-100 dark:bg-gray-700/50 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-900 dark:text-white font-medium transition-all duration-200"
+                >
+                  Bekijk onze certificeringen
+                </Link>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
       </main>

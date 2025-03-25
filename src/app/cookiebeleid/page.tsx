@@ -504,13 +504,10 @@ export default function Cookiebeleid() {
                   </p>
                   <div className="bg-blue-50 dark:bg-blue-900/10 rounded-lg p-6 mb-6">
                     <div className="space-y-2 text-gray-700 dark:text-gray-300">
-                      <p className="font-semibold text-gray-900 dark:text-white">Digitaalgelijk</p>
-                      <p>E-mail: <a href="mailto:privacy@digitaalgelijk.nl" className="text-blue-600 dark:text-blue-400 hover:underline">privacy@digitaalgelijk.nl</a></p>
-                      <div className="flex items-center">
-                        <FiPhone className="w-5 h-5 text-blue-600 dark:text-blue-400 mr-2" />
-                        <p>Telefoon: <a href="tel:+31649892654" className="text-blue-600 dark:text-blue-400 hover:underline" aria-label="Bel ons op +31 6 4989 2654">+31 6 4989 2654</a></p>
-                      </div>
-                      <p>Adres: Aalsburg 3111, 6602WR Wijchen</p>
+                      <p className="font-semibold text-gray-900 dark:text-white">Bedrijfsnaam: Digitaalgelijk</p>
+                      <p>Adres: Regio Nijmegen</p>
+                      <p>E-mailadres: <a href="mailto:info@digitaalgelijk.nl" className="text-blue-600 dark:text-blue-400">info@digitaalgelijk.nl</a></p>
+                      <p>Telefoonnummer: <a href="tel:+31649892654" className="text-blue-600 dark:text-blue-400">+31 6 4989 2654</a></p>
                     </div>
                   </div>
                 </div>

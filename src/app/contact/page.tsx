@@ -11,18 +11,19 @@ import DecorativeBackground from '@/components/ui/DecorativeBackground';
 import PageWrapper from '@/components/client/PageWrapper';
 
 // Contact information gedefinieerd op server-side
-const contactInfo = {
+const contactDetails = {
+  email: 'info@digitaalgelijk.nl',
+  phone: '+31 6 4989 2654',
   address: {
-    street: 'Aalsburg 3111',
-    city: '6602WR Wijchen',
+    street: 'Regio Nijmegen',
+    city: 'Nijmegen',
+    postalCode: '',
     country: 'Nederland'
   },
-  phone: '06 49 89 26 54',
-  email: 'info@digitaalgelijk.nl',
-  hours: [
-    { days: 'Maandag - Vrijdag', hours: '09:00 - 17:00' },
-    { days: 'Zaterdag - Zondag', hours: 'Op afspraak' }
-  ]
+  businessHours: {
+    weekdays: '9:00 - 17:00',
+    weekend: 'Gesloten'
+  }
 };
 
 // JSON-LD data genereren op de server
@@ -36,16 +37,16 @@ const generateJsonLd = () => {
     "mainEntity": {
       "@type": "Organization",
       "name": "Digitaalgelijk",
-      "telephone": contactInfo.phone,
-      "email": contactInfo.email,
+      "telephone": contactDetails.phone,
+      "email": contactDetails.email,
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": contactInfo.address.street,
-        "addressLocality": contactInfo.address.city,
-        "postalCode": contactInfo.address.city.split(' ')[0],
+        "streetAddress": contactDetails.address.street,
+        "addressLocality": contactDetails.address.city,
+        "postalCode": contactDetails.address.postalCode,
         "addressCountry": "NL"
       },
-      "openingHours": `Mo-Fr ${contactInfo.hours[0].hours.split(' - ')[0]}-${contactInfo.hours[0].hours.split(' - ')[1]}`
+      "openingHours": `Mo-Fr ${contactDetails.businessHours.weekdays.split(' - ')[0]}-${contactDetails.businessHours.weekdays.split(' - ')[1]}`
     }
   };
 };
@@ -83,7 +84,7 @@ export default function Contact() {
                 </div>
                 
                 {/* Contact Information - statisch, server-side gerenderd */}
-                <ContactInfo contactInfo={contactInfo} />
+                <ContactInfo contactInfo={contactDetails} />
               </div>
             </div>
           </section>
