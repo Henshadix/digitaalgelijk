@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { FiRecycle, FiTruck, FiShield, FiAward, FiArrowRight, FiList, FiCheckCircle, FiGlobe, FiPackage, FiFileText, FiClock, FiUsers } from 'react-icons/fi';
+import { FiTruck, FiPackage, FiShield, FiArrowRight, FiList, FiUsers, FiGlobe, FiAward, FiFileText, FiRefreshCw } from 'react-icons/fi';
 
 export default function HardwareRecycling() {
   return (
@@ -63,7 +63,7 @@ export default function HardwareRecycling() {
               transition={{ duration: 0.6 }}
             >
               <span className="inline-block text-3xl mb-6 bg-gradient-to-br from-white/10 to-white/5 p-3 rounded-xl border border-white/10">
-                <FiRecycle className="text-green-300" />
+                <FiRefreshCw className="text-green-300" />
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
                 Hardware{" "}
@@ -233,7 +233,7 @@ export default function HardwareRecycling() {
                 description: "Hardware wordt gesorteerd op type en mogelijkheden voor hergebruik of recycling."
               },
               {
-                icon: <FiRecycle className="text-emerald-400" size={24} />,
+                icon: <FiRefreshCw className="text-emerald-400" size={24} />,
                 title: "4. Verwerking",
                 description: "Duurzame verwerking volgens de hoogste milieunormen met uitgebreide rapportage."
               }
