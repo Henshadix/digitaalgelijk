@@ -290,8 +290,13 @@ export default function Certificeringen() {
 
             <div className="flex p-5 bg-white dark:bg-gray-900 rounded-xl shadow-md border border-gray-100 dark:border-gray-800">
               <div className="flex-shrink-0 mr-4">
-                <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-lg flex items-center justify-center">
-                  <FiShield className="w-6 h-6" />
+                <div className="relative w-16 h-16">
+                  <Image 
+                    src="/images/certifications/weee.png"
+                    alt="WEEELABEX Certificering"
+                    fill
+                    className="object-contain"
+                  />
                 </div>
               </div>
               <div>
@@ -304,8 +309,13 @@ export default function Certificeringen() {
 
             <div className="flex p-5 bg-white dark:bg-gray-900 rounded-xl shadow-md border border-gray-100 dark:border-gray-800">
               <div className="flex-shrink-0 mr-4">
-                <div className="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 rounded-lg flex items-center justify-center">
-                  <FiCheck className="w-6 h-6" />
+                <div className="relative w-16 h-16">
+                  <Image 
+                    src="/images/certifications/weee.png"
+                    alt="R2 Certificering"
+                    fill
+                    className="object-contain"
+                  />
                 </div>
               </div>
               <div>
@@ -318,8 +328,13 @@ export default function Certificeringen() {
 
             <div className="flex p-5 bg-white dark:bg-gray-900 rounded-xl shadow-md border border-gray-100 dark:border-gray-800">
               <div className="flex-shrink-0 mr-4">
-                <div className="w-12 h-12 bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 rounded-lg flex items-center justify-center">
-                  <FiRefreshCw className="w-6 h-6" />
+                <div className="relative w-16 h-16">
+                  <Image 
+                    src="/images/certifications/weee.png"
+                    alt="e-Stewards Certificering"
+                    fill
+                    className="object-contain"
+                  />
                 </div>
               </div>
               <div>
@@ -332,8 +347,13 @@ export default function Certificeringen() {
 
             <div className="flex p-5 bg-white dark:bg-gray-900 rounded-xl shadow-md border border-gray-100 dark:border-gray-800">
               <div className="flex-shrink-0 mr-4">
-                <div className="w-12 h-12 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-lg flex items-center justify-center">
-                  <FiTrendingUp className="w-6 h-6" />
+                <div className="relative w-16 h-16">
+                  <Image 
+                    src="/images/certifications/weee.png"
+                    alt="CO2-Prestatieladder Certificering"
+                    fill
+                    className="object-contain"
+                  />
                 </div>
               </div>
               <div>
