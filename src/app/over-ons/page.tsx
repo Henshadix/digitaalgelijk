@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { FiUsers, FiTarget, FiHeart, FiAward, FiArrowRight, FiCheck, FiTrendingUp, FiGlobe } from 'react-icons/fi';
+import CertificationBadge from '@/components/certifications/CertificationBadge';
 
 export default function OverOns() {
   return (
@@ -213,18 +214,21 @@ export default function OverOns() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {[
               {
-                imageSrc: "/images/certifications/iso-14001-badge.svg",
                 title: "ISO 14001",
+                subtitle: "Milieumanagement",
+                colorScheme: "green" as const,
                 description: "Gecertificeerd voor milieumanagementsystemen"
               },
               {
-                imageSrc: "/images/certifications/iso-27001-badge.svg",
                 title: "ISO 27001",
+                subtitle: "Informatiebeveiliging",
+                colorScheme: "purple" as const,
                 description: "Gecertificeerd voor informatiebeveiliging"
               },
               {
-                imageSrc: "/images/certifications/iso-9001-badge.svg",
                 title: "ISO 9001",
+                subtitle: "Kwaliteitsmanagement",
+                colorScheme: "blue" as const,
                 description: "Gecertificeerd voor kwaliteitsmanagement"
               }
             ].map((certificering, index) => (
@@ -237,14 +241,12 @@ export default function OverOns() {
                 className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg"
               >
                 <div className="flex justify-center mb-6">
-                  <div className="relative w-32 h-32">
-                    <Image 
-                      src={certificering.imageSrc}
-                      alt={certificering.title} 
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
+                  <CertificationBadge
+                    title={certificering.title}
+                    subtitle={certificering.subtitle}
+                    colorScheme={certificering.colorScheme}
+                    size="lg"
+                  />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 text-center">
                   {certificering.title}

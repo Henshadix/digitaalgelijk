@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { FiShield, FiRefreshCw, FiAward, FiCheck, FiFileText, FiArrowRight, FiLayers, FiTrendingUp } from 'react-icons/fi';
+import CertificationBadge from '@/components/certifications/CertificationBadge';
 
 export default function Certificeringen() {
   // Animation variants
@@ -132,14 +133,12 @@ export default function Certificeringen() {
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
               <div className="flex justify-center mb-6">
-                <div className="relative h-32 w-32">
-                  <Image 
-                    src="/images/certifications/iso-27001-badge.svg"
-                    alt="ISO 27001 Certificering"
-                    fill
-                    className="object-contain"
-                  />
-                </div>
+                <CertificationBadge
+                  title="ISO 27001"
+                  subtitle="Informatiebeveiliging"
+                  colorScheme="purple"
+                  size="lg"
+                />
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 text-center">ISO 27001</h3>
               <p className="text-gray-600 dark:text-gray-400 text-center mb-4">
@@ -161,14 +160,12 @@ export default function Certificeringen() {
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
               <div className="flex justify-center mb-6">
-                <div className="relative h-32 w-32">
-                  <Image 
-                    src="/images/certifications/weeelabex-badge.svg"
-                    alt="WEEELABEX Certificering"
-                    fill
-                    className="object-contain"
-                  />
-                </div>
+                <CertificationBadge
+                  title="WEEELABEX"
+                  subtitle="Elektronisch Afval"
+                  colorScheme="amber"
+                  size="lg"
+                />
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 text-center">WEEELABEX</h3>
               <p className="text-gray-600 dark:text-gray-400 text-center mb-4">
@@ -190,14 +187,12 @@ export default function Certificeringen() {
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
               <div className="flex justify-center mb-6">
-                <div className="relative h-32 w-32">
-                  <Image 
-                    src="/images/certifications/nist-badge.svg"
-                    alt="NIST 800-88 Standaard"
-                    fill
-                    className="object-contain"
-                  />
-                </div>
+                <CertificationBadge
+                  title="NIST 800-88"
+                  subtitle="Dataverwijdering"
+                  colorScheme="purple"
+                  size="lg"
+                />
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 text-center">NIST 800-88</h3>
               <p className="text-gray-600 dark:text-gray-400 text-center mb-4">
@@ -252,14 +247,11 @@ export default function Certificeringen() {
           >
             <div className="flex p-5 bg-white dark:bg-gray-900 rounded-xl shadow-md border border-gray-100 dark:border-gray-800">
               <div className="flex-shrink-0 mr-4">
-                <div className="relative w-16 h-16">
-                  <Image 
-                    src="/images/certifications/iso-9001-badge.svg"
-                    alt="ISO 9001 Certificering"
-                    fill
-                    className="object-contain"
-                  />
-                </div>
+                <CertificationBadge
+                  title="ISO 9001"
+                  colorScheme="blue"
+                  size="sm"
+                />
               </div>
               <div>
                 <h3 className="font-bold text-gray-900 dark:text-white mb-1">ISO 9001</h3>
@@ -271,14 +263,11 @@ export default function Certificeringen() {
 
             <div className="flex p-5 bg-white dark:bg-gray-900 rounded-xl shadow-md border border-gray-100 dark:border-gray-800">
               <div className="flex-shrink-0 mr-4">
-                <div className="relative w-16 h-16">
-                  <Image 
-                    src="/images/certifications/iso-14001-badge.svg"
-                    alt="ISO 14001 Certificering"
-                    fill
-                    className="object-contain"
-                  />
-                </div>
+                <CertificationBadge
+                  title="ISO 14001"
+                  colorScheme="green"
+                  size="sm"
+                />
               </div>
               <div>
                 <h3 className="font-bold text-gray-900 dark:text-white mb-1">ISO 14001</h3>
@@ -290,14 +279,11 @@ export default function Certificeringen() {
 
             <div className="flex p-5 bg-white dark:bg-gray-900 rounded-xl shadow-md border border-gray-100 dark:border-gray-800">
               <div className="flex-shrink-0 mr-4">
-                <div className="relative w-16 h-16">
-                  <Image 
-                    src="/images/certifications/gdpr-badge.svg"
-                    alt="AVG/GDPR Compliance"
-                    fill
-                    className="object-contain"
-                  />
-                </div>
+                <CertificationBadge
+                  title="AVG/GDPR"
+                  colorScheme="cyan"
+                  size="sm"
+                />
               </div>
               <div>
                 <h3 className="font-bold text-gray-900 dark:text-white mb-1">AVG/GDPR</h3>
@@ -309,14 +295,11 @@ export default function Certificeringen() {
 
             <div className="flex p-5 bg-white dark:bg-gray-900 rounded-xl shadow-md border border-gray-100 dark:border-gray-800">
               <div className="flex-shrink-0 mr-4">
-                <div className="relative w-16 h-16">
-                  <Image 
-                    src="/images/certifications/weee.png"
-                    alt="R2 Certificering"
-                    fill
-                    className="object-contain"
-                  />
-                </div>
+                <CertificationBadge
+                  title="R2"
+                  colorScheme="amber"
+                  size="sm"
+                />
               </div>
               <div>
                 <h3 className="font-bold text-gray-900 dark:text-white mb-1">R2</h3>
@@ -328,14 +311,11 @@ export default function Certificeringen() {
 
             <div className="flex p-5 bg-white dark:bg-gray-900 rounded-xl shadow-md border border-gray-100 dark:border-gray-800">
               <div className="flex-shrink-0 mr-4">
-                <div className="relative w-16 h-16">
-                  <Image 
-                    src="/images/certifications/weee.png"
-                    alt="e-Stewards Certificering"
-                    fill
-                    className="object-contain"
-                  />
-                </div>
+                <CertificationBadge
+                  title="e-Stewards"
+                  colorScheme="green"
+                  size="sm"
+                />
               </div>
               <div>
                 <h3 className="font-bold text-gray-900 dark:text-white mb-1">e-Stewards</h3>
@@ -347,14 +327,12 @@ export default function Certificeringen() {
 
             <div className="flex p-5 bg-white dark:bg-gray-900 rounded-xl shadow-md border border-gray-100 dark:border-gray-800">
               <div className="flex-shrink-0 mr-4">
-                <div className="relative w-16 h-16">
-                  <Image 
-                    src="/images/certifications/weee.png"
-                    alt="CO2-Prestatieladder Certificering"
-                    fill
-                    className="object-contain"
-                  />
-                </div>
+                <CertificationBadge
+                  title="CO2"
+                  subtitle="Prestatieladder"
+                  colorScheme="green"
+                  size="sm"
+                />
               </div>
               <div>
                 <h3 className="font-bold text-gray-900 dark:text-white mb-1">CO2-Prestatieladder</h3>
