@@ -125,7 +125,7 @@ export default function Certificeringen() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <motion.div 
-              className="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden p-6 border border-gray-100 dark:border-gray-800"
+              className="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden p-6 border border-gray-100 dark:border-gray-700"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -138,21 +138,22 @@ export default function Certificeringen() {
                   subtitle="Informatiebeveiliging"
                   colorScheme="purple"
                   size="lg"
+                  className="transform hover:scale-105 transition-transform"
                 />
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 text-center">ISO 27001</h3>
               <p className="text-gray-600 dark:text-gray-400 text-center mb-4">
                 Deze certificering voor informatiebeveiliging garandeert dat wij alle data volgens de hoogste beveiligingsstandaarden verwerken.
               </p>
-              <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg">
-                <p className="text-sm text-blue-700 dark:text-blue-300 text-center">
+              <div className="bg-blue-50 dark:bg-blue-900/40 p-3 rounded-lg border border-blue-100 dark:border-blue-800">
+                <p className="text-sm text-blue-700 dark:text-blue-200 text-center">
                   <span className="font-medium">Geldigheid:</span> Doorlopend geauditeerd
                 </p>
               </div>
             </motion.div>
 
             <motion.div 
-              className="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden p-6 border border-gray-100 dark:border-gray-800"
+              className="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden p-6 border border-gray-100 dark:border-gray-700"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -165,21 +166,22 @@ export default function Certificeringen() {
                   subtitle="Elektronisch Afval"
                   colorScheme="amber"
                   size="lg"
+                  className="transform hover:scale-105 transition-transform"
                 />
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 text-center">WEEELABEX</h3>
               <p className="text-gray-600 dark:text-gray-400 text-center mb-4">
                 Deze Europese standaard voor elektronisch afval verzekert dat onze recyclingprocessen milieuvriendelijk en compliant zijn.
               </p>
-              <div className="bg-green-50 dark:bg-green-900/20 p-3 rounded-lg">
-                <p className="text-sm text-green-700 dark:text-green-300 text-center">
+              <div className="bg-green-50 dark:bg-green-900/40 p-3 rounded-lg border border-green-100 dark:border-green-800">
+                <p className="text-sm text-green-700 dark:text-green-200 text-center">
                   <span className="font-medium">Geldigheid:</span> Doorlopend geauditeerd
                 </p>
               </div>
             </motion.div>
 
             <motion.div 
-              className="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden p-6 border border-gray-100 dark:border-gray-800"
+              className="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden p-6 border border-gray-100 dark:border-gray-700"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -192,14 +194,15 @@ export default function Certificeringen() {
                   subtitle="Dataverwijdering"
                   colorScheme="purple"
                   size="lg"
+                  className="transform hover:scale-105 transition-transform"
                 />
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 text-center">NIST 800-88</h3>
               <p className="text-gray-600 dark:text-gray-400 text-center mb-4">
                 Deze internationale standaard waarborgt dat onze dataverwijdering voldoet aan de strengste veiligheidseisen op de markt.
               </p>
-              <div className="bg-purple-50 dark:bg-purple-900/20 p-3 rounded-lg">
-                <p className="text-sm text-purple-700 dark:text-purple-300 text-center">
+              <div className="bg-purple-50 dark:bg-purple-900/40 p-3 rounded-lg border border-purple-100 dark:border-purple-800">
+                <p className="text-sm text-purple-700 dark:text-purple-200 text-center">
                   <span className="font-medium">Toepassingsgebied:</span> Alle dataverwijderingsdiensten
                 </p>
               </div>
@@ -245,12 +248,13 @@ export default function Certificeringen() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <div className="flex p-5 bg-white dark:bg-gray-900 rounded-xl shadow-md border border-gray-100 dark:border-gray-800">
+            <div className="flex p-5 bg-white dark:bg-gray-900 rounded-xl shadow-md border border-gray-100 dark:border-gray-700">
               <div className="flex-shrink-0 mr-4">
                 <CertificationBadge
                   title="ISO 9001"
                   colorScheme="blue"
                   size="sm"
+                  className="shadow-sm"
                 />
               </div>
               <div>
@@ -261,12 +265,13 @@ export default function Certificeringen() {
               </div>
             </div>
 
-            <div className="flex p-5 bg-white dark:bg-gray-900 rounded-xl shadow-md border border-gray-100 dark:border-gray-800">
+            <div className="flex p-5 bg-white dark:bg-gray-900 rounded-xl shadow-md border border-gray-100 dark:border-gray-700">
               <div className="flex-shrink-0 mr-4">
                 <CertificationBadge
                   title="ISO 14001"
                   colorScheme="green"
                   size="sm"
+                  className="shadow-sm"
                 />
               </div>
               <div>
@@ -277,7 +282,7 @@ export default function Certificeringen() {
               </div>
             </div>
 
-            <div className="flex p-5 bg-white dark:bg-gray-900 rounded-xl shadow-md border border-gray-100 dark:border-gray-800">
+            <div className="flex p-5 bg-white dark:bg-gray-900 rounded-xl shadow-md border border-gray-100 dark:border-gray-700">
               <div className="flex-shrink-0 mr-4">
                 <CertificationBadge
                   title="AVG/GDPR"
@@ -293,7 +298,7 @@ export default function Certificeringen() {
               </div>
             </div>
 
-            <div className="flex p-5 bg-white dark:bg-gray-900 rounded-xl shadow-md border border-gray-100 dark:border-gray-800">
+            <div className="flex p-5 bg-white dark:bg-gray-900 rounded-xl shadow-md border border-gray-100 dark:border-gray-700">
               <div className="flex-shrink-0 mr-4">
                 <CertificationBadge
                   title="R2"
@@ -309,7 +314,7 @@ export default function Certificeringen() {
               </div>
             </div>
 
-            <div className="flex p-5 bg-white dark:bg-gray-900 rounded-xl shadow-md border border-gray-100 dark:border-gray-800">
+            <div className="flex p-5 bg-white dark:bg-gray-900 rounded-xl shadow-md border border-gray-100 dark:border-gray-700">
               <div className="flex-shrink-0 mr-4">
                 <CertificationBadge
                   title="e-Stewards"
@@ -325,7 +330,7 @@ export default function Certificeringen() {
               </div>
             </div>
 
-            <div className="flex p-5 bg-white dark:bg-gray-900 rounded-xl shadow-md border border-gray-100 dark:border-gray-800">
+            <div className="flex p-5 bg-white dark:bg-gray-900 rounded-xl shadow-md border border-gray-100 dark:border-gray-700">
               <div className="flex-shrink-0 mr-4">
                 <CertificationBadge
                   title="CO2"

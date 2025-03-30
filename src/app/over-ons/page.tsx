@@ -238,7 +238,7 @@ export default function OverOns() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg"
+                className="bg-white dark:bg-gray-800/80 rounded-xl p-8 shadow-lg border border-gray-200 dark:border-gray-700"
               >
                 <div className="flex justify-center mb-6">
                   <CertificationBadge
@@ -246,6 +246,7 @@ export default function OverOns() {
                     subtitle={certificering.subtitle}
                     colorScheme={certificering.colorScheme}
                     size="lg"
+                    className="transform hover:scale-105 transition-transform"
                   />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 text-center">
