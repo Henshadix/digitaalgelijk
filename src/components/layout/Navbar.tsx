@@ -104,6 +104,7 @@ const Navbar = () => {
       ]
     },
     { name: 'Over Ons', path: '/over-ons' },
+    { name: 'Doneer', path: '/doneren' },
     { name: 'Contact', path: '/contact' },
   ];
 
