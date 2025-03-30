@@ -213,17 +213,17 @@ export default function OverOns() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {[
               {
-                icon: <FiAward className="text-blue-600 dark:text-blue-400" size={24} />,
+                imageSrc: "/images/certifications/iso-14001.png",
                 title: "ISO 14001",
                 description: "Gecertificeerd voor milieumanagementsystemen"
               },
               {
-                icon: <FiAward className="text-indigo-600 dark:text-indigo-400" size={24} />,
+                imageSrc: "/images/certifications/iso-27001.png",
                 title: "ISO 27001",
                 description: "Gecertificeerd voor informatiebeveiliging"
               },
               {
-                icon: <FiAward className="text-blue-600 dark:text-blue-400" size={24} />,
+                imageSrc: "/images/certifications/iso-9001.png",
                 title: "ISO 9001",
                 description: "Gecertificeerd voor kwaliteitsmanagement"
               }
@@ -234,15 +234,22 @@ export default function OverOns() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg"
+                className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg"
               >
-                <div className="bg-blue-50 dark:bg-blue-900/30 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                  {certificering.icon}
+                <div className="flex justify-center mb-6">
+                  <div className="relative w-32 h-32">
+                    <Image 
+                      src={certificering.imageSrc}
+                      alt={certificering.title} 
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 text-center">
                   {certificering.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300">
+                <p className="text-gray-600 dark:text-gray-300 text-center">
                   {certificering.description}
                 </p>
               </motion.div>
