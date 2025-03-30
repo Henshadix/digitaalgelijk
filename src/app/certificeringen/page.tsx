@@ -134,7 +134,7 @@ export default function Certificeringen() {
               <div className="flex justify-center mb-6">
                 <div className="relative h-32 w-32">
                   <Image 
-                    src="/images/certifications/iso-27001.png"
+                    src="/images/certifications/iso-27001-badge.svg"
                     alt="ISO 27001 Certificering"
                     fill
                     className="object-contain"
@@ -163,7 +163,7 @@ export default function Certificeringen() {
               <div className="flex justify-center mb-6">
                 <div className="relative h-32 w-32">
                   <Image 
-                    src="/images/certifications/weeelabex.png"
+                    src="/images/certifications/weeelabex-badge.svg"
                     alt="WEEELABEX Certificering"
                     fill
                     className="object-contain"
@@ -192,7 +192,7 @@ export default function Certificeringen() {
               <div className="flex justify-center mb-6">
                 <div className="relative h-32 w-32">
                   <Image 
-                    src="/images/certifications/nist.png"
+                    src="/images/certifications/nist-badge.svg"
                     alt="NIST 800-88 Standaard"
                     fill
                     className="object-contain"
@@ -254,7 +254,7 @@ export default function Certificeringen() {
               <div className="flex-shrink-0 mr-4">
                 <div className="relative w-16 h-16">
                   <Image 
-                    src="/images/certifications/iso-9001.png"
+                    src="/images/certifications/iso-9001-badge.svg"
                     alt="ISO 9001 Certificering"
                     fill
                     className="object-contain"
@@ -273,7 +273,7 @@ export default function Certificeringen() {
               <div className="flex-shrink-0 mr-4">
                 <div className="relative w-16 h-16">
                   <Image 
-                    src="/images/certifications/iso-14001.png"
+                    src="/images/certifications/iso-14001-badge.svg"
                     alt="ISO 14001 Certificering"
                     fill
                     className="object-contain"
@@ -292,8 +292,8 @@ export default function Certificeringen() {
               <div className="flex-shrink-0 mr-4">
                 <div className="relative w-16 h-16">
                   <Image 
-                    src="/images/certifications/weee.png"
-                    alt="WEEELABEX Certificering"
+                    src="/images/certifications/gdpr-badge.svg"
+                    alt="AVG/GDPR Compliance"
                     fill
                     className="object-contain"
                   />

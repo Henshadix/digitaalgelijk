@@ -213,17 +213,17 @@ export default function OverOns() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {[
               {
-                imageSrc: "/images/certifications/iso-14001.png",
+                imageSrc: "/images/certifications/iso-14001-badge.svg",
                 title: "ISO 14001",
                 description: "Gecertificeerd voor milieumanagementsystemen"
               },
               {
-                imageSrc: "/images/certifications/iso-27001.png",
+                imageSrc: "/images/certifications/iso-27001-badge.svg",
                 title: "ISO 27001",
                 description: "Gecertificeerd voor informatiebeveiliging"
               },
               {
-                imageSrc: "/images/certifications/iso-9001.png",
+                imageSrc: "/images/certifications/iso-9001-badge.svg",
                 title: "ISO 9001",
                 description: "Gecertificeerd voor kwaliteitsmanagement"
               }
