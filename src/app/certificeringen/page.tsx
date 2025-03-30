@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { FiShield, FiRefreshCw, FiAward, FiCheck, FiFileText, FiArrowRight, FiLayers, FiTrendingUp } from 'react-icons/fi';
 
@@ -130,8 +131,15 @@ export default function Certificeringen() {
               transition={{ duration: 0.5 }}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
-              <div className="w-16 h-16 bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 rounded-full flex items-center justify-center mb-4 mx-auto">
-                <FiShield className="w-8 h-8" />
+              <div className="flex justify-center mb-6">
+                <div className="relative h-32 w-32">
+                  <Image 
+                    src="/images/certifications/iso-27001.png"
+                    alt="ISO 27001 Certificering"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 text-center">ISO 27001</h3>
               <p className="text-gray-600 dark:text-gray-400 text-center mb-4">
@@ -152,8 +160,15 @@ export default function Certificeringen() {
               transition={{ duration: 0.5, delay: 0.1 }}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
-              <div className="w-16 h-16 bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400 rounded-full flex items-center justify-center mb-4 mx-auto">
-                <FiRefreshCw className="w-8 h-8" />
+              <div className="flex justify-center mb-6">
+                <div className="relative h-32 w-32">
+                  <Image 
+                    src="/images/certifications/weeelabex.png"
+                    alt="WEEELABEX Certificering"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 text-center">WEEELABEX</h3>
               <p className="text-gray-600 dark:text-gray-400 text-center mb-4">
@@ -174,8 +189,15 @@ export default function Certificeringen() {
               transition={{ duration: 0.5, delay: 0.2 }}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
-              <div className="w-16 h-16 bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400 rounded-full flex items-center justify-center mb-4 mx-auto">
-                <FiAward className="w-8 h-8" />
+              <div className="flex justify-center mb-6">
+                <div className="relative h-32 w-32">
+                  <Image 
+                    src="/images/certifications/nist.png"
+                    alt="NIST 800-88 Standaard"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
               </div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 text-center">NIST 800-88</h3>
               <p className="text-gray-600 dark:text-gray-400 text-center mb-4">
@@ -230,8 +252,13 @@ export default function Certificeringen() {
           >
             <div className="flex p-5 bg-white dark:bg-gray-900 rounded-xl shadow-md border border-gray-100 dark:border-gray-800">
               <div className="flex-shrink-0 mr-4">
-                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center">
-                  <FiFileText className="w-6 h-6" />
+                <div className="relative w-16 h-16">
+                  <Image 
+                    src="/images/certifications/iso-9001.png"
+                    alt="ISO 9001 Certificering"
+                    fill
+                    className="object-contain"
+                  />
                 </div>
               </div>
               <div>
@@ -244,14 +271,19 @@ export default function Certificeringen() {
 
             <div className="flex p-5 bg-white dark:bg-gray-900 rounded-xl shadow-md border border-gray-100 dark:border-gray-800">
               <div className="flex-shrink-0 mr-4">
-                <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-lg flex items-center justify-center">
-                  <FiLayers className="w-6 h-6" />
+                <div className="relative w-16 h-16">
+                  <Image 
+                    src="/images/certifications/iso-14001.png"
+                    alt="ISO 14001 Certificering"
+                    fill
+                    className="object-contain"
+                  />
                 </div>
               </div>
               <div>
                 <h3 className="font-bold text-gray-900 dark:text-white mb-1">ISO 14001</h3>
                 <p className="text-gray-600 dark:text-gray-400 text-sm">
-                  Milieumanagement standaard die zorgt voor het minimaliseren van onze ecologische voetafdruk.
+                  Milieumanagement standaard die verzekert dat onze activiteiten milieuvriendelijk en duurzaam zijn.
                 </p>
               </div>
             </div>
