@@ -6,11 +6,6 @@ import Image from 'next/image';
 import { FiHeart, FiArrowRight, FiCheckCircle } from 'react-icons/fi';
 import PageWrapper from '@/components/client/PageWrapper';
 
-export const metadata = {
-  title: 'Doneer - Digitaalgelijk',
-  description: 'Doneer de restwaarde van uw hardware aan het Ronald McDonald Huis in Nijmegen. Help ons om gezinnen met zieke kinderen te ondersteunen.',
-};
-
 export default function DonerenPage() {
   // Donation steps
   const donationSteps = [
