@@ -12,8 +12,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Digitaalgelijk - Hardware Opkopen, Recyclen en Data Verwijderen",
-  description: "Uw betrouwbare partner voor hardware inkoop, recycling en veilige dataverwijdering. Wij kopen uw gebruikte computers, laptops, smartphones en tablets op, recyclen hardware en verwijderen data veilig.",
+  title: "Digitaalgelijk - Duurzame IT-oplossingen | Hardware Opkopen, Recyclen & Data Verwijderen",
+  description: "Digitaalgelijk is uw specialist in duurzame IT-oplossingen. Wij kopen hardware op, recyclen apparatuur en verwijderen data veilig. ISO 27001, 14001 en 9001 gecertificeerd.",
   icons: {
     icon: [
       { url: "/favicon.ico" },
@@ -24,15 +24,20 @@ export const metadata: Metadata = {
   },
   robots: "index, follow",
   applicationName: "Digitaalgelijk",
-  keywords: ["IT hardware", "recycling", "dataverwijdering", "circulaire economie", "GDPR compliance"],
+  keywords: ["IT hardware", "recycling", "dataverwijdering", "circulaire economie", "GDPR compliance", "hardware opkopen", "duurzame IT", "ISO 27001", "ISO 14001", "ISO 9001"],
   authors: [{ name: "Digitaalgelijk", url: "https://digitaalgelijk.nl" }],
   openGraph: {
     type: "website",
     locale: "nl_NL",
     url: "https://digitaalgelijk.nl",
     title: "Digitaalgelijk - Uw partner voor duurzame IT-oplossingen",
-    description: "Wij kopen uw gebruikte IT-apparatuur op, wissen data veilig en geven hardware een tweede leven.",
+    description: "Wij kopen uw gebruikte IT-apparatuur op, recyclen hardware en verwijderen data veilig. ISO gecertificeerd en duurzaam.",
     siteName: "Digitaalgelijk",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Digitaalgelijk - Duurzame IT-oplossingen",
+    description: "Wij kopen uw gebruikte IT-apparatuur op, recyclen hardware en verwijderen data veilig. ISO gecertificeerd en duurzaam.",
   }
 };
 

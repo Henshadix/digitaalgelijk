@@ -1,0 +1,13 @@
+Voeg hier de volgende logo's toe:
+
+1. iso-27001.png - ISO 27001 Informatiebeveiliging certificeringslogo
+2. iso-14001.png - ISO 14001 Milieumanagement certificeringslogo
+3. iso-9001.png - ISO 9001 Kwaliteitsmanagement certificeringslogo
+4. weeelabex.png - WEEELABEX certificeringslogo voor elektronisch afval
+5. nist.png - NIST 800-88 logo voor dataverwijdering
+
+Zorg ervoor dat alle logo's:
+- Minimaal 200x200 pixels zijn
+- Een transparante achtergrond hebben (PNG formaat)
+- Scherp en duidelijk leesbaar zijn
+- De officiële huisstijl van de certificerende instantie volgen 
