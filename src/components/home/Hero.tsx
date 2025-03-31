@@ -46,7 +46,7 @@ const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slideDirection, setSlideDirection] = useState(0); // -1 voor links, 1 voor rechts
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const autoPlayRef = useRef<NodeJS.Timeout>();
+  const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
 
   // Auto-play functionaliteit
   useEffect(() => {
